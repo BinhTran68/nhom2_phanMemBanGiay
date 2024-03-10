@@ -21,35 +21,45 @@ public class MainApplicationView extends javax.swing.JFrame {
     /**
      * Creates new form MainApplication
      */
-//  
-    private  SanPhamMainPanel sanPhamMainPanel;
+// 
+    private  BanHangMainPanel banHangMainPanel;  // Hậu
     
-    private NhanVienMainPanel nhanVienMainPanel;
+    private HoaDonMainPanel hoaDonMainPanel; // Bình
+     
+    private KhachHangMainPanel khachHangMainPanel; // Hà
     
-    private  KhachHangMainPanel khachHangMainPanel;
+    private KhuyenMaiMainPanel khuyenMaiMainPanel; // Thảo
     
-    private ThongKeMainPanel thongKeMainPanel;
+    private NhanVienMainPanel nhanVienMainPanel; // Hà
     
-    private KhuyenMaiMainPanel khuyenMaiMainPanel;
+    private SanPhamMainPanel sanPhamMainPanel; // Công
     
-
+    private ThongKeMainPanel thongKeMainPanel; // Thảo
+    
+   
     
     public MainApplicationView(NhanVien nhanVien) {
         initComponents();
         
+        banHangMainPanel = new BanHangMainPanel();
+        
+        hoaDonMainPanel = new HoaDonMainPanel();
+        
+        khachHangMainPanel = new KhachHangMainPanel();
+        
+        khuyenMaiMainPanel = new KhuyenMaiMainPanel();
+        
+        nhanVienMainPanel = new NhanVienMainPanel();
+        
+        sanPhamMainPanel = new SanPhamMainPanel();
+        
+        thongKeMainPanel = new ThongKeMainPanel();
+         
         labelShowName.setText(nhanVien.getTen());
         
-//        this.nhanVien = nhanVien;
-//        if (nhanVien.isRoLe() == true) {
-//            this.labelShowOffice.setText("Chức Vụ: Quản Lý");
-//        } else {
-//            this.labelShowOffice.setText("Chức Vụ: Nhân Viên");
-//        }
-//       
+        
 
-        QuanLyNhanVienPanel quanLyNhanVienPanel = new QuanLyNhanVienPanel();
-
-        showPanel(quanLyNhanVienPanel);
+        showPanel(banHangMainPanel);
 
     }
 
@@ -63,12 +73,6 @@ public class MainApplicationView extends javax.swing.JFrame {
         }
     }
 
-//    private void showInfor(User user) {
-//        labelShowOffice.setText("Chức Vụ: " + user.getOffice().getName());
-//        labelShowName.setText("Tên: " + user.getMiddleName() + " " + user.getName());
-//        txtAccount.setText(user.getEmail());
-//        pswAccount.setText(user.getPassword());
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -512,7 +516,6 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
          unClicked(doiMatKhauPanel);
-         BanHangMainPanel banHangMainPanel = new BanHangMainPanel();
          showPanel(banHangMainPanel);
     }//GEN-LAST:event_banHangLabelMouseClicked
 
@@ -525,6 +528,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
          unClicked(doiMatKhauPanel);
+         showPanel(sanPhamMainPanel);
     }//GEN-LAST:event_sanPhamLabelMouseClicked
 
     private void nhanVienLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabelMouseClicked
@@ -535,11 +539,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(khuyenMaiPanel);
         unClicked(hoaDonPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-           QuanLyNhanVienPanel quanLyNhanVienPanel = new QuanLyNhanVienPanel();
-
-        showPanel(quanLyNhanVienPanel);
-
+        unClicked(doiMatKhauPanel);
+        showPanel(nhanVienMainPanel);
 
     }//GEN-LAST:event_nhanVienLabelMouseClicked
 
@@ -552,6 +553,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(khuyenMaiPanel);
         unClicked(thongKePanel);
          unClicked(doiMatKhauPanel);
+         showPanel(hoaDonMainPanel);
+
 
     }//GEN-LAST:event_hoaDonLabelMouseClicked
 
@@ -564,6 +567,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(khuyenMaiPanel);
         unClicked(thongKePanel);
          unClicked(doiMatKhauPanel);
+         showPanel(khachHangMainPanel);
     }//GEN-LAST:event_khachHangLabelMouseClicked
 
     private void exitLbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLbMouseClicked
@@ -587,6 +591,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(banHangPanel);
         unClicked(thongKePanel);
          unClicked(doiMatKhauPanel);
+         showPanel(khuyenMaiMainPanel);
     }//GEN-LAST:event_khuyenMaiLabelMouseClicked
 
     private void thongKeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeLabelMouseClicked
@@ -598,6 +603,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
         unClicked(doiMatKhauPanel);
+        showPanel(thongKeMainPanel);
 
     }//GEN-LAST:event_thongKeLabelMouseClicked
 
@@ -610,6 +616,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(nhanVienPanel);
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
+        /// 
+        
     }//GEN-LAST:event_doiMatKhauMouseClicked
 
     private void onClicked(JPanel panelBackGroud) {
