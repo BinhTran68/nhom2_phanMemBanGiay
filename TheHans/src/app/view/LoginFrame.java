@@ -7,7 +7,10 @@ package app.view;
 
 import app.model.NhanVien;
 import app.service.NhanVienService;
+import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -16,10 +19,16 @@ import javax.swing.JOptionPane;
 public class LoginFrame extends javax.swing.JFrame {
 
     private NhanVienService nhanVienService = new NhanVienService();
+    
+    
 
     public LoginFrame() {
         initComponents();
-        
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
        
     }
 

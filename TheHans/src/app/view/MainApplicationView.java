@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.LabelView;
-
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
  * @author Admin
@@ -41,9 +43,16 @@ public class MainApplicationView extends javax.swing.JFrame {
     public MainApplicationView(NhanVien nhanVien) {
         initComponents();
         
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        
         banHangMainPanel = new BanHangMainPanel();
         
         hoaDonMainPanel = new HoaDonMainPanel();
+      
         
         khachHangMainPanel = new KhachHangMainPanel();
         
