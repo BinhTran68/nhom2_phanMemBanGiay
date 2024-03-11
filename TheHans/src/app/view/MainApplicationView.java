@@ -711,4 +711,8 @@ public class MainApplicationView extends javax.swing.JFrame {
     private javax.swing.JLabel thongKeLabel;
     private javax.swing.JPanel thongKePanel;
     // End of variables declaration//GEN-END:variables
+
+    private void showPanel(BanHangMainPanel banHangMainPanel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
