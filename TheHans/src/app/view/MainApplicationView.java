@@ -14,6 +14,7 @@ import javax.swing.text.LabelView;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author Admin
@@ -24,49 +25,44 @@ public class MainApplicationView extends javax.swing.JFrame {
      * Creates new form MainApplication
      */
 // 
-    private  BanHangMainPanel banHangMainPanel;  // Hậu
-    
+    private BanHangMainPanel banHangMainPanel;  // Hậu
+
     private HoaDonMainPanel hoaDonMainPanel; // Bình
-     
+
     private KhachHangMainPanel khachHangMainPanel; // Hà
-    
+
     private KhuyenMaiMainPanel khuyenMaiMainPanel; // Thảo
-    
+
     private NhanVienMainPanel nhanVienMainPanel; // Hà
-    
+
     private SanPhamMainPanel sanPhamMainPanel; // Công
-    
+
     private ThongKeMainPanel thongKeMainPanel; // Thảo
-    
-   
-    
+
     public MainApplicationView(NhanVien nhanVien) {
         initComponents();
-        
+
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        
+
         banHangMainPanel = new BanHangMainPanel();
-        
+
         hoaDonMainPanel = new HoaDonMainPanel();
-      
-        
+
         khachHangMainPanel = new KhachHangMainPanel();
-        
+
         khuyenMaiMainPanel = new KhuyenMaiMainPanel();
-        
+
         nhanVienMainPanel = new NhanVienMainPanel();
-        
+
         sanPhamMainPanel = new SanPhamMainPanel();
-        
+
         thongKeMainPanel = new ThongKeMainPanel();
-         
+
         labelShowName.setText(nhanVien.getTen());
-        
-        
 
         showPanel(banHangMainPanel);
 
@@ -124,16 +120,12 @@ public class MainApplicationView extends javax.swing.JFrame {
         changePassContainer.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Đổi Mật Khẩu");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Mật Khẩu Cũ");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Mật Khẩu Mới");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Xác Nhận Mật Khẩu Mới");
 
         javax.swing.GroupLayout changePassContainerLayout = new javax.swing.GroupLayout(changePassContainer);
@@ -493,7 +485,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         );
 
         mainPanel.setAutoscrolls(true);
-        mainPanel.setPreferredSize(new java.awt.Dimension(1400, 800));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1300, 790));
         mainPanel.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -502,13 +494,13 @@ public class MainApplicationView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelControl, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(panelControl, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -524,8 +516,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(hoaDonPanel);
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(banHangMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(banHangMainPanel);
     }//GEN-LAST:event_banHangLabelMouseClicked
 
     private void sanPhamLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sanPhamLabelMouseClicked
@@ -536,8 +528,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(hoaDonPanel);
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(sanPhamMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(sanPhamMainPanel);
     }//GEN-LAST:event_sanPhamLabelMouseClicked
 
     private void nhanVienLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabelMouseClicked
@@ -561,8 +553,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(khachHangPanel);
         unClicked(khuyenMaiPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(hoaDonMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(hoaDonMainPanel);
 
 
     }//GEN-LAST:event_hoaDonLabelMouseClicked
@@ -575,8 +567,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(banHangPanel);
         unClicked(khuyenMaiPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(khachHangMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(khachHangMainPanel);
     }//GEN-LAST:event_khachHangLabelMouseClicked
 
     private void exitLbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLbMouseClicked
@@ -599,8 +591,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(khuyenMaiMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(khuyenMaiMainPanel);
     }//GEN-LAST:event_khuyenMaiLabelMouseClicked
 
     private void thongKeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeLabelMouseClicked
@@ -626,7 +618,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
         /// 
-        
+
     }//GEN-LAST:event_doiMatKhauMouseClicked
 
     private void onClicked(JPanel panelBackGroud) {
