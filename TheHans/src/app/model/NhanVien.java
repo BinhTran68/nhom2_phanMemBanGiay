@@ -12,132 +12,153 @@ import java.util.Date;
  */
 public class NhanVien {
 
-    Integer ID;
-    String Ten;
-    Date NgaySinh;
-    String Email;
-    boolean Gender;
-    boolean RoLe;
-    String Sdt;
-    String DiaChi;
-    boolean Deleted;
-    String password;
-
-    public boolean isDeleted() {
-        return Deleted;
-    }
-
-    public void setDeleted(boolean Deleted) {
-        this.Deleted = Deleted;
-    }
+    private int id;
+    
+    private String hoTen;
+    
+    private Date ngaySinh;
+    
+    private int gioiTinh;
+    
+    private String diaChi;
+    
+    private String sdt;
+    
+    private String email;
+    
+    private String matKhau;
+    
+    private String vaiTro;
+    
+    private boolean trangThaiXoa;
+    
+    private Date ngayTao;
+    
+    private Date ngaySuaCuoi;
 
     public NhanVien() {
     }
 
-    public NhanVien(String Ten, String Email, String password) {
-        this.Ten = Ten;
-        this.Email = Email;
-        this.password = password;
+    public NhanVien(int id, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
+        this.id = id;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
     }
     
     
 
-    public NhanVien(Integer ID, String Ten, Date NgaySinh, String Email, boolean Gender, boolean RoLe, String Sdt, String DiaChi, boolean Deleted) {
-        this.ID = ID;
-        this.Ten = Ten;
-        this.NgaySinh = NgaySinh;
-        this.Email = Email;
-        this.Gender = Gender;
-        this.RoLe = RoLe;
-        this.Sdt = Sdt;
-        this.DiaChi = DiaChi;
-        this.Deleted = Deleted;
+    public int getId() {
+        return id;
     }
 
-    public NhanVien(String Ten, Date NgaySinh, String Email, boolean Gender, boolean RoLe, String Sdt, String DiaChi, String password) {
-        this.Ten = Ten;
-        this.NgaySinh = NgaySinh;
-        this.Email = Email;
-        this.Gender = Gender;
-        this.RoLe = RoLe;
-        this.Sdt = Sdt;
-        this.DiaChi = DiaChi;
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Integer getID() {
-        return ID;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
-    }
-
-    public String getTen() {
-        return Ten;
-    }
-
-    public void setTen(String Ten) {
-        this.Ten = Ten;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public Date getNgaySinh() {
-        return NgaySinh;
+        return ngaySinh;
     }
 
-    public void setNgaySinh(Date NgaySinh) {
-        this.NgaySinh = NgaySinh;
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
-    public String getEmail() {
-        return Email;
+    public int getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
-    public boolean isGender() {
-        return Gender;
-    }
-
-    public void setGender(boolean Gender) {
-        this.Gender = Gender;
-    }
-
-    public boolean isRoLe() {
-        return RoLe;
-    }
-
-    public void setRoLe(boolean RoLe) {
-        this.RoLe = RoLe;
-    }
-
-    public String getSdt() {
-        return Sdt;
-    }
-
-    public void setSdt(String Sdt) {
-        this.Sdt = Sdt;
+    public void setGioiTinh(int gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getDiaChi() {
-        return DiaChi;
+        return diaChi;
     }
 
-    public void setDiaChi(String DiaChi) {
-        this.DiaChi = DiaChi;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public String getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
+    }
+
+    public boolean isTrangThaiXoa() {
+        return trangThaiXoa;
+    }
+
+    public void setTrangThaiXoa(boolean trangThaiXoa) {
+        this.trangThaiXoa = trangThaiXoa;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
+    public Date getNgaySuaCuoi() {
+        return ngaySuaCuoi;
+    }
+
+    public void setNgaySuaCuoi(Date ngaySuaCuoi) {
+        this.ngaySuaCuoi = ngaySuaCuoi;
+    }
+
+    @Override
+    public String toString() {
+        return "NhanVien{" + "id=" + id + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", matKhau=" + matKhau + ", vaiTro=" + vaiTro + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
     }
     
-    public Object[] toDataRow() {
-        return new Object[]{this.ID, this.Ten, this.getEmail(), this.getNgaySinh(), this.Gender, this.RoLe, this.Sdt, this.DiaChi};
-    }
+    
+    
+    
 }
+
