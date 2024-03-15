@@ -43,6 +43,7 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
+        
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
@@ -97,7 +98,6 @@ public class LoginFrame extends javax.swing.JFrame {
         panelLogin.setBackground(new java.awt.Color(51, 204, 255));
         panelLogin.setRequestFocusEnabled(false);
 
-        txtMatKhau.setBackground(new java.awt.Color(255, 255, 255));
         txtMatKhau.setForeground(new java.awt.Color(0, 0, 0));
         txtMatKhau.setHint("Mật Khẩu");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +111,6 @@ public class LoginFrame extends javax.swing.JFrame {
         labelTitle.setForeground(new java.awt.Color(51, 51, 255));
         labelTitle.setText("Đăng Nhập");
 
-        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtEmail.setHint("Email");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +132,6 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        btnDangNhap.setBackground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
