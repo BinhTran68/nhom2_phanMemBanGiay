@@ -18,9 +18,9 @@ public class DBConnect {
     protected Connection connection;
     private static final String HOSTNAME = "localhost";
     private static final String PORT = "1433";
-    private static final String DBNAME = "PTPM_FINALLY_JAVA_SOF2041";
+    private static final String DBNAME = "BanGiayTheHans";
     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "191223";
 
     public static Connection getConnection() {
 
