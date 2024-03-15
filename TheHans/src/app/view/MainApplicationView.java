@@ -14,6 +14,7 @@ import javax.swing.text.LabelView;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author Admin
@@ -24,49 +25,44 @@ public class MainApplicationView extends javax.swing.JFrame {
      * Creates new form MainApplication
      */
 // 
-    private  BanHangMainPanel banHangMainPanel;  // Hậu
-    
+    private BanHangMainPanel banHangMainPanel;  // Hậu
+
     private HoaDonMainPanel hoaDonMainPanel; // Bình
-     
+
     private KhachHangMainPanel khachHangMainPanel; // Hà
-    
+
     private KhuyenMaiMainPanel khuyenMaiMainPanel; // Thảo
-    
+
     private NhanVienMainPanel nhanVienMainPanel; // Hà
-    
+
     private SanPhamMainPanel sanPhamMainPanel; // Công
-    
+
     private ThongKeMainPanel thongKeMainPanel; // Thảo
-    
-   
-    
+
     public MainApplicationView(NhanVien nhanVien) {
         initComponents();
-        
+
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        
+
         banHangMainPanel = new BanHangMainPanel();
-        
+
         hoaDonMainPanel = new HoaDonMainPanel();
-      
-        
+
         khachHangMainPanel = new KhachHangMainPanel();
-        
+
         khuyenMaiMainPanel = new KhuyenMaiMainPanel();
-        
+
         nhanVienMainPanel = new NhanVienMainPanel();
-        
+
         sanPhamMainPanel = new SanPhamMainPanel();
-        
+
         thongKeMainPanel = new ThongKeMainPanel();
-         
-        labelShowName.setText(nhanVien.getTen());
-        
-        
+
+        labelShowName.setText(nhanVien.getHoTen());
 
         showPanel(banHangMainPanel);
 
@@ -524,8 +520,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(hoaDonPanel);
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(banHangMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(banHangMainPanel);
     }//GEN-LAST:event_banHangLabelMouseClicked
 
     private void sanPhamLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sanPhamLabelMouseClicked
@@ -536,8 +532,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(hoaDonPanel);
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(sanPhamMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(sanPhamMainPanel);
     }//GEN-LAST:event_sanPhamLabelMouseClicked
 
     private void nhanVienLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabelMouseClicked
@@ -561,8 +557,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(khachHangPanel);
         unClicked(khuyenMaiPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(hoaDonMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(hoaDonMainPanel);
 
 
     }//GEN-LAST:event_hoaDonLabelMouseClicked
@@ -575,8 +571,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(banHangPanel);
         unClicked(khuyenMaiPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(khachHangMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(khachHangMainPanel);
     }//GEN-LAST:event_khachHangLabelMouseClicked
 
     private void exitLbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLbMouseClicked
@@ -599,8 +595,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
         unClicked(thongKePanel);
-         unClicked(doiMatKhauPanel);
-         showPanel(khuyenMaiMainPanel);
+        unClicked(doiMatKhauPanel);
+        showPanel(khuyenMaiMainPanel);
     }//GEN-LAST:event_khuyenMaiLabelMouseClicked
 
     private void thongKeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeLabelMouseClicked
@@ -626,7 +622,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
         /// 
-        
+
     }//GEN-LAST:event_doiMatKhauMouseClicked
 
     private void onClicked(JPanel panelBackGroud) {

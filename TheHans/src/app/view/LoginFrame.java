@@ -4,7 +4,6 @@
  */
 package app.view;
 
-
 import app.model.NhanVien;
 import app.service.NhanVienService;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -19,8 +18,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class LoginFrame extends javax.swing.JFrame {
 
     private NhanVienService nhanVienService = new NhanVienService();
-    
-    
 
     public LoginFrame() {
         initComponents();
@@ -29,16 +26,16 @@ public class LoginFrame extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-       
+
     }
 
     private void login() {
-            
-          String email = txtEmail.getText().trim();
-        
+
+        String sdt = txtEmail.getText().trim();
+
         String matKhau = txtMatKhau.getText().trim();
-        
-        if (email.isEmpty()) {
+
+        if (sdt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập email");
             return;
         }
@@ -46,18 +43,19 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
-       
-        NhanVien nhanVien = nhanVienService.dangNhap(email, matKhau);
+        
+
+        NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
+            System.out.println(nhanVien);
             MainApplicationView applicationView = new MainApplicationView(nhanVien);
             applicationView.setVisible(true);
             this.dispose();
-        }else {
-             JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng");
+        } else {
+            JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng");
             return;
         }
-               
-      
+
     }
 
     /**
@@ -100,7 +98,6 @@ public class LoginFrame extends javax.swing.JFrame {
         panelLogin.setBackground(new java.awt.Color(51, 204, 255));
         panelLogin.setRequestFocusEnabled(false);
 
-        txtMatKhau.setBackground(new java.awt.Color(255, 255, 255));
         txtMatKhau.setForeground(new java.awt.Color(0, 0, 0));
         txtMatKhau.setHint("Mật Khẩu");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +111,6 @@ public class LoginFrame extends javax.swing.JFrame {
         labelTitle.setForeground(new java.awt.Color(51, 51, 255));
         labelTitle.setText("Đăng Nhập");
 
-        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtEmail.setHint("Email");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +132,6 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        btnDangNhap.setBackground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +234,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-          System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
@@ -272,7 +267,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-          
+
             new LoginFrame().setVisible(true);
         });
     }
