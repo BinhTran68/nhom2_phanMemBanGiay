@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package app.model;
+package app.dto;
 
 import java.util.Date;
 
@@ -10,41 +10,34 @@ import java.util.Date;
  *
  * @author admin
  */
-public class HoaDon {
-    private int id;
+public class HoaDonDTO {
     
-    private int idKhachHang;
-    
-    private int idNhanVien;
-    
-    private int maHoaDon;
-    
+    private int hoaDonId;
+    private int id_KhachHang;
+    private int id_NhanVien;
+    private String maHoaDon;
     private String tenNguoiNhan;
-    
     private String diaChi;
-    
     private Long tienKhachTra;
-    
     private Long tienThuaLai;
-    
     private Long thanhTien;
-    
     private boolean trangThaiXoa;
-    
     private Date ngayTao;
-    
     private Date ngaySuaCuoi;
-    
     private String ghiChu;
-    
+    private String tenNhanVien;
+    private String tenKhachHang;
+    private String sdtKhachHang;
 
-    public HoaDon() {
+    public HoaDonDTO() {
     }
 
-    public HoaDon(int id, int idKhachHang, int idNhanVien, int maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu) {
-        this.id = id;
-        this.idKhachHang = idKhachHang;
-        this.idNhanVien = idNhanVien;
+    
+    
+    public HoaDonDTO(int hoaDonId, int id_KhachHang, int id_NhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String tenNhanVien, String tenKhachHang, String sdtKhachHang) {
+        this.hoaDonId = hoaDonId;
+        this.id_KhachHang = id_KhachHang;
+        this.id_NhanVien = id_NhanVien;
         this.maHoaDon = maHoaDon;
         this.tenNguoiNhan = tenNguoiNhan;
         this.diaChi = diaChi;
@@ -55,47 +48,40 @@ public class HoaDon {
         this.ngayTao = ngayTao;
         this.ngaySuaCuoi = ngaySuaCuoi;
         this.ghiChu = ghiChu;
+        this.tenNhanVien = tenNhanVien;
+        this.tenKhachHang = tenKhachHang;
+        this.sdtKhachHang = sdtKhachHang;
     }
 
-    public String getGhiChu() {
-        return ghiChu;
+    public int getHoaDonId() {
+        return hoaDonId;
     }
 
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
+    public void setHoaDonId(int hoaDonId) {
+        this.hoaDonId = hoaDonId;
     }
 
-  
-
-    public int getId() {
-        return id;
+    public int getId_KhachHang() {
+        return id_KhachHang;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_KhachHang(int id_KhachHang) {
+        this.id_KhachHang = id_KhachHang;
     }
 
-    public int getIdKhachHang() {
-        return idKhachHang;
+    public int getId_NhanVien() {
+        return id_NhanVien;
     }
 
-    public void setIdKhachHang(int idKhachHang) {
-        this.idKhachHang = idKhachHang;
+    public void setId_NhanVien(int id_NhanVien) {
+        this.id_NhanVien = id_NhanVien;
     }
 
-    public int getIdNhanVien() {
-        return idNhanVien;
-    }
-
-    public void setIdNhanVien(int idNhanVien) {
-        this.idNhanVien = idNhanVien;
-    }
-
-    public int getMaHoaDon() {
+    public String getMaHoaDon() {
         return maHoaDon;
     }
 
-    public void setMaHoaDon(int maHoaDon) {
+    public void setMaHoaDon(String maHoaDon) {
         this.maHoaDon = maHoaDon;
     }
 
@@ -163,9 +149,36 @@ public class HoaDon {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDon{" + "id=" + id + ", idKhachHang=" + idKhachHang + ", idNhanVien=" + idNhanVien + ", maHoaDon=" + maHoaDon + ", tenNguoiNhan=" + tenNguoiNhan + ", diaChi=" + diaChi + ", tienKhachTra=" + tienKhachTra + ", tienThuaLai=" + tienThuaLai + ", thanhTien=" + thanhTien + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
+    public String getGhiChu() {
+        return ghiChu;
     }
-      
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public String getSdtKhachHang() {
+        return sdtKhachHang;
+    }
+
+    public void setSdtKhachHang(String sdtKhachHang) {
+        this.sdtKhachHang = sdtKhachHang;
+    }
+
 }
