@@ -939,7 +939,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace pref="100" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1011,7 +1011,7 @@
                                       <Component id="rdoConHang" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="rdoHet" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="819" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1019,7 +1019,7 @@
                                           <Component id="txtTenThuocTinh" max="32767" attributes="0"/>
                                           <Component id="cboLoaiThuocTinh" min="-2" pref="259" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="573" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jButton12" min="-2" pref="125" max="-2" attributes="0"/>
                                           <Component id="jButton11" min="-2" pref="125" max="-2" attributes="0"/>
