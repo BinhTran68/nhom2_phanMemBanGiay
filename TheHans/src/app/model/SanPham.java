@@ -28,6 +28,13 @@ public class SanPham {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public SanPham(String maSP, String ten, int trangThaiXoa) {
+        this.maSP = maSP;
+        this.ten = ten;
+        this.trangThaiXoa = trangThaiXoa;
+    }
+    
+
     public String getMaSP() {
         return maSP;
     }

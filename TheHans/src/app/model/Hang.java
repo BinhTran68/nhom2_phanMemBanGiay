@@ -28,6 +28,13 @@ public class Hang {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public Hang(String maHang, String ten, int trangThaiXoa) {
+        this.maHang = maHang;
+        this.ten = ten;
+        this.trangThaiXoa = trangThaiXoa;
+    }
+    
+
     public String getMaHang() {
         return maHang;
     }
