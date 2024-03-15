@@ -4,17 +4,38 @@
  */
 package app.view;
 
+import app.model.ChatLieu;
+import app.service.ThuocTinhService;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author admin
  */
 public class SanPhamMainPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SanPhamMainPanel
-     */
+    int index = -1;
+    ThuocTinhService tts = new ThuocTinhService();
+    
     public SanPhamMainPanel() {
         initComponents();
+        fillToTableChatLieu(tts.getAll());
+    }
+    private void fillToTableChatLieu (List<ChatLieu> list){
+        DefaultTableModel dtm = (DefaultTableModel) tblThuocTinh.getModel();
+        dtm.setRowCount(0);
+        int i = 1;
+        for (ChatLieu chatLieu : list) {
+            dtm.addRow(new Object[]{
+                i++,
+                chatLieu.getMaChatLieu(),
+                chatLieu.getTen(),
+                chatLieu.getTrangThaiXoa(),
+                chatLieu.getNgayTao(),
+                chatLieu.getNgaySuaCuoi()
+            });
+        }
     }
 
     /**

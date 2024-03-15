@@ -20,21 +20,12 @@ public class KichCo {
     public KichCo() {
     }
 
-    public KichCo(int id, String maKichCo, String ten, int trangThaiXoa, String ngayTao, String ngaySuaCuoi) {
-        this.id = id;
+    public KichCo(String maKichCo, String ten, int trangThaiXoa, String ngayTao, String ngaySuaCuoi) {
         this.maKichCo = maKichCo;
         this.ten = ten;
         this.trangThaiXoa = trangThaiXoa;
         this.ngayTao = ngayTao;
         this.ngaySuaCuoi = ngaySuaCuoi;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getMaKichCo() {
@@ -76,5 +67,5 @@ public class KichCo {
     public void setNgaySuaCuoi(String ngaySuaCuoi) {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
-
+    
 }
