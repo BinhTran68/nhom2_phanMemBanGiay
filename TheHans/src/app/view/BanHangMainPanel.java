@@ -4,6 +4,9 @@
  */
 package app.view;
 
+
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ACER
@@ -13,9 +16,14 @@ public class BanHangMainPanel extends javax.swing.JFrame {
     /**
      * Creates new form BanHangMainPanel
      */
+//  private final SP_Service sp_service = new SP_Service();
+//    DefaultTableModel model = new DefaultTableModel();
+
     public BanHangMainPanel() {
         initComponents();
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
