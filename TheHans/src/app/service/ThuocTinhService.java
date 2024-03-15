@@ -28,9 +28,9 @@ public class ThuocTinhService {
     ResultSet rs = null;
     String sql = null;
 
-    public List<ChatLieu> getAll() {
+    public List<ChatLieu> getAllChatLieu() {
         listChatLieu = new ArrayList<>();
-        sql = "select * from chatlieu";
+        sql = "select machatlieu,ten,trangthaixoa,ngaytao,ngaysuacuoi from chatlieu";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
@@ -42,6 +42,66 @@ public class ThuocTinhService {
             return listChatLieu;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public List<MauSac> getAllMauSac() {
+        listMauSac = new ArrayList<>();
+        sql = "select maMauSac,ten,trangthaixoa,ngaytao,ngaysuacuoi from MauSac";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                MauSac ms = new MauSac(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5));
+                listMauSac.add(ms);
+            }
+            return listMauSac;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Hang> getAllHang() {
+        listHang = new ArrayList<>();
+        sql = "select maHang,ten,trangthaixoa,ngaytao,ngaysuacuoi from Hang";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Hang h = new Hang(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5));
+                listHang.add(h);
+            }
+            return listHang;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<KichCo> getAllKichCo() {
+        listKichCo = new ArrayList<>();
+        sql = "select makichco,ten,trangthaixoa,ngaytao,ngaysuacuoi from kịckco";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                KichCo kc = new KichCo(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5));
+                listKichCo.add(kc);
+            }
+            return listKichCo;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        List<ChatLieu> list = new ArrayList<>();
+        ThuocTinhService qld = new ThuocTinhService();
+        list = qld.getAllChatLieu();
+        for (ChatLieu grade : list) {
+            System.out.println(grade.toString());
         }
     }
 }

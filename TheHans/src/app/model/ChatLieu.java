@@ -68,4 +68,10 @@ public class ChatLieu {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    @Override
+    public String toString() {
+        return "ChatLieu{" + "maChatLieu=" + maChatLieu + ", ten=" + ten + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
+    }
+    
+
 }
