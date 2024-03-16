@@ -4,10 +4,16 @@
  */
 package app.service;
 
-/**
- *
- * @author admin
- */
+import java.sql.*;
+import java.sql.SQLException;
+import java.sql.Statement;
+import app.model.ChiTietSanPham;
+import com.microsoft.sqlserver.jdbc.SQLServerStatementColumnEncryptionSetting;
+
+import java.util.ArrayList;
+
 public class SanPhamChiTietService {
-    
+
+   
+
 }

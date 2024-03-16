@@ -14,13 +14,17 @@ import java.sql.SQLException;
  */
 public class DBConnect {
 
+    static void closeConnection(Connection con) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
  
     protected Connection connection;
     private static final String HOSTNAME = "localhost";
     private static final String PORT = "1433";
     private static final String DBNAME = "BanGiayTheHans";
     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "hhaauu2714";
 
     public static Connection getConnection() {
 
