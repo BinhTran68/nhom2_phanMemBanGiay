@@ -4,10 +4,88 @@
  */
 package app.model;
 
+import java.util.Date;
+
 /**
  *
  * @author admin
  */
 public class HoaDonChiTiet {
+    
+     private int idHoaDon;
+    
+    private int id_CTSP;
+    
+    private Long donGia;
+    
+    private int trangThaiXoa;
+    
+    private Date ngayTao;
+    
+    private Date ngaySua;
+
+    public HoaDonChiTiet() {
+    }
+
+    public HoaDonChiTiet(int idHoaDon, int id_CTSP, Long donGia, int trangThaiXoa, Date ngayTao, Date ngaySua) {
+        this.idHoaDon = idHoaDon;
+        this.id_CTSP = id_CTSP;
+        this.donGia = donGia;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+    }
+
+    
+
+    public int getIdHoaDon() {
+        return idHoaDon;
+    }
+
+    public void setIdHoaDon(int idHoaDon) {
+        this.idHoaDon = idHoaDon;
+    }
+
+    public int getId_CTSP() {
+        return id_CTSP;
+    }
+
+    public void setId_CTSP(int id_CTSP) {
+        this.id_CTSP = id_CTSP;
+    }
+
+    public Long getDonGia() {
+        return donGia;
+    }
+
+    public void setDonGia(Long donGia) {
+        this.donGia = donGia;
+    }
+
+    public int getTrangThaiXoa() {
+        return trangThaiXoa;
+    }
+
+    public void setTrangThaiXoa(int trangThaiXoa) {
+        this.trangThaiXoa = trangThaiXoa;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
+    public Date getNgaySua() {
+        return ngaySua;
+    }
+
+    public void setNgaySua(Date ngaySua) {
+        this.ngaySua = ngaySua;
+    }
+    
+    
     
 }

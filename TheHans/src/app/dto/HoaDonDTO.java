@@ -28,6 +28,7 @@ public class HoaDonDTO {
     private String tenNhanVien;
     private String tenKhachHang;
     private String sdtKhachHang;
+    private String hinhThucThanhToan;
 
     public HoaDonDTO() {
     }
@@ -52,6 +53,28 @@ public class HoaDonDTO {
         this.tenKhachHang = tenKhachHang;
         this.sdtKhachHang = sdtKhachHang;
     }
+
+    public HoaDonDTO(int hoaDonId, int id_KhachHang, int id_NhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String tenNhanVien, String tenKhachHang, String sdtKhachHang, String hinhThucThanhToan) {
+        this.hoaDonId = hoaDonId;
+        this.id_KhachHang = id_KhachHang;
+        this.id_NhanVien = id_NhanVien;
+        this.maHoaDon = maHoaDon;
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.diaChi = diaChi;
+        this.tienKhachTra = tienKhachTra;
+        this.tienThuaLai = tienThuaLai;
+        this.thanhTien = thanhTien;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.ghiChu = ghiChu;
+        this.tenNhanVien = tenNhanVien;
+        this.tenKhachHang = tenKhachHang;
+        this.sdtKhachHang = sdtKhachHang;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+    }
+    
+    
 
     public int getHoaDonId() {
         return hoaDonId;
@@ -180,5 +203,15 @@ public class HoaDonDTO {
     public void setSdtKhachHang(String sdtKhachHang) {
         this.sdtKhachHang = sdtKhachHang;
     }
+
+    public String getHinhThucThanhToan() {
+        return hinhThucThanhToan;
+    }
+
+    public void setHinhThucThanhToan(String hinhThucThanhToan) {
+        this.hinhThucThanhToan = hinhThucThanhToan;
+    }
+    
+    
 
 }
