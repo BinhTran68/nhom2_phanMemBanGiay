@@ -98,7 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
         panelLogin.setBackground(new java.awt.Color(51, 204, 255));
         panelLogin.setRequestFocusEnabled(false);
 
-        txtMatKhau.setForeground(new java.awt.Color(0, 0, 0));
+        txtMatKhau.setForeground(new java.awt.Color(255, 255, 255));
         txtMatKhau.setHint("Mật Khẩu");
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class LoginFrame extends javax.swing.JFrame {
         labelTitle.setForeground(new java.awt.Color(51, 51, 255));
         labelTitle.setText("Đăng Nhập");
 
-        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setHint("Email");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
