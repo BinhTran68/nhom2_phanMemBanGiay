@@ -37,6 +37,8 @@ public class HoaDon {
     
     private String ghiChu;
     
+    private String hinhThucThanhToan;
+    
 
     public HoaDon() {
     }
@@ -56,6 +58,25 @@ public class HoaDon {
         this.ngaySuaCuoi = ngaySuaCuoi;
         this.ghiChu = ghiChu;
     }
+
+    public HoaDon(int id, int idKhachHang, int idNhanVien, int maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String hinhThucThanhToan) {
+        this.id = id;
+        this.idKhachHang = idKhachHang;
+        this.idNhanVien = idNhanVien;
+        this.maHoaDon = maHoaDon;
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.diaChi = diaChi;
+        this.tienKhachTra = tienKhachTra;
+        this.tienThuaLai = tienThuaLai;
+        this.thanhTien = thanhTien;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.ghiChu = ghiChu;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+    }
+    
+    
 
     public String getGhiChu() {
         return ghiChu;
@@ -163,6 +184,15 @@ public class HoaDon {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public String getHinhThucThanhToan() {
+        return hinhThucThanhToan;
+    }
+
+    public void setHinhThucThanhToan(String hinhThucThanhToan) {
+        this.hinhThucThanhToan = hinhThucThanhToan;
+    }
+
+    
     @Override
     public String toString() {
         return "HoaDon{" + "id=" + id + ", idKhachHang=" + idKhachHang + ", idNhanVien=" + idNhanVien + ", maHoaDon=" + maHoaDon + ", tenNguoiNhan=" + tenNguoiNhan + ", diaChi=" + diaChi + ", tienKhachTra=" + tienKhachTra + ", tienThuaLai=" + tienThuaLai + ", thanhTien=" + thanhTien + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
