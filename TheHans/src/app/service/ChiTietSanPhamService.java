@@ -36,21 +36,19 @@ public class ChiTietSanPhamService {
 
     public List<ChiTietSanPham> getAllCTSP() {
         listCTSP = new ArrayList<>();
-        sql = "	select maCTSP,SanPham.ten as [tên sp],giaBan,soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],KhuyenMai.tenKM as [tên ctkm],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
+        sql = "	select maCTSP,SanPham.ten as [tên sp],giaBan,soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
                 + "	join SanPham on id_SanPham = SanPham.id\n"
                 + "	join MauSac on id_MauSac = MauSac.id\n"
                 + "	join KichCo on id_KichCo = KichCo.id\n"
                 + "	join Hang on id_Hang = Hang.id\n"
-                + "	join ChatLieu on id_ChatLieu = ChatLieu.id\n"
-                + "	join CTSP_KhuyenMai on id_CTSP_KhuyenMai = CTSP_KhuyenMai.id\n"
-                + "	join KhuyenMai on KhuyenMai.id = CTSP_KhuyenMai.id_KhuyenMai";
+                + "	join ChatLieu on id_ChatLieu = ChatLieu.id";
 
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                ChiTietSanPham ct = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getString(14));
+                ChiTietSanPham ct = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13));
                 listCTSP.add(ct);
             }
             return listCTSP;
@@ -149,10 +147,115 @@ public class ChiTietSanPhamService {
         }
     }
 
+    public int themCTSP(ChiTietSanPham ctsp) {
+        sql = "insert into  ChiTietSanPham (maCTSP,id_SanPham,giaBan,soLuongCon,id_MauSac,id_KichCo,id_Hang,id_ChatLieu,ngayTao,ngaySuaCuoi,trangThaiXoa,mota,maVach)\n"
+                + "values\n"
+                + "(?,?,?,?,?,?,?,?,GETDATE(),GETDATE(),?,?,null)";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ctsp.getMaCTSP());
+            ps.setInt(2, Integer.parseInt(ctsp.getId_SanPham()));
+            ps.setDouble(3, ctsp.getGiaBan());
+            ps.setInt(4, ctsp.getSoLuongCon());
+            ps.setInt(5, Integer.parseInt(ctsp.getId_MauSac()));
+            ps.setInt(6, Integer.parseInt(ctsp.getId_KichCo()));
+            ps.setInt(7, Integer.parseInt(ctsp.getId_Hang()));
+            ps.setInt(8, Integer.parseInt(ctsp.getId_ChatLieu()));
+            ps.setInt(9, ctsp.getTrangThaiXoa());
+            ps.setString(10, ctsp.getMota());
+
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int getIDChatLieu(String TenChatLieu) {
+        sql = "select id from chatlieu where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, TenChatLieu);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
+    public int getIDHang(String TenHang) {
+        sql = "select id from Hang where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, TenHang);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
+    public int getIDKichCo(String TenKichCo) {
+        sql = "select id from KichCo where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, TenKichCo);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
+    public int getIDMauSac(String TenMauSac) {
+        sql = "select id from MauSac where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, TenMauSac);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
+    public int getIDSanPham(String TenSanPham) {
+        sql = "select id from SanPham where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, TenSanPham);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         List<ChiTietSanPham> list = new ArrayList<>();
         ChiTietSanPhamService qld = new ChiTietSanPhamService();
         list = qld.getAllCTSP();
+
         for (ChiTietSanPham grade : list) {
             System.out.println(grade.toString());
         }
