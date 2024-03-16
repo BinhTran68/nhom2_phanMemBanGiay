@@ -10,9 +10,10 @@ package app.model;
  */
 public class ChiTietSanPham {
 
+    private int id;
     private String maCTSP;
     private String id_SanPham;
-    private int giaBan;
+    private double giaBan;
     private int soLuongCon;
     private String id_MauSac;
     private String id_KichCo;
@@ -28,7 +29,24 @@ public class ChiTietSanPham {
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(String maCTSP, String id_SanPham, int giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, String ngayTao, String ngaySuaCuoi, int trangThaiXoa, String mota, String maVach) {
+    public ChiTietSanPham(String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String ngayTao, String ngaySuaCuoi, int trangThaiXoa, String mota, String maVach) {
+        this.maCTSP = maCTSP;
+        this.id_SanPham = id_SanPham;
+        this.giaBan = giaBan;
+        this.soLuongCon = soLuongCon;
+        this.id_MauSac = id_MauSac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.trangThaiXoa = trangThaiXoa;
+        this.mota = mota;
+        this.maVach = maVach;
+    }
+
+    public ChiTietSanPham(int id, String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, String ngayTao, String ngaySuaCuoi, int trangThaiXoa, String mota, String maVach) {
+        this.id = id;
         this.maCTSP = maCTSP;
         this.id_SanPham = id_SanPham;
         this.giaBan = giaBan;
@@ -45,7 +63,7 @@ public class ChiTietSanPham {
         this.maVach = maVach;
     }
 
-    public ChiTietSanPham(String maCTSP, String id_SanPham, int giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, int trangThaiXoa, String mota, String maVach) {
+    public ChiTietSanPham(String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, int trangThaiXoa, String mota, String maVach) {
         this.maCTSP = maCTSP;
         this.id_SanPham = id_SanPham;
         this.giaBan = giaBan;
@@ -58,6 +76,33 @@ public class ChiTietSanPham {
         this.trangThaiXoa = trangThaiXoa;
         this.mota = mota;
         this.maVach = maVach;
+    }
+
+    public ChiTietSanPham(String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int trangThaiXoa, String mota, String maVach) {
+        this.maCTSP = maCTSP;
+        this.id_SanPham = id_SanPham;
+        this.giaBan = giaBan;
+        this.soLuongCon = soLuongCon;
+        this.id_MauSac = id_MauSac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.trangThaiXoa = trangThaiXoa;
+        this.mota = mota;
+        this.maVach = maVach;
+    }
+
+    @Override
+    public String toString() {
+        return "ChiTietSanPham{" + "id=" + id + ", maCTSP=" + maCTSP + ", id_SanPham=" + id_SanPham + ", giaBan=" + giaBan + ", soLuongCon=" + soLuongCon + ", id_MauSac=" + id_MauSac + ", id_KichCo=" + id_KichCo + ", id_Hang=" + id_Hang + ", id_ChatLieu=" + id_ChatLieu + ", id_CTSP_KhuyenMai=" + id_CTSP_KhuyenMai + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + ", trangThaiXoa=" + trangThaiXoa + ", mota=" + mota + ", maVach=" + maVach + '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMaCTSP() {
@@ -76,11 +121,11 @@ public class ChiTietSanPham {
         this.id_SanPham = id_SanPham;
     }
 
-    public int getGiaBan() {
+    public double getGiaBan() {
         return giaBan;
     }
 
-    public void setGiaBan(int giaBan) {
+    public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
 
@@ -171,11 +216,5 @@ public class ChiTietSanPham {
     public void setMaVach(String maVach) {
         this.maVach = maVach;
     }
-
-    @Override
-    public String toString() {
-        return "ChiTietSanPham{" + "maCTSP=" + maCTSP + ", id_SanPham=" + id_SanPham + ", giaBan=" + giaBan + ", soLuongCon=" + soLuongCon + ", id_MauSac=" + id_MauSac + ", id_KichCo=" + id_KichCo + ", id_Hang=" + id_Hang + ", id_ChatLieu=" + id_ChatLieu + ", id_CTSP_KhuyenMai=" + id_CTSP_KhuyenMai + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + ", trangThaiXoa=" + trangThaiXoa + ", mota=" + mota + ", maVach=" + maVach + '}';
-    }
-    
 
 }
