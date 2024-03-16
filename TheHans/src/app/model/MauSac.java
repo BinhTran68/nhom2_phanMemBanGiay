@@ -28,6 +28,13 @@ public class MauSac {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public MauSac(String maMauSac, String ten, int trangThaiXoa) {
+        this.maMauSac = maMauSac;
+        this.ten = ten;
+        this.trangThaiXoa = trangThaiXoa;
+    }
+    
+
     public String getMaMauSac() {
         return maMauSac;
     }

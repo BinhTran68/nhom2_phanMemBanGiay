@@ -28,6 +28,13 @@ public class ChatLieu {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public ChatLieu(String maChatLieu, String ten, int trangThaiXoa) {
+        this.maChatLieu = maChatLieu;
+        this.ten = ten;
+        this.trangThaiXoa = trangThaiXoa;
+    }
+    
+
     public String getMaChatLieu() {
         return maChatLieu;
     }

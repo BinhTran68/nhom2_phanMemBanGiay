@@ -81,7 +81,7 @@ public class ThuocTinhService {
 
     public List<KichCo> getAllKichCo() {
         listKichCo = new ArrayList<>();
-        sql = "select makichco,ten,trangthaixoa,ngaytao,ngaysuacuoi from kịckco";
+        sql = "select makichco,ten,trangthaixoa,ngaytao,ngaysuacuoi from kichco";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
@@ -96,11 +96,139 @@ public class ThuocTinhService {
         }
     }
 
+    public int addChatLieu(ChatLieu cl) {
+
+        sql = "insert into ChatLieu\n"
+                + "values \n"
+                + "(?,?,?,getDate(),getDate())";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cl.getMaChatLieu());
+            ps.setString(2, cl.getTen());
+            ps.setInt(3, cl.getTrangThaiXoa());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int addHang(Hang h) {
+
+        sql = "insert into Hang\n"
+                + "values \n"
+                + "(?,?,?,getDate(),getDate())";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, h.getMaHang());
+            ps.setString(2, h.getTen());
+            ps.setInt(3, h.getTrangThaiXoa());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int addKichCo(KichCo kc) {
+
+        sql = "insert into KichCo\n"
+                + "values \n"
+                + "(?,?,?,getDate(),getDate())";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, kc.getMaKichCo());
+            ps.setString(2, kc.getTen());
+            ps.setInt(3, kc.getTrangThaiXoa());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int addMauSac(MauSac ms) {
+
+        sql = "insert into MauSac\n"
+                + "values \n"
+                + "(?,?,?,getDate(),getDate())";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ms.getMaMauSac());
+            ps.setString(2, ms.getTen());
+            ps.setInt(3, ms.getTrangThaiXoa());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int suaChatLieu(ChatLieu cl, String ma) {
+        sql = "update ChatLieu set maChatLieu = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maChatLieu = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cl.getMaChatLieu());
+            ps.setString(2, cl.getTen());
+            ps.setInt(3, cl.getTrangThaiXoa());
+            ps.setString(4, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int suaHang(Hang h, String ma) {
+        sql = "update Hang set maHang = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maHang = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, h.getMaHang());
+            ps.setString(2, h.getTen());
+            ps.setInt(3, h.getTrangThaiXoa());
+            ps.setString(4, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int suaKichCo(KichCo cl, String ma) {
+        sql = "update KichCo set maKichCo = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maKichCo = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cl.getMaKichCo());
+            ps.setString(2, cl.getTen());
+            ps.setInt(3, cl.getTrangThaiXoa());
+            ps.setString(4, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public int suaMauSac(MauSac cl, String ma) {
+        sql = "update MauSac set maMauSac = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maMauSac = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cl.getMaMauSac());
+            ps.setString(2, cl.getTen());
+            ps.setInt(3, cl.getTrangThaiXoa());
+            ps.setString(4, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
-        List<ChatLieu> list = new ArrayList<>();
+        List<KichCo> list = new ArrayList<>();
         ThuocTinhService qld = new ThuocTinhService();
-        list = qld.getAllChatLieu();
-        for (ChatLieu grade : list) {
+        list = qld.getAllKichCo();
+        for (KichCo grade : list) {
             System.out.println(grade.toString());
         }
     }
