@@ -28,6 +28,13 @@ public class KichCo {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public KichCo(String maKichCo, String ten, int trangThaiXoa) {
+        this.maKichCo = maKichCo;
+        this.ten = ten;
+        this.trangThaiXoa = trangThaiXoa;
+    }
+    
+
     public String getMaKichCo() {
         return maKichCo;
     }
@@ -66,6 +73,11 @@ public class KichCo {
 
     public void setNgaySuaCuoi(String ngaySuaCuoi) {
         this.ngaySuaCuoi = ngaySuaCuoi;
+    }
+
+    @Override
+    public String toString() {
+        return "KichCo{" + "id=" + id + ", maKichCo=" + maKichCo + ", ten=" + ten + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
     }
     
 }

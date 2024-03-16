@@ -47,7 +47,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
-            System.out.println(nhanVien);
             MainApplicationView applicationView = new MainApplicationView(nhanVien);
             applicationView.setVisible(true);
             this.dispose();
@@ -220,7 +219,7 @@ public class LoginFrame extends javax.swing.JFrame {
             txtMatKhau.setEchoChar('*');
         }
     }//GEN-LAST:event_cbShowPassActionPerformed
-
+    
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed

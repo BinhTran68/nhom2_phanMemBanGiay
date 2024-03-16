@@ -47,7 +47,7 @@ public class HoaDonService {
                     + "      ,ghiChu,\n"
                     + "	  NhanVien.hoTen,\n"
                     + "	  KhachHang.hoTen,\n"
-                    + "	  KhachHang.SDT\n"
+                    + "	  KhachHang.SDT, hinhThucThanhToan \n"
                     + "  FROM [dbo].[HoaDon] left join NhanVien on HoaDon.id_NhanVien = NhanVien.id left join KhachHang on KhachHang.id = HoaDon.id";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -69,7 +69,8 @@ public class HoaDonService {
                         resultSet.getString(13),
                         resultSet.getString(14),
                         resultSet.getString(15),
-                        resultSet.getString(16)
+                        resultSet.getString(16),
+                        resultSet.getString(17)
                 );
                 hoaDonDTOs.add(hoaDonDTO);
 
@@ -87,6 +88,10 @@ public class HoaDonService {
             }
         }
         return hoaDonDTOs;
+    }
+
+    public HoaDon findHoaDonByMaHoaDon(String maHoaDon) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
