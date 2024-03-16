@@ -4,7 +4,9 @@
  */
 package app.view;
 
-
+import app.model.ChiTietSanPham;
+import app.service.SanPhamChiTietService;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,17 +15,30 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BanHangMainPanel extends javax.swing.JFrame {
 
+    DefaultTableModel model = new DefaultTableModel();
+    public final SanPhamChiTietService apcts = new SanPhamChiTietService();
+
     /**
      * Creates new form BanHangMainPanel
      */
 //  private final SP_Service sp_service = new SP_Service();
 //    DefaultTableModel model = new DefaultTableModel();
-
     public BanHangMainPanel() {
         initComponents();
-    }
-    
+        model = (DefaultTableModel) tbl_sanpham.getModel();
+        LoadDataProDuctDetailToTable();
 
+    }
+
+    public void LoadDataProDuctDetailToTable() {
+        model.setRowCount(0);
+        for (ChiTietSanPham ctsp : apcts.getAllProduct()) {
+            Object data[] = {ctsp.getMaCTSp(), ctsp.getId_SanPham(), ctsp.getId_ChatLieu(), ctsp.getId_KichCo(), ctsp.getId_Hang(), ctsp.getGiaBan(), ctsp.getSoLuongCon()};
+            model.addRow(data);
+
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,13 +214,18 @@ public class BanHangMainPanel extends javax.swing.JFrame {
 
         tbl_sanpham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
             }
         ));
         jScrollPane3.setViewportView(tbl_sanpham);
