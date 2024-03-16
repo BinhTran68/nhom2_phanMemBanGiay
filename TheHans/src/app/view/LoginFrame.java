@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package app.view;
 
 import app.model.NhanVien;
@@ -11,10 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author Admin
- */
 public class LoginFrame extends javax.swing.JFrame {
 
     private NhanVienService nhanVienService = new NhanVienService();
@@ -43,7 +35,6 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
-        
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
@@ -219,7 +210,7 @@ public class LoginFrame extends javax.swing.JFrame {
             txtMatKhau.setEchoChar('*');
         }
     }//GEN-LAST:event_cbShowPassActionPerformed
-    
+
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed

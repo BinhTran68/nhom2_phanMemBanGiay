@@ -22,13 +22,13 @@ import javax.swing.table.DefaultTableModel;
  * @author admin
  */
 public class SanPhamMainPanel extends javax.swing.JPanel {
-
+    
     int index = -1;
     ThuocTinhService tts = new ThuocTinhService();
     SanPhamService sps = new SanPhamService();
     ChiTietSanPhamService ctspsv = new ChiTietSanPhamService();
     List<String> listLoaiThuocTinh = new ArrayList<>();
-
+    
     public SanPhamMainPanel() {
         initComponents();
         fillToTableChatLieu(tts.getAllChatLieu());
@@ -41,16 +41,31 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         addCbo(ctspsv.getTenKichCo(), cboKichCo);
         addCbo(ctspsv.getTenMauSac(), cboMauSac);
         addCbo(ctspsv.getTenSanPham(), cboTenSP);
-
+        rdoConBan.setSelected(false);
+        rdoHetHang.setSelected(false);
+        
     }
-
+    
+    private void moiCTSP() {
+        txtMaSPCT.setText("");
+        txtDonGia.setText("");
+        txtSoLuong.setText("");
+        txtMoTa.setText("");
+        fillToTableCTSP(ctspsv.getAllCTSP());
+        addCbo(ctspsv.getTenChatLieu(), cboChatLieu);
+        addCbo(ctspsv.getTenHang(), cboHang);
+        addCbo(ctspsv.getTenKichCo(), cboKichCo);
+        addCbo(ctspsv.getTenMauSac(), cboMauSac);
+        addCbo(ctspsv.getTenSanPham(), cboTenSP);
+    }
+    
     private void cboLoaiThuocTinh() {
         listLoaiThuocTinh.add("Chất Liệu");
         listLoaiThuocTinh.add("Hãng");
         listLoaiThuocTinh.add("Kích Cỡ");
         listLoaiThuocTinh.add("Màu Sắc");
     }
-
+    
     private void addCbo(List<String> list, JComboBox md) {
         DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
         for (String string : list) {
@@ -58,7 +73,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         md.setModel(dcbm);
     }
-
+    
     private void fillToTableSanPham(List<SanPham> list) {
         DefaultTableModel dtm = (DefaultTableModel) tblSanPham.getModel();
         dtm.setRowCount(0);
@@ -74,7 +89,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private void fillToTableCTSP(List<ChiTietSanPham> list) {
         DefaultTableModel dtm = (DefaultTableModel) tblCTSP.getModel();
         dtm.setRowCount(0);
@@ -94,10 +109,10 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 ctsp.getNgaySuaCuoi(),
                 ctsp.getTrangThaiXoa(),
                 ctsp.getMota()});
-
+            
         }
     }
-
+    
     private void fillToTableChatLieu(List<ChatLieu> list) {
         DefaultTableModel dtm = (DefaultTableModel) tblThuocTinh.getModel();
         dtm.setRowCount(0);
@@ -113,7 +128,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private void fillToTableHang(List<Hang> list) {
         DefaultTableModel dtm = (DefaultTableModel) tblThuocTinh.getModel();
         dtm.setRowCount(0);
@@ -129,7 +144,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private void fillToTableKichCo(List<KichCo> list) {
         DefaultTableModel dtm = (DefaultTableModel) tblThuocTinh.getModel();
         dtm.setRowCount(0);
@@ -145,7 +160,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private void fillToTableMauSac(List<MauSac> list) {
         DefaultTableModel dtm = (DefaultTableModel) tblThuocTinh.getModel();
         dtm.setRowCount(0);
@@ -161,7 +176,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private void hienThuocTinhLenFrom(int index) {
         txtMaThuocTinh.setText(tblThuocTinh.getValueAt(index, 1).toString());
         txtTenThuocTinh.setText(tblThuocTinh.getValueAt(index, 2).toString());
@@ -171,7 +186,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             rdoHet.setSelected(true);
         }
     }
-
+    
     private void hienSPLenFrom(int index) {
         txtMaSanPham.setText(tblSanPham.getValueAt(index, 1).toString());
         txtTenSanPham.setText(tblSanPham.getValueAt(index, 2).toString());
@@ -181,7 +196,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             rdoNgungBan.setSelected(true);
         }
     }
-
+    
     private void hienCTSPLenForm(int index) {
         txtMaSPCT.setText(tblCTSP.getValueAt(index, 1).toString());
         txtDonGia.setText(tblCTSP.getValueAt(index, 3).toString());
@@ -191,7 +206,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         cboKichCo.setSelectedItem(tblCTSP.getValueAt(index, 6));
         cboMauSac.setSelectedItem(tblCTSP.getValueAt(index, 5));
         cboTenSP.setSelectedItem(tblCTSP.getValueAt(index, 2));
-
+        
         if (tblCTSP.getValueAt(index, 11).toString().equals("1")) {
             rdoConBan.setSelected(true);
         } else {
@@ -199,7 +214,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         txtMoTa.setText(tblCTSP.getValueAt(index, 12).toString());
     }
-
+    
     private ChatLieu readFormChatLieu() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
@@ -211,7 +226,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         return new ChatLieu(ma, ten, trangThai);
     }
-
+    
     private Hang readFormHang() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
@@ -223,7 +238,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         return new Hang(ma, ten, trangThai);
     }
-
+    
     private KichCo readFormKichCo() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
@@ -235,7 +250,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         return new KichCo(ma, ten, trangThai);
     }
-
+    
     private SanPham readFormSanPham() {
         String ma = txtMaSanPham.getText();
         String ten = txtTenSanPham.getText();
@@ -247,7 +262,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         return new SanPham(ma, ten, trangThai);
     }
-
+    
     private MauSac readFormMauSac() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
@@ -259,9 +274,9 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
         return new MauSac(ma, ten, trangThai);
     }
-
+    
     private ChiTietSanPham readCTSP() {
-
+        
         String maCTSP = txtMaSPCT.getText();
         String id_SanPham = String.valueOf(ctspsv.getIDSanPham(cboTenSP.getSelectedItem().toString()));
         double giaBan = Double.parseDouble(txtDonGia.getText());
@@ -282,7 +297,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         System.out.println("" + ctsp.toString());
         return ctsp;
     }
-
+    
     private void themThuocTinh() {
         String thuocTinhDangChon = cboLoaiThuocTinh.getSelectedItem().toString();
         switch (thuocTinhDangChon) {
@@ -297,7 +312,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Chất Liệu Thất bại");
                     }
                 }
-
+                
                 break;
             case "Hãng":
                 int check2 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm Hãng không");
@@ -310,7 +325,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Hãng Thất bại");
                     }
                 }
-
+                
                 break;
             case "Kích Cỡ":
                 int check3 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm kích cỡ không");
@@ -323,7 +338,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Kích cỡ Thất bại");
                     }
                 }
-
+                
                 break;
             case "Màu Sắc":
                 int check4 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm Màu sắc không");
@@ -336,14 +351,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Màu Sắc Thất bại");
                     }
                 }
-
+                
                 break;
-
+            
             default:
                 throw new AssertionError();
         }
     }
-
+    
     private void themSanPham() {
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm sản phẩm không");
         if (check1 == JOptionPane.YES_OPTION) {
@@ -356,7 +371,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void themCTSP() {
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm CTSP không");
         if (check1 == JOptionPane.YES_OPTION) {
@@ -368,7 +383,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void suaThuocTinh() {
         String thuocTinhDangChon = cboLoaiThuocTinh.getSelectedItem().toString();
         index = tblThuocTinh.getSelectedRow();
@@ -388,7 +403,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa Chất Liệu Thất bại");
                     }
                 }
-
+                
                 break;
             case "Hãng":
                 int check2 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa Hãng không");
@@ -401,7 +416,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "sửa Hãng Thất bại");
                     }
                 }
-
+                
                 break;
             case "Kích Cỡ":
                 int check3 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa kích cỡ không");
@@ -414,7 +429,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa Kích cỡ Thất bại");
                     }
                 }
-
+                
                 break;
             case "Màu Sắc":
                 int check4 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa Màu sắc không");
@@ -427,21 +442,21 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa Màu Sắc Thất bại");
                     }
                 }
-
+                
                 break;
-
+            
             default:
                 throw new AssertionError();
         }
     }
-
+    
     private void suaSanPham() {
         index = tblSanPham.getSelectedRow();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "bạn chưa chọn dòng để sửa");
             return;
         }
-
+        
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa Sản Phẩm không");
         if (check1 == JOptionPane.YES_OPTION) {
             if (sps.suaSanPham(readFormSanPham(), tblSanPham.getValueAt(index, 1).toString()) > 0) {
@@ -453,14 +468,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void suaCTSP() {
         index = tblCTSP.getSelectedRow();
         if (index < 0) {
             JOptionPane.showMessageDialog(this, "bạn chưa chọn dòng để sửa");
             return;
         }
-
+        
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa CTSP không");
         if (check1 == JOptionPane.YES_OPTION) {
             if (ctspsv.suaCTSP(readCTSP(), tblCTSP.getValueAt(index, 1).toString()) > 0) {
@@ -964,6 +979,11 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         jButton7.setText("Quét Qr");
 
         jButton8.setText("Mới");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Xuất file Excel");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -1423,6 +1443,11 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         suaCTSP();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        moiCTSP();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
