@@ -16,7 +16,7 @@ public class KhuyenMaiService {
     public List<KhuyenMai> getAll() {
         listKM = new ArrayList<>();
 
-        sql = "select id, maKM, tenKM, loaiKM, ngayBatDau, ngayKetThuc, giaTri from KhuyenMai";
+        sql = "select id, maKM, tenKM, loaiKM, ngayBatDau, ngayKetThuc, giaTri, trangThaiXoa from KhuyenMai";
 
         try {
             con = DBConnect.getConnection();
@@ -26,8 +26,8 @@ public class KhuyenMaiService {
             while (rs.next()) {
                 KhuyenMai km = new KhuyenMai(rs.getInt(1), rs.getString(2),
                         rs.getString(3), rs.getString(4),
-                        rs.getDate(5), rs.getDate(6),
-                        rs.getInt(7));
+                        rs.getInt(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8));
 
                 listKM.add(km);
             }
@@ -36,45 +36,6 @@ public class KhuyenMaiService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    public int AddKM(KhuyenMai km) {
-        sql = "insert into KhuyenMai (maKM, tenKM, loaiKM, ngayBatDau, ngayKetThuc, giaTri) values (?, ?, ?,?,?,?)";
-        try {
-            con = DBConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, km.getTen());
-            ps.setObject(2, km.getLoaiGiam());
-            ps.setObject(3, km.getNgayBD());
-            ps.setObject(4, km.getNgayKT());
-            ps.setObject(5, km.getGiatri());
-            return ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    public int updateKM(String ma, KhuyenMai km) {
-        sql = "Update KhuyenMai set tenKM = ?, loaiKM = ?, ngayBatDau = ?, ngayKetThuc = ?, giaTri = ?\n"
-                + "where maKM like ?";
-        try {
-            con = DBConnect.getConnection();
-            ps = con.prepareStatement(sql);
-           
-            ps.setObject(1, km.getTen());
-            ps.setObject(2, km.getLoaiGiam());
-            ps.setObject(3, km.getNgayBD());
-            ps.setObject(4, km.getNgayKT());
-            ps.setObject(5, km.getGiatri());
-            ps.setObject(6, km.getMa());
-            
-            return ps.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
         }
     }
 

@@ -4,42 +4,45 @@ import java.util.Date;
 
 public class KhuyenMai {
 
-    private int id;
+    private int STT;
     private String ten;
     private String ma;
     private String loaiGiam;
-    private Date ngayBD;
-    private Date ngayKT;
     private int Giatri;
+    private String ngayBD;
+    private String ngayKT;
+    private String Trangthai;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(int id, String ten, String ma, String loaiGiam, Date ngayBD, Date ngayKT, int Giatri) {
-        this.id = id;
+    public KhuyenMai(int STT, String ten, String ma, String loaiGiam, int Giatri, String ngayBD, String ngayKT, String Trangthai) {
+        this.STT = STT;
         this.ten = ten;
         this.ma = ma;
         this.loaiGiam = loaiGiam;
+        this.Giatri = Giatri;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
-        this.Giatri = Giatri;
+        this.Trangthai = Trangthai;
     }
 
-    public KhuyenMai(String ten, String ma, String loaiGiam, Date ngayBD, Date ngayKT, int Giatri) {
+    public KhuyenMai(String ten, String ma, String loaiGiam, int Giatri, String ngayBD, String ngayKT, String Trangthai) {
         this.ten = ten;
         this.ma = ma;
         this.loaiGiam = loaiGiam;
+        this.Giatri = Giatri;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
-        this.Giatri = Giatri;
+        this.Trangthai = Trangthai;
     }
 
-    public int getId() {
-        return id;
+    public int getSTT() {
+        return STT;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSTT(int STT) {
+        this.STT = STT;
     }
 
     public String getTen() {
@@ -66,22 +69,6 @@ public class KhuyenMai {
         this.loaiGiam = loaiGiam;
     }
 
-    public Date getNgayBD() {
-        return ngayBD;
-    }
-
-    public void setNgayBD(Date ngayBD) {
-        this.ngayBD = ngayBD;
-    }
-
-    public Date getNgayKT() {
-        return ngayKT;
-    }
-
-    public void setNgayKT(Date ngayKT) {
-        this.ngayKT = ngayKT;
-    }
-
     public int getGiatri() {
         return Giatri;
     }
@@ -90,16 +77,38 @@ public class KhuyenMai {
         this.Giatri = Giatri;
     }
 
-    @Override
-    public String toString() {
-        return "KhuyenMai{" + "id=" + id + ", ten=" + ten + ", ma=" + ma + ", loaiGiam=" + loaiGiam + ", ngayBD=" + ngayBD + ", ngayKT=" + ngayKT + ", Giatri=" + Giatri + '}';
+    public String getNgayBD() {
+        return ngayBD;
     }
 
-    
+    public void setNgayBD(String ngayBD) {
+        this.ngayBD = ngayBD;
+    }
+
+    public String getNgayKT() {
+        return ngayKT;
+    }
+
+    public void setNgayKT(String ngayKT) {
+        this.ngayKT = ngayKT;
+    }
+
+    public String getTrangthai() {
+        return Trangthai;
+    }
+
+    public void setTrangthai(String Trangthai) {
+        this.Trangthai = Trangthai;
+    }
+
+    @Override
+    public String toString() {
+        return "KhuyenMai{" + "STT=" + STT + ", ten=" + ten + ", ma=" + ma + ", loaiGiam=" + loaiGiam + ", Giatri=" + Giatri + ", ngayBD=" + ngayBD + ", ngayKT=" + ngayKT + ", Trangthai=" + Trangthai + '}';
+    }
     public Object[] toDataRow() {
-        return new Object[]{this.getId(), this.getMa(), this.getTen(),
-            this.getLoaiGiam(), this.getGiatri(), this.getNgayBD(),
-            this.getNgayKT()};
+        return new Object[]{this.getSTT(), this.getMa(), this.getTen(), 
+            this.getLoaiGiam(), this.getGiatri(), this.getNgayBD(), 
+            this.getNgayKT(), this.getTrangthai()};
     }
 
 }
