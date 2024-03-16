@@ -25,8 +25,8 @@ public class MainApplicationView extends javax.swing.JFrame {
      * Creates new form MainApplication
      */
 // 
-//    private BanHangMainPanel banHangMainPanel;  // Hậu Lỗi 
-    private BanHangMainPanel banHangMainPanelfix; // Hậu
+//    private BanHangMainPane banHangMainPanel;  // Hậu Lỗi 
+    private BanHangMainPanel banHangMainPanel; // Hậu
 
     private HoaDonMainPanel hoaDonMainPanel; // Bình
 
@@ -49,7 +49,7 @@ public class MainApplicationView extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-//        banHangMainPanel = new BanHangMainPanel();
+//        banHangMainPanel = new BanHangMainPane();
         hoaDonMainPanel = new HoaDonMainPanel();
 
         khachHangMainPanel = new KhachHangMainPanel();
@@ -64,9 +64,9 @@ public class MainApplicationView extends javax.swing.JFrame {
 
         labelShowName.setText(nhanVien.getHoTen());
 
-        banHangMainPanelfix = new BanHangMainPanel();
+        banHangMainPanel = new BanHangMainPanel();
 
-        showPanel(banHangMainPanelfix);
+        showPanel(banHangMainPanel);
 
     }
 
@@ -523,7 +523,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(thongKePanel);
         unClicked(nhanVienPanel);
         unClicked(doiMatKhauPanel);
-        showPanel(banHangMainPanelfix);
+        showPanel(banHangMainPanel);
     }//GEN-LAST:event_banHangLabelMouseClicked
 
     private void sanPhamLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sanPhamLabelMouseClicked

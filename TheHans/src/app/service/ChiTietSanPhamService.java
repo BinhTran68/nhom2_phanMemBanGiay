@@ -48,7 +48,7 @@ public class ChiTietSanPhamService {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                ChiTietSanPham ct = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13));
+                ChiTietSanPham ct = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13));
                 listCTSP.add(ct);
             }
             return listCTSP;
@@ -249,6 +249,32 @@ public class ChiTietSanPhamService {
 
         }
         return 0;
+    }
+
+    public int suaCTSP(ChiTietSanPham ctsp, String maCTSP) {
+        sql = "update ChiTietSanPham set maCTSP = ?, id_SanPham = ?, giaBan = ?,"
+                + " soLuongCon = ?,id_MauSac = ?, id_KichCo = ?, id_Hang = ?,id_ChatLieu = ?,"
+                + "ngaySuaCuoi = GETDATE(),trangThaiXoa = ?,mota = ?,maVach = null"
+                + " where maCTSP = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ctsp.getMaCTSP());
+            ps.setInt(2, Integer.parseInt(ctsp.getId_SanPham()));
+            ps.setDouble(3, ctsp.getGiaBan());
+            ps.setInt(4, ctsp.getSoLuongCon());
+            ps.setInt(5, Integer.parseInt(ctsp.getId_MauSac()));
+            ps.setInt(6, Integer.parseInt(ctsp.getId_KichCo()));
+            ps.setInt(7, Integer.parseInt(ctsp.getId_Hang()));
+            ps.setInt(8, Integer.parseInt(ctsp.getId_ChatLieu()));
+            ps.setInt(9, ctsp.getTrangThaiXoa());
+            ps.setString(10, ctsp.getMota());
+            ps.setString(11, maCTSP);
+
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public static void main(String[] args) {
