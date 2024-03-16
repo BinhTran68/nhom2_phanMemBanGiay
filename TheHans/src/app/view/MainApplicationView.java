@@ -26,8 +26,7 @@ public class MainApplicationView extends javax.swing.JFrame {
      */
 // 
 //    private BanHangMainPanel banHangMainPanel;  // Hậu Lỗi 
-     
-    private BanHangMainPanelfix banHangMainPanelfix; // Hậu
+    private BanHangMainPanel banHangMainPanelfix; // Hậu
 
     private HoaDonMainPanel hoaDonMainPanel; // Bình
 
@@ -51,7 +50,6 @@ public class MainApplicationView extends javax.swing.JFrame {
         }
 
 //        banHangMainPanel = new BanHangMainPanel();
-        
         hoaDonMainPanel = new HoaDonMainPanel();
 
         khachHangMainPanel = new KhachHangMainPanel();
@@ -65,9 +63,9 @@ public class MainApplicationView extends javax.swing.JFrame {
         thongKeMainPanel = new ThongKeMainPanel();
 
         labelShowName.setText(nhanVien.getHoTen());
-        
-        banHangMainPanelfix = new BanHangMainPanelfix();
-        
+
+        banHangMainPanelfix = new BanHangMainPanel();
+
         showPanel(banHangMainPanelfix);
 
     }
@@ -564,7 +562,6 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(doiMatKhauPanel);
         showPanel(hoaDonMainPanel);
 
-
     }//GEN-LAST:event_hoaDonLabelMouseClicked
 
     private void khachHangLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khachHangLabelMouseClicked
@@ -679,7 +676,6 @@ public class MainApplicationView extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel banHangLabel;
     private javax.swing.JPanel banHangPanel;
@@ -712,7 +708,4 @@ public class MainApplicationView extends javax.swing.JFrame {
     private javax.swing.JPanel thongKePanel;
     // End of variables declaration//GEN-END:variables
 
-   
-
-  
 }
