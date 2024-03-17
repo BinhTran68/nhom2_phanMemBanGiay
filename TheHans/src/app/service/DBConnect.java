@@ -24,7 +24,7 @@ public class DBConnect {
     private static final String PORT = "1433";
     private static final String DBNAME = "BanGiayTheHans";
     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "hhaauu2714";
 
     public static Connection getConnection() {
 

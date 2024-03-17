@@ -12,7 +12,7 @@ public class ChiTietSanPham {
     private String id_ChatLieu;
     private String id_CTSP_KhuyenMai;
     private String id_KhuyenMai;
-    private String soLuongCon;
+    private int soLuongCon;
     private String maCTSp;
     private String mota;
     private double giaBan;
@@ -21,7 +21,7 @@ public class ChiTietSanPham {
     private Date ngayTao;
     private Date ngaySuaCuoi;
 
-    public ChiTietSanPham(String id, String id_SanPham, String id_mausac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, String id_KhuyenMai, String soLuongCon, String maCTSp, String mota, double giaBan, String maVach, Boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
+    public ChiTietSanPham(String id, String id_SanPham, String id_mausac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, String id_KhuyenMai, int soLuongCon, String maCTSp, String mota, double giaBan, String maVach, Boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
         this.id = id;
         this.id_SanPham = id_SanPham;
         this.id_mausac = id_mausac;
@@ -39,6 +39,26 @@ public class ChiTietSanPham {
         this.ngayTao = ngayTao;
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
+
+    public ChiTietSanPham(String id_SanPham, String id_mausac, String id_KichCo, String id_Hang, String id_ChatLieu, String maCTSp, int soLuongCon, double giaBan) {
+        this.id_SanPham = id_SanPham;
+        this.id_mausac = id_mausac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.maCTSp = maCTSp;
+        this.soLuongCon = soLuongCon;
+        this.giaBan = giaBan;
+    }
+
+    public int getSoLuongCon() {
+        return soLuongCon;
+    }
+
+    public void setSoLuongCon(int soLuongCon) {
+        this.soLuongCon = soLuongCon;
+    }
+    
 
     public ChiTietSanPham() {
     }
@@ -107,14 +127,6 @@ public class ChiTietSanPham {
         this.id_KhuyenMai = id_KhuyenMai;
     }
 
-    public String getSoLuongCon() {
-        return soLuongCon;
-    }
-
-    public void setSoLuongCon(String soLuongCon) {
-        this.soLuongCon = soLuongCon;
-    }
-
     public String getMaCTSp() {
         return maCTSp;
     }
@@ -170,7 +182,5 @@ public class ChiTietSanPham {
     public void setNgaySuaCuoi(Date ngaySuaCuoi) {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
-
-    
 
 }

@@ -4,17 +4,50 @@
  */
 package app.view;
 
+import app.model.ChatLieu;
+import app.model.ChiTietSanPham;
+import app.service.SanPhamChiTietService;
+import java.util.List;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author admin
  */
 public class BanHangMainPanelfix extends javax.swing.JPanel {
 
+    SanPhamChiTietService spcts = new SanPhamChiTietService();
+    List<ChiTietSanPham> chiTietSanPhams = spcts.getAllSPCT();
+    DefaultTableModel model = new DefaultTableModel();
+
     /**
      * Creates new form BanHangMainPanelfix
      */
     public BanHangMainPanelfix() {
         initComponents();
+        loadToTableSPCT(spcts.getAllSPCT());
+    }
+
+    public void loadToTableSPCT(List<ChiTietSanPham> list) {
+        model = (DefaultTableModel) tbl_sanpham.getModel();
+        model.setRowCount(0);
+        int i = 1;
+        if (list != null) { // Kiểm tra xem danh sách có null hay không
+            for (ChiTietSanPham ctsp : list) {
+                model.addRow(new Object[]{
+                    ctsp.getMaCTSp(),
+                    ctsp.getId_SanPham(),
+                    ctsp.getId_ChatLieu(),
+                    ctsp.getId_Hang(),
+                    ctsp.getId_KichCo(),
+                    ctsp.getId_mausac(),
+                    ctsp.getGiaBan(),
+                    ctsp.getSoLuongCon()
+                });
+            }
+        }
     }
 
     /**
@@ -82,25 +115,30 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_giohang = new javax.swing.JTable();
+        btn_xoagh = new javax.swing.JToggleButton();
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sản phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         tbl_sanpham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
+                "Hãng", "Mã CTSP", "Màu Sắc", "Size", "Chất liệu", "Tên SP", "Giá", "Số lượng"
             }
         ));
+        tbl_sanpham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_sanphamMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbl_sanpham);
 
         txt_search.addActionListener(new java.awt.event.ActionListener() {
@@ -457,31 +495,39 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
         tbl_giohang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
         ));
         jScrollPane6.setViewportView(tbl_giohang);
+
+        btn_xoagh.setText("Xoá");
+        btn_xoagh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaghActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_xoagh)
+                .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_xoagh, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -533,6 +579,53 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_sdtActionPerformed
 
+    private void tbl_sanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sanphamMouseClicked
+    int selectedRow = tbl_sanpham.getSelectedRow();
+if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
+    DefaultTableModel modelSanPham = (DefaultTableModel) tbl_sanpham.getModel();
+    DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
+    // Lấy thông tin của sản phẩm được chọn từ bảng tbl_sanpham
+    String maSP = modelSanPham.getValueAt(selectedRow, 0).toString();
+    String tenSP = modelSanPham.getValueAt(selectedRow, 1).toString();
+    String hangSP = modelSanPham.getValueAt(selectedRow, 2).toString();
+    String kichThuoc = modelSanPham.getValueAt(selectedRow, 3).toString(); 
+    String chatLieu = modelSanPham.getValueAt(selectedRow, 4).toString(); 
+    String mauSac = modelSanPham.getValueAt(selectedRow, 5).toString(); 
+    String giaSP = modelSanPham.getValueAt(selectedRow, 6).toString(); 
+
+    // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+    boolean exist = false;
+    for (int i = 0; i < modelGioHang.getRowCount(); i++) {
+        String maSPGioHang = modelGioHang.getValueAt(i, 0).toString();
+        if (maSP.equals(maSPGioHang)) {
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
+            int soLuong = Integer.parseInt(modelGioHang.getValueAt(i, 7).toString());
+            modelGioHang.setValueAt(soLuong + 1, i, 7);
+            exist = true;
+            break;
+        }
+    }
+
+    // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng với số lượng là 1
+    if (!exist) {
+        modelGioHang.addRow(new Object[]{maSP, tenSP, hangSP, kichThuoc, chatLieu, mauSac, giaSP, 1}); 
+    }
+}
+      
+    }//GEN-LAST:event_tbl_sanphamMouseClicked
+
+    private void btn_xoaghActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaghActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = tbl_giohang.getSelectedRow();
+        if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
+            DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
+            modelGioHang.removeRow(selectedRow); // Xoá hàng được chọn từ mô hình của bảng tbl_giohang
+        } else {
+            // Hiển thị thông báo nếu không có sản phẩm nào được chọn
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một sản phẩm để xoá.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_xoaghActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_customer;
@@ -540,6 +633,7 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_taohd;
     private javax.swing.JButton btn_thanhtoan;
+    private javax.swing.JToggleButton btn_xoagh;
     private javax.swing.JButton btn_xoasp;
     private javax.swing.JComboBox<String> cbo_chatlieu;
     private javax.swing.JComboBox<String> cbo_danhmuc;
