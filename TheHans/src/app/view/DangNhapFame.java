@@ -47,7 +47,7 @@ public class DangNhapFame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng");
             return;
         }
-
+        
     }
 
     /**
@@ -109,7 +109,7 @@ public class DangNhapFame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
