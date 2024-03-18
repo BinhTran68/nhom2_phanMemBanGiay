@@ -48,7 +48,20 @@ public class ChiTietSanPhamService {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                ChiTietSanPham ct = new ChiTietSanPham(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13));
+                ChiTietSanPham ct = new ChiTietSanPham(
+                        rs.getString(1),
+                        rs.getString(2), 
+                        rs.getDouble(3), 
+                        rs.getInt(4), 
+                        rs.getString(5), 
+                        rs.getString(6), 
+                        rs.getString(7), 
+                        rs.getString(8), 
+                        rs.getString(9), 
+                        rs.getString(10), 
+                        rs.getInt(11), 
+                        rs.getString(12), 
+                        rs.getString(13));
                 listCTSP.add(ct);
             }
             return listCTSP;
