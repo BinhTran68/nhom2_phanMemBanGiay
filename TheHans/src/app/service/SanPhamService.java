@@ -4,6 +4,7 @@
  */
 package app.service;
 
+import app.model.KichCo;
 import app.model.SanPham;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,42 @@ public class SanPhamService {
     PreparedStatement ps = null;
     ResultSet rs = null;
     String sql = null;
+
+    public List<SanPham> timKiemSanPhamTheoMa(String ma) {
+        listSanPham = new ArrayList<>();
+        sql = "select maSP,ten,trangthaixoa,ngaytao,ngaysuacuoi from SanPham where maSP like ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + ma + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5));
+                listSanPham.add(sp);
+            }
+            return listSanPham;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<SanPham> timKiemSanPhamTheoTen(String ten) {
+        listSanPham = new ArrayList<>();
+        sql = "select maSP,ten,trangthaixoa,ngaytao,ngaysuacuoi from SanPham where ten like ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + ten + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5));
+                listSanPham.add(sp);
+            }
+            return listSanPham;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public List<SanPham> getAllSanPham() {
         listSanPham = new ArrayList<>();
@@ -70,6 +107,15 @@ public class SanPhamService {
             return ps.executeUpdate();
         } catch (Exception e) {
             return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        List<SanPham> list = new ArrayList<>();
+        SanPhamService qld = new SanPhamService();
+        list = qld.timKiemSanPhamTheoTen("tên sp");
+        for (SanPham grade : list) {
+            System.out.println(grade.toString());
         }
     }
 

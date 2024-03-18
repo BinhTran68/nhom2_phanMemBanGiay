@@ -137,7 +137,7 @@
         <Component class="app.view.swing.MyPasswordField" name="txtMatKhau">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="hint" type="java.lang.String" value="M&#x1ead;t Kh&#x1ea9;u"/>
           </Properties>
@@ -162,7 +162,7 @@
         <Component class="app.view.swing.MyTextField" name="txtEmail">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="hint" type="java.lang.String" value="Email"/>
           </Properties>
