@@ -30,13 +30,13 @@ public List<ChiTietSanPham> getAllSPCT() {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             ChiTietSanPham ctsp = new ChiTietSanPham(
-                    rs.getString(1),
                     rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
                     rs.getString(5),
+                    rs.getString(4),
                     rs.getString(6),
+                    rs.getString(3),
                     rs.getInt(7),
+                    rs.getString(1),
                     rs.getDouble(8)
             );
 

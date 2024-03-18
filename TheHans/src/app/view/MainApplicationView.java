@@ -26,7 +26,7 @@ public class MainApplicationView extends javax.swing.JFrame {
      */
 // 
 //    private BanHangMainPane banHangMainPanel;  // Hậu Lỗi 
-    private BanHangMainPanel banHangMainPanel; // Hậu
+    private BanHangMainPanelfix banHangMainPanel; // Hậu
 
     private HoaDonMainPanel hoaDonMainPanel; // Bình
 
@@ -64,7 +64,7 @@ public class MainApplicationView extends javax.swing.JFrame {
 
         labelShowName.setText(nhanVien.getHoTen());
 
-        banHangMainPanel = new BanHangMainPanel();
+        banHangMainPanel = new BanHangMainPanelfix();
 
         showPanel(banHangMainPanel);
 

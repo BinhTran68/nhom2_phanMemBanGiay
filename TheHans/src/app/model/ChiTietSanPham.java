@@ -1,6 +1,5 @@
 package app.model;
 
-import java.util.Date;
 
 public class ChiTietSanPham {
 
@@ -20,6 +19,14 @@ public class ChiTietSanPham {
     private int trangThaiXoa;
     private String ngayTao;
     private String ngaySuaCuoi;
+
+    public ChiTietSanPham(String string, String string0, double aDouble, int aInt, String string1, String string2, String string3, String string4, String string5, String string6, int aInt0, String string7, String string8) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public ChiTietSanPham(String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int trangThaiXoa, String mota, String maVach) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     public int getId() {
         return id;
@@ -181,6 +188,7 @@ public class ChiTietSanPham {
         this.maCTSP = maCTSP;
         this.giaBan = giaBan;
     }
+    
 
     
 

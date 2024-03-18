@@ -37,12 +37,12 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         if (list != null) { // Kiểm tra xem danh sách có null hay không
             for (ChiTietSanPham ctsp : list) {
                 model.addRow(new Object[]{
-                    ctsp.getMaCTSp(),
+                    ctsp.getMaCTSP(),
                     ctsp.getId_SanPham(),
                     ctsp.getId_ChatLieu(),
                     ctsp.getId_Hang(),
                     ctsp.getId_KichCo(),
-                    ctsp.getId_mausac(),
+                    ctsp.getId_MauSac(),
                     ctsp.getGiaBan(),
                     ctsp.getSoLuongCon()
                 });
