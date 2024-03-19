@@ -75,4 +75,9 @@ public class SanPham {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    @Override
+    public String toString() {
+        return "SanPham{" + "id="  + ", maSP=" + maSP + ", ten=" + ten + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
+    }
+
 }
