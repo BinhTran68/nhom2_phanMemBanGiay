@@ -91,7 +91,16 @@ public class ChiTietSanPham {
         this.mota = mota;
         this.maVach = maVach;
     }
-
+public ChiTietSanPham(String id_SanPham, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int soLuongCon, String maCTSP, double giaBan) {
+        this.id_SanPham = id_SanPham;
+        this.id_MauSac = id_MauSac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.soLuongCon = soLuongCon;
+        this.maCTSP = maCTSP;
+        this.giaBan = giaBan;
+    }
     @Override
     public String toString() {
         return "ChiTietSanPham{" + "id=" + id + ", maCTSP=" + maCTSP + ", id_SanPham=" + id_SanPham + ", giaBan=" + giaBan + ", soLuongCon=" + soLuongCon + ", id_MauSac=" + id_MauSac + ", id_KichCo=" + id_KichCo + ", id_Hang=" + id_Hang + ", id_ChatLieu=" + id_ChatLieu + ", id_CTSP_KhuyenMai=" + id_CTSP_KhuyenMai + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + ", trangThaiXoa=" + trangThaiXoa + ", mota=" + mota + ", maVach=" + maVach + '}';
