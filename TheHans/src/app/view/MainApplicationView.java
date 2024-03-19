@@ -43,11 +43,11 @@ public class MainApplicationView extends javax.swing.JFrame {
     public MainApplicationView(NhanVien nhanVien) {
         initComponents();
 
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            UIManager.setLookAndFeel(new FlatLightLaf());
+//        } catch (UnsupportedLookAndFeelException e) {
+//            e.printStackTrace();
+//        }
 
 //        banHangMainPanel = new BanHangMainPane();
         hoaDonMainPanel = new HoaDonMainPanel();
