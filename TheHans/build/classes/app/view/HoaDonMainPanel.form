@@ -233,7 +233,7 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                              <Component id="dataTuNgay" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Component id="dateTuNgay" min="-2" pref="120" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -267,14 +267,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel4" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="txtTimKiem" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel4" min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="btnXuatDanhSach" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                           <Component id="btnInHoaDon" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="txtTimKiem" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   </Group>
@@ -288,7 +286,7 @@
                                       <Component id="cboHinhThucThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="dataTuNgay" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateTuNgay" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="dateDenNgay" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnLoc" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
@@ -365,7 +363,7 @@
                         <Property name="text" type="java.lang.String" value="T&#x1eeb;"/>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="dataTuNgay">
+                    <Component class="com.toedter.calendar.JDateChooser" name="dateTuNgay">
                       <Properties>
                         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                       </Properties>
@@ -395,6 +393,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="In H&#xf3;a &#x110;&#x1a1;n"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInHoaDonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnLoc">
                       <Properties>
@@ -402,6 +403,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLocMouseClicked"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLocActionPerformed"/>
                       </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
