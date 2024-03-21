@@ -13,7 +13,7 @@ import java.util.Date;
 public class HoaDonChiTietDTO {
     
     private int id_HoaDon;
-    private int id_CTSP;
+    private String id_CTSP;
     private Long donGia;
     private int soLuong;
     private int trangThaiXoa;
@@ -22,7 +22,7 @@ public class HoaDonChiTietDTO {
     private String tenSanPham; // Tên sản phẩm từ bảng SanPham
     private double giaBan;
 
-    public HoaDonChiTietDTO(int id_HoaDon, int id_CTSP, Long donGia, int soLuong, int trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String tenSanPham, double giaBan) {
+    public HoaDonChiTietDTO(int id_HoaDon, String id_CTSP, Long donGia, int soLuong, int trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String tenSanPham, double giaBan) {
         this.id_HoaDon = id_HoaDon;
         this.id_CTSP = id_CTSP;
         this.donGia = donGia;
@@ -34,6 +34,12 @@ public class HoaDonChiTietDTO {
         this.giaBan = giaBan;
     }
 
+    
+
+    public HoaDonChiTietDTO() {
+    }
+    
+
     public int getId_HoaDon() {
         return id_HoaDon;
     }
@@ -42,13 +48,15 @@ public class HoaDonChiTietDTO {
         this.id_HoaDon = id_HoaDon;
     }
 
-    public int getId_CTSP() {
+    public String getId_CTSP() {
         return id_CTSP;
     }
 
-    public void setId_CTSP(int id_CTSP) {
+    public void setId_CTSP(String id_CTSP) {
         this.id_CTSP = id_CTSP;
     }
+
+    
 
     public Long getDonGia() {
         return donGia;
@@ -104,6 +112,11 @@ public class HoaDonChiTietDTO {
 
     public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDonChiTietDTO{" + "id_HoaDon=" + id_HoaDon + ", id_CTSP=" + id_CTSP + ", donGia=" + donGia + ", soLuong=" + soLuong + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + ", tenSanPham=" + tenSanPham + ", giaBan=" + giaBan + '}';
     }
     
     

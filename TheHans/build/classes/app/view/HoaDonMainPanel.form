@@ -598,12 +598,12 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title value="G&#xed;a"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                  <Title value="T&#x1ed5;ng ti&#x1ec1;n"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>

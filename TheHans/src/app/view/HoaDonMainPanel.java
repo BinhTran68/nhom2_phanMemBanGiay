@@ -31,11 +31,16 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     private DefaultTableModel defaultTableModelHoaDonChiTiet;
 
     private DefaultTableModel defaultTableModelLichSuHoaDon;
+    
+    private int idNhanVien = -1;
+    
     /**
      * Creates new form HoaDonPanel
      */
 
     int rowTblHoaDon = -1;
+    
+    
 
     public HoaDonMainPanel() {
         initComponents();
@@ -391,9 +396,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblHoaDonChiTiet);
         if (tblHoaDonChiTiet.getColumnModel().getColumnCount() > 0) {
-            tblHoaDonChiTiet.getColumnModel().getColumn(4).setHeaderValue("Gía");
             tblHoaDonChiTiet.getColumnModel().getColumn(5).setResizable(false);
-            tblHoaDonChiTiet.getColumnModel().getColumn(5).setHeaderValue("Tổng tiền");
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -567,6 +570,23 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
+        if (tblHoaDonChiTiet.getRowCount() <= 0) {
+            return;
+        }
+        
+        if (rowTblHoaDon < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Hóa Đơn");
+            return;
+        }
+        rowTblHoaDon = tblHoaDon.getSelectedRow();
+        String maHoaDon = (String) tblHoaDon.getValueAt(rowTblHoaDon, 1);
+        
+        
+        
+        
+        
+       
+        
         
         
     }//GEN-LAST:event_btnInHoaDonActionPerformed

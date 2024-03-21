@@ -4,12 +4,23 @@
  */
 package app.view;
 
+import app.dto.HoaDonChiTietDTO;
 import app.model.ChatLieu;
 import app.model.ChiTietSanPham;
+import app.model.HoaDon;
+import app.model.KhachHang;
+import app.model.NhanVien;
+import app.model.Voucher;
+import app.service.HoaDonChiTietService;
+import app.service.KhachHangService;
 import app.service.SanPhamChiTietService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,22 +29,57 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BanHangMainPanelfix extends javax.swing.JPanel {
 
+    private NhanVien nhanVienBanHang = MainApplicationView.getNhanVienDangNhap();
     SanPhamChiTietService spcts = new SanPhamChiTietService();
     List<ChiTietSanPham> chiTietSanPhams = spcts.getAllSPCT();
     DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel modelGioHang = new DefaultTableModel();
+    private KhachHangService khachHangService = new KhachHangService();
+
+    HoaDonChiTietService hoaDonChiTietService = new HoaDonChiTietService();
 
     /**
      * Creates new form BanHangMainPanelfix
      */
     public BanHangMainPanelfix() {
         initComponents();
+        txt_maNV.setText(nhanVienBanHang.getHoTen());
         loadToTableSPCT(spcts.getAllSPCT());
+        modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
+        modelGioHang.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.INSERT) {
+                    calculateTotal();
+                }
+            }
+        });
+
+    }
+
+    private void calculateTotal() {
+        int rowCount = tbl_giohang.getRowCount();
+        double tongTien = 0.0;
+
+        for (int i = 0; i < rowCount; i++) {
+            // Lấy giá trị số lượng từ cột có chỉ số là 7
+            String soLuong = tbl_giohang.getValueAt(i, 7).toString();
+            // Lấy giá trị giá tiền từ cột có chỉ số là 6
+            String giaTien = tbl_giohang.getValueAt(i, 6).toString();
+
+            tongTien = (tongTien + (Integer.parseInt(soLuong) * Double.parseDouble(giaTien)));
+
+        }
+
+        System.out.println(tongTien);
+        txt_tongtien.setText(String.valueOf(tongTien));
     }
 
     public void loadToTableSPCT(List<ChiTietSanPham> list) {
         model = (DefaultTableModel) tbl_sanpham.getModel();
         model.setRowCount(0);
         int i = 1;
+        System.out.println(list);
         if (list != null) { // Kiểm tra xem danh sách có null hay không
             for (ChiTietSanPham ctsp : list) {
                 model.addRow(new Object[]{
@@ -131,7 +177,7 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Hãng", "Mã CTSP", "Màu Sắc", "Size", "Chất liệu", "Tên SP", "Giá", "Số lượng"
+                "Mã CTSP", "Tên SP", "Chất liệu", "Hãng", "Size", "Màu Sắc", "Giá", "Số lượng"
             }
         ));
         tbl_sanpham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -238,6 +284,11 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
         btn_taohd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_taohd.setText("Tạo hoá đơn");
+        btn_taohd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_taohdActionPerformed(evt);
+            }
+        });
 
         tbl_hoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -351,13 +402,19 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
         jLabel9.setText("Ngày tạo: ");
 
-        jLabel10.setText("Mã NV:");
+        jLabel10.setText("Tên NV:");
 
         jLabel11.setText("Tổng tiền: ");
 
         jLabel12.setText("Chọn voucher: ");
 
         jLabel13.setText("Tiền sau giảm giá:");
+
+        txt_maHD.setEnabled(false);
+
+        txt_maNV.setEnabled(false);
+
+        txt_ngaytao.setEnabled(false);
 
         jLabel14.setText("Hình thức: ");
 
@@ -399,10 +456,6 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                             .addComponent(cbo_hinhthuc, 0, 155, Short.MAX_VALUE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(20, 20, 20)
-                        .addComponent(txt_voucher))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
@@ -413,9 +466,11 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel10))
-                        .addGap(45, 45, 45)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel12))
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_voucher)
                             .addComponent(txt_maNV)
                             .addComponent(txt_tongtien))))
                 .addContainerGap())
@@ -498,9 +553,19 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+                "Mã CTSP", "Tên SP", "Chất Liệu", "Hãng ", "Size", "Màu Sắc", "Gía ", "Số Lượng"
             }
         ));
+        tbl_giohang.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tbl_giohangPropertyChange(evt);
+            }
+        });
+        tbl_giohang.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                tbl_giohangVetoableChange(evt);
+            }
+        });
         jScrollPane6.setViewportView(tbl_giohang);
 
         btn_xoagh.setText("Xoá");
@@ -580,43 +645,43 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_sdtActionPerformed
 
     private void tbl_sanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sanphamMouseClicked
-    int selectedRow = tbl_sanpham.getSelectedRow();
-if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
-    DefaultTableModel modelSanPham = (DefaultTableModel) tbl_sanpham.getModel();
-    DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
-    // Lấy thông tin của sản phẩm được chọn từ bảng tbl_sanpham
-    String maSP = modelSanPham.getValueAt(selectedRow, 0).toString();
-    String tenSP = modelSanPham.getValueAt(selectedRow, 1).toString();
-    String hangSP = modelSanPham.getValueAt(selectedRow, 2).toString();
-    String kichThuoc = modelSanPham.getValueAt(selectedRow, 3).toString(); 
-    String chatLieu = modelSanPham.getValueAt(selectedRow, 4).toString(); 
-    String mauSac = modelSanPham.getValueAt(selectedRow, 5).toString(); 
-    String giaSP = modelSanPham.getValueAt(selectedRow, 6).toString(); 
+        int selectedRow = tbl_sanpham.getSelectedRow();
+        if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
+            DefaultTableModel modelSanPham = (DefaultTableModel) tbl_sanpham.getModel();
+            DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
+            // Lấy thông tin của sản phẩm được chọn từ bảng tbl_sanpham
+            String maSP = modelSanPham.getValueAt(selectedRow, 0).toString();
+            String tenSP = modelSanPham.getValueAt(selectedRow, 1).toString();
+            String hangSP = modelSanPham.getValueAt(selectedRow, 2).toString();
+            String kichThuoc = modelSanPham.getValueAt(selectedRow, 3).toString();
+            String chatLieu = modelSanPham.getValueAt(selectedRow, 4).toString();
+            String mauSac = modelSanPham.getValueAt(selectedRow, 5).toString();
+            String giaSP = modelSanPham.getValueAt(selectedRow, 6).toString();
 
-    // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-    boolean exist = false;
-    for (int i = 0; i < modelGioHang.getRowCount(); i++) {
-        String maSPGioHang = modelGioHang.getValueAt(i, 0).toString();
-        if (maSP.equals(maSPGioHang)) {
-            // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
-            int soLuong = Integer.parseInt(modelGioHang.getValueAt(i, 7).toString());
-            modelGioHang.setValueAt(soLuong + 1, i, 7);
-            exist = true;
-            break;
+            // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+            boolean exist = false;
+            for (int i = 0; i < modelGioHang.getRowCount(); i++) {
+                String maSPGioHang = modelGioHang.getValueAt(i, 0).toString();
+                if (maSP.equals(maSPGioHang)) {
+                    // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
+                    int soLuong = Integer.parseInt(modelGioHang.getValueAt(i, 7).toString());
+                    modelGioHang.setValueAt(soLuong + 1, i, 7);
+                    exist = true;
+                    break;
+                }
+            }
+
+            // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng với số lượng là 1
+            if (!exist) {
+                modelGioHang.addRow(new Object[]{maSP, tenSP, hangSP, kichThuoc, chatLieu, mauSac, giaSP, 1});
+            }
         }
-    }
 
-    // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng với số lượng là 1
-    if (!exist) {
-        modelGioHang.addRow(new Object[]{maSP, tenSP, hangSP, kichThuoc, chatLieu, mauSac, giaSP, 1}); 
-    }
-}
-      
     }//GEN-LAST:event_tbl_sanphamMouseClicked
 
     private void btn_xoaghActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaghActionPerformed
         // TODO add your handling code here:
-         int selectedRow = tbl_giohang.getSelectedRow();
+        int selectedRow = tbl_giohang.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
             DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
             modelGioHang.removeRow(selectedRow); // Xoá hàng được chọn từ mô hình của bảng tbl_giohang
@@ -625,6 +690,87 @@ if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một sản phẩm để xoá.", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_xoaghActionPerformed
+
+    private void btn_taohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_taohdActionPerformed
+        // TODO add your handling code here:
+        // Call api tạo 1 hóa đơn. Sau đó chỉnh sửa giá trị
+//        Lấy mã chi tiết sản phẩm. 
+
+        int rowCount = modelGioHang.getRowCount();
+        if (rowCount < 1) {
+            JOptionPane.showMessageDialog(this, "Chưa có sản phẩm trong giỏ hàng");
+        }
+        if (txt_sdt.getText().trim() == "") {
+            int chon = JOptionPane.showConfirmDialog(this, "Bạn muốn bỏ qua nhập số điện thoại khách hàng");
+            if (chon != 0) {
+                return;
+            }
+        }
+        KhachHang khachHang = null;
+        if (txt_sdt.getText().trim() != "") {
+            // query getKhachHangBySdt;
+//            khachHang = khachHangService.findKhachHangBySdt(txt_sdt.getText().trim());
+//            if (khachHang == null) {
+//                // Trường hợp này thì kệ mịa nó. Đi tạo cho 1 tài khoản bằng số điện thoại còn lại mặc kệ
+//                // tạo xong thì find 
+//                khachHang = khachHangService.findKhachHangBySdt(txt_sdt.getText().trim());
+//            }
+        }
+        // Tính toán tổng số tiền trong giỏ hàng . 
+
+        HoaDon hoaDon = new HoaDon();
+        String voucherCode = txt_voucher.getText().trim();
+        if (!voucherCode.isEmpty()) {
+            Voucher voucher = new Voucher();
+            // Nếu có thì set cho hoaDon.
+        }
+
+        // lấy mã chi tiết sản phẩm.
+        // Lấy số lượng. 
+        int tongTien = 0;
+        List<HoaDonChiTietDTO> hoaDonChiTietDTOs = new ArrayList<>();
+        for (int i = 0; i < rowCount; i++) {
+            HoaDonChiTietDTO hoaDonChiTietDTO = new HoaDonChiTietDTO();
+            hoaDonChiTietDTO.setId_CTSP((String) tbl_giohang.getValueAt(i, 0));
+            hoaDonChiTietDTO.setSoLuong((int) tbl_giohang.getValueAt(i, 7));
+            hoaDonChiTietDTOs.add(hoaDonChiTietDTO);
+
+        }
+
+        // Lấy nhân viên từ MainPanel. 
+        // Lấy ra khách hàng vừa mua hàng. K có số điện thoại thì bằng null luôn;
+        int kqTaoHoaDon = hoaDonChiTietService.taoHoaDonByHoaDonChiTietNhanVienAndKhachHang(hoaDonChiTietDTOs, nhanVienBanHang, khachHang);
+        if (kqTaoHoaDon > 0) {
+            JOptionPane.showMessageDialog(this, "Đã tạo hóa đơn. Vui lòng xác thực thanh toán");
+            // Gọi hàm load table những Hóa Đơn chưa thanh toán sắp xếp theo thứ tự mới nhấp.
+        } else {
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra trong quá trình tạo hóa đơn.");
+
+        }
+
+        // Tạo giỏ hàng như set là chưa thanh Toán.    
+
+    }//GEN-LAST:event_btn_taohdActionPerformed
+
+    private void tbl_giohangPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbl_giohangPropertyChange
+//        Khi mà có thay đổi thì lấy giá trị gán vào tổng tiền;
+        int rowCount = tbl_giohang.getRowCount();
+        double tongTien = 0.0;
+
+        for (int i = 0; i < rowCount; i++) {
+            // Lấy giá trị số lượng từ cột có chỉ số là 7
+            String soLuong = tbl_giohang.getValueAt(i, 7).toString();
+            // Lấy giá trị giá tiền từ cột có chỉ số là 6
+            String giaTien = tbl_giohang.getValueAt(i, 6).toString();
+            tongTien = (tongTien + (Integer.parseInt(soLuong) * Double.parseDouble(giaTien)));
+        }
+        System.out.println(tongTien);
+        txt_tongtien.setText(String.valueOf(tongTien));
+    }//GEN-LAST:event_tbl_giohangPropertyChange
+
+    private void tbl_giohangVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_tbl_giohangVetoableChange
+
+    }//GEN-LAST:event_tbl_giohangVetoableChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -40,8 +40,12 @@ public class MainApplicationView extends javax.swing.JFrame {
 
     private ThongKeMainPanel thongKeMainPanel; // Thảo
 
+    private static NhanVien nhanVienDangNhap;
+
     public MainApplicationView(NhanVien nhanVien) {
         initComponents();
+
+        nhanVienDangNhap = nhanVien;
 
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
@@ -63,10 +67,10 @@ public class MainApplicationView extends javax.swing.JFrame {
         thongKeMainPanel = new ThongKeMainPanel();
 
         banHangMainPanel = new BanHangMainPanelfix();
-        
-        labelShowName.setText("Tên :"+nhanVien.getHoTen());
-        labelShowOffice.setText("Chức vụ : "+nhanVien.getVaiTro());
-        
+
+        labelShowName.setText("Tên :" + nhanVien.getHoTen());
+        labelShowOffice.setText("Chức vụ : " + nhanVien.getVaiTro());
+
         showPanel(banHangMainPanel);
 
     }
@@ -639,6 +643,10 @@ public class MainApplicationView extends javax.swing.JFrame {
         mainPanel.add(panel);
         mainPanel.repaint();
         mainPanel.revalidate();
+    }
+
+    public final static NhanVien getNhanVienDangNhap() {
+        return nhanVienDangNhap;
     }
 
     /**

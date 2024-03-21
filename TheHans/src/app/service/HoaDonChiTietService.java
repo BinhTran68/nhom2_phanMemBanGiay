@@ -5,6 +5,8 @@
 package app.service;
 
 import app.dto.HoaDonChiTietDTO;
+import app.model.KhachHang;
+import app.model.NhanVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,7 +54,7 @@ public class HoaDonChiTietService {
             while (resultSet.next()) {                
                 HoaDonChiTietDTO hoaDonChiTietDTO = new HoaDonChiTietDTO(
                         resultSet.getInt(1),
-                        resultSet.getInt(2),
+                        resultSet.getString(2),
                         resultSet.getLong(3),
                         resultSet.getInt(4),
                         resultSet.getInt(5),
@@ -77,6 +79,10 @@ public class HoaDonChiTietService {
         }
         return null;
         
+    }
+
+    public int taoHoaDonByHoaDonChiTietNhanVienAndKhachHang(List<HoaDonChiTietDTO> hoaDonChiTietDTOs, NhanVien nhanVienBanHang, KhachHang khachHang) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
