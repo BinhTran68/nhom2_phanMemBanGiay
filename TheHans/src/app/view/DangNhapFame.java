@@ -23,6 +23,7 @@ public class DangNhapFame extends javax.swing.JFrame {
      */
     public DangNhapFame() {
         initComponents();
+        this.dispose();
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {

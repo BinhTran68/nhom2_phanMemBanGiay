@@ -32,8 +32,8 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     private NhanVien nhanVienBanHang = MainApplicationView.getNhanVienDangNhap();
     SanPhamChiTietService spcts = new SanPhamChiTietService();
     List<ChiTietSanPham> chiTietSanPhams = spcts.getAllSPCT();
-    DefaultTableModel model = new DefaultTableModel();
-    DefaultTableModel modelGioHang = new DefaultTableModel();
+    private DefaultTableModel model = new DefaultTableModel(); // model bảng sản hẩm
+    private DefaultTableModel modelGioHang = new DefaultTableModel();
     private KhachHangService khachHangService = new KhachHangService();
 
     HoaDonChiTietService hoaDonChiTietService = new HoaDonChiTietService();
@@ -46,34 +46,38 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         txt_maNV.setText(nhanVienBanHang.getHoTen());
         loadToTableSPCT(spcts.getAllSPCT());
         modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
-        modelGioHang.addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                if (e.getType() == TableModelEvent.INSERT) {
-                    calculateTotal();
-                }
-            }
-        });
+//        modelGioHang.addTableModelListener(new TableModelListener() {
+//            @Override
+//            public void tableChanged(TableModelEvent e) {
+//                if (e.getType() == TableModelEvent.INSERT) {
+//                    calculateTotal();
+//                }
+//            }
+//        });
 
     }
 
-    private void calculateTotal() {
-        int rowCount = tbl_giohang.getRowCount();
-        double tongTien = 0.0;
-
-        for (int i = 0; i < rowCount; i++) {
-            // Lấy giá trị số lượng từ cột có chỉ số là 7
-            String soLuong = tbl_giohang.getValueAt(i, 7).toString();
-            // Lấy giá trị giá tiền từ cột có chỉ số là 6
-            String giaTien = tbl_giohang.getValueAt(i, 6).toString();
-
-            tongTien = (tongTien + (Integer.parseInt(soLuong) * Double.parseDouble(giaTien)));
-
-        }
-
-        System.out.println(tongTien);
-        txt_tongtien.setText(String.valueOf(tongTien));
-    }
+//    private void calculateTotal() {
+//        int rowCount = tbl_giohang.getRowCount();
+//        if (rowCount == 0) {
+//            txt_tongtien.setText(String.valueOf(0));
+//            return;
+//        }
+//        double tongTien = 0.0;
+//
+//        for (int i = 0; i < rowCount; i++) {
+//            // Lấy giá trị số lượng từ cột có chỉ số là 7
+//            String soLuong = tbl_giohang.getValueAt(i, 8).toString();
+//            // Lấy giá trị giá tiền từ cột có chỉ số là 6
+//            String giaTien = tbl_giohang.getValueAt(i, 7).toString();
+//
+//            tongTien = (tongTien + (Integer.parseInt(soLuong) * Double.parseDouble(giaTien)));
+//
+//        }
+//
+//        System.out.println(tongTien);
+//        txt_tongtien.setText(String.valueOf(tongTien));
+//    }
 
     public void loadToTableSPCT(List<ChiTietSanPham> list) {
         model = (DefaultTableModel) tbl_sanpham.getModel();
@@ -83,6 +87,7 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         if (list != null) { // Kiểm tra xem danh sách có null hay không
             for (ChiTietSanPham ctsp : list) {
                 model.addRow(new Object[]{
+                    i++,
                     ctsp.getMaCTSP(),
                     ctsp.getId_SanPham(),
                     ctsp.getId_ChatLieu(),
@@ -91,6 +96,27 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                     ctsp.getId_MauSac(),
                     ctsp.getGiaBan(),
                     ctsp.getSoLuongCon()
+                });
+            }
+        }
+    }
+
+    public void loadToTableGioHang(List<ChiTietSanPham> list) {
+
+        modelGioHang.setRowCount(0);
+        int i = 1;
+        if (list != null) { // Kiểm tra xem danh sách có null hay không
+            for (ChiTietSanPham ctsp : list) {
+                modelGioHang.addRow(new Object[]{
+                    i++,
+                    ctsp.getMaCTSP(),
+                    ctsp.getId_SanPham(),
+                    ctsp.getId_ChatLieu(),
+                    ctsp.getId_Hang(),
+                    ctsp.getId_KichCo(),
+                    ctsp.getId_MauSac(),
+                    ctsp.getGiaBan(),
+                    ctsp.getSoLuongTrongGioHang()
                 });
             }
         }
@@ -167,17 +193,17 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
         tbl_sanpham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã CTSP", "Tên SP", "Chất liệu", "Hãng", "Size", "Màu Sắc", "Giá", "Số lượng"
+                "STT", "Mã CTSP", "Tên SP", "Chất liệu", "Hãng", "Size", "Màu Sắc", "Giá", "Số lượng"
             }
         ));
         tbl_sanpham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -412,6 +438,17 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
         txt_maHD.setEnabled(false);
 
+        txt_voucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_voucherActionPerformed(evt);
+            }
+        });
+        txt_voucher.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txt_voucherPropertyChange(evt);
+            }
+        });
+
         txt_maNV.setEnabled(false);
 
         txt_ngaytao.setEnabled(false);
@@ -553,7 +590,7 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã CTSP", "Tên SP", "Chất Liệu", "Hãng ", "Size", "Màu Sắc", "Gía ", "Số Lượng"
+                "STT", "Mã CTSP", "Tên SP", "Chất Liệu", "Hãng ", "Size", "Màu Sắc", "Gía ", "Số Lượng"
             }
         ));
         tbl_giohang.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -644,37 +681,59 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_sdtActionPerformed
 
+    private List<ChiTietSanPham> listChiTietGioHang = new ArrayList<>();
+
     private void tbl_sanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_sanphamMouseClicked
         int selectedRow = tbl_sanpham.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
             DefaultTableModel modelSanPham = (DefaultTableModel) tbl_sanpham.getModel();
             DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
             // Lấy thông tin của sản phẩm được chọn từ bảng tbl_sanpham
-            String maSP = modelSanPham.getValueAt(selectedRow, 0).toString();
+            String maSP = modelSanPham.getValueAt(selectedRow, 1).toString();
             String tenSP = modelSanPham.getValueAt(selectedRow, 1).toString();
             String hangSP = modelSanPham.getValueAt(selectedRow, 2).toString();
             String kichThuoc = modelSanPham.getValueAt(selectedRow, 3).toString();
             String chatLieu = modelSanPham.getValueAt(selectedRow, 4).toString();
             String mauSac = modelSanPham.getValueAt(selectedRow, 5).toString();
             String giaSP = modelSanPham.getValueAt(selectedRow, 6).toString();
-
-            // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-            boolean exist = false;
-            for (int i = 0; i < modelGioHang.getRowCount(); i++) {
-                String maSPGioHang = modelGioHang.getValueAt(i, 0).toString();
-                if (maSP.equals(maSPGioHang)) {
-                    // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
-                    int soLuong = Integer.parseInt(modelGioHang.getValueAt(i, 7).toString());
-                    modelGioHang.setValueAt(soLuong + 1, i, 7);
-                    exist = true;
+//             Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+            String soLuongString = JOptionPane.showInputDialog("Số lượng sản phẩm muốn mua");
+            int soLuong = 0;
+            try {
+                soLuong = Integer.parseInt(soLuongString);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Số lượng k hợp lệ");
+                return;
+            }
+            System.out.println("Số lượng " + soLuong);
+            if (soLuong < 1) {
+                return;
+            }
+            boolean found = false;
+            for (ChiTietSanPham chiTietSanPhamTrongGioHang : listChiTietGioHang) {
+                if (chiTietSanPhamTrongGioHang.getMaCTSP().equals(maSP)) {
+                    found = true;
+                    chiTietSanPhamTrongGioHang.setSoLuongTrongGioHang(chiTietSanPhamTrongGioHang.getSoLuongTrongGioHang() + soLuong);
                     break;
                 }
             }
+            List<ChiTietSanPham> listChiTietSanPham = spcts.getAllSPCT();
+            if (found == false) {
+                for (ChiTietSanPham chiTietSanPham : listChiTietSanPham) {
+                    if (chiTietSanPham.getMaCTSP().equals(maSP)) {
+                        chiTietSanPham.setSoLuongTrongGioHang(soLuong);
+                        listChiTietGioHang.add(chiTietSanPham);
 
-            // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng với số lượng là 1
-            if (!exist) {
-                modelGioHang.addRow(new Object[]{maSP, tenSP, hangSP, kichThuoc, chatLieu, mauSac, giaSP, 1});
+                        break;
+                    }
+                }
             }
+            Double tongTien = 0.0;
+            for (ChiTietSanPham chiTietSanPhamTrongGioHang : listChiTietGioHang) {
+                tongTien = tongTien + (chiTietSanPhamTrongGioHang.getGiaBan() * chiTietSanPhamTrongGioHang.getSoLuongTrongGioHang());
+            }
+            txt_tongtien.setText(String.valueOf(tongTien));
+            loadToTableGioHang(listChiTietGioHang);
         }
 
     }//GEN-LAST:event_tbl_sanphamMouseClicked
@@ -684,7 +743,20 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         int selectedRow = tbl_giohang.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có hàng nào được chọn không
             DefaultTableModel modelGioHang = (DefaultTableModel) tbl_giohang.getModel();
-            modelGioHang.removeRow(selectedRow); // Xoá hàng được chọn từ mô hình của bảng tbl_giohang
+            String maSP = modelGioHang.getValueAt(selectedRow, 1).toString();
+            for (ChiTietSanPham chiTietSanPhamTrongGioHang : listChiTietGioHang) {
+                if (chiTietSanPhamTrongGioHang.getMaCTSP().equals(maSP)) {
+                    listChiTietGioHang.remove(chiTietSanPhamTrongGioHang);
+                    break;
+                }
+            }
+               Double tongTien = 0.0;
+            for (ChiTietSanPham chiTietSanPhamTrongGioHang : listChiTietGioHang) {
+                tongTien = tongTien + (chiTietSanPhamTrongGioHang.getGiaBan() * chiTietSanPhamTrongGioHang.getSoLuongTrongGioHang());
+            }
+            txt_tongtien.setText(String.valueOf(tongTien));
+            loadToTableGioHang(listChiTietGioHang);
+
         } else {
             // Hiển thị thông báo nếu không có sản phẩm nào được chọn
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một sản phẩm để xoá.", "Thông báo", JOptionPane.WARNING_MESSAGE);
@@ -753,24 +825,22 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_taohdActionPerformed
 
     private void tbl_giohangPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbl_giohangPropertyChange
-//        Khi mà có thay đổi thì lấy giá trị gán vào tổng tiền;
-        int rowCount = tbl_giohang.getRowCount();
-        double tongTien = 0.0;
 
-        for (int i = 0; i < rowCount; i++) {
-            // Lấy giá trị số lượng từ cột có chỉ số là 7
-            String soLuong = tbl_giohang.getValueAt(i, 7).toString();
-            // Lấy giá trị giá tiền từ cột có chỉ số là 6
-            String giaTien = tbl_giohang.getValueAt(i, 6).toString();
-            tongTien = (tongTien + (Integer.parseInt(soLuong) * Double.parseDouble(giaTien)));
-        }
-        System.out.println(tongTien);
-        txt_tongtien.setText(String.valueOf(tongTien));
+
     }//GEN-LAST:event_tbl_giohangPropertyChange
 
     private void tbl_giohangVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_tbl_giohangVetoableChange
 
     }//GEN-LAST:event_tbl_giohangVetoableChange
+
+    private void txt_voucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_voucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_voucherActionPerformed
+
+    private void txt_voucherPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_voucherPropertyChange
+//            Lấy mã voucher từ database. 
+
+    }//GEN-LAST:event_txt_voucherPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
