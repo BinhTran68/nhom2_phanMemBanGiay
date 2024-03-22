@@ -5,6 +5,8 @@
 package app.service;
 
 import app.dto.HoaDonChiTietDTO;
+import app.model.ChiTietSanPham;
+import app.model.HoaDon;
 import app.model.KhachHang;
 import app.model.NhanVien;
 import java.sql.Connection;
@@ -13,12 +15,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
  * @author admin
  */
 public class HoaDonChiTietService {
+    
+   
+    
 
     PreparedStatement preparedStatement = null;
 
@@ -81,8 +87,28 @@ public class HoaDonChiTietService {
         
     }
 
-    public int taoHoaDonByHoaDonChiTietNhanVienAndKhachHang(List<HoaDonChiTietDTO> hoaDonChiTietDTOs, NhanVien nhanVienBanHang, KhachHang khachHang) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int taoHoaDonByHoaDonChiTietNhanVienAndKhachHang(List<ChiTietSanPham> listChiTietSanPham, NhanVien nhanVienBanHang, KhachHang khachHang) {
+        try {
+            UUID uuid = UUID.randomUUID();
+            String maHoaDon = uuid.toString();
+            HoaDon hoaDon = new HoaDon();
+            hoaDon.setMaHoaDon(maHoaDon);
+            hoaDon.setHinhThucThanhToan(null);
+            hoaDon.setIdKhachHang(-1);
+            hoaDon.setIdNhanVien(nhanVienBanHang.getId());
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+             try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
     }
 
 }

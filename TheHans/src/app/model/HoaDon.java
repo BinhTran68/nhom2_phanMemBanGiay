@@ -17,7 +17,7 @@ public class HoaDon {
     
     private int idNhanVien;
     
-    private int maHoaDon;
+    private String maHoaDon;
     
     private String tenNguoiNhan;
     
@@ -43,7 +43,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int id, int idKhachHang, int idNhanVien, int maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu) {
+    public HoaDon(int id, int idKhachHang, int idNhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu) {
         this.id = id;
         this.idKhachHang = idKhachHang;
         this.idNhanVien = idNhanVien;
@@ -59,7 +59,7 @@ public class HoaDon {
         this.ghiChu = ghiChu;
     }
 
-    public HoaDon(int id, int idKhachHang, int idNhanVien, int maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String hinhThucThanhToan) {
+    public HoaDon(int id, int idKhachHang, int idNhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Long tienKhachTra, Long tienThuaLai, Long thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String hinhThucThanhToan) {
         this.id = id;
         this.idKhachHang = idKhachHang;
         this.idNhanVien = idNhanVien;
@@ -112,14 +112,15 @@ public class HoaDon {
         this.idNhanVien = idNhanVien;
     }
 
-    public int getMaHoaDon() {
+    public String getMaHoaDon() {
         return maHoaDon;
     }
 
-    public void setMaHoaDon(int maHoaDon) {
+    public void setMaHoaDon(String maHoaDon) {
         this.maHoaDon = maHoaDon;
     }
 
+   
     public String getTenNguoiNhan() {
         return tenNguoiNhan;
     }

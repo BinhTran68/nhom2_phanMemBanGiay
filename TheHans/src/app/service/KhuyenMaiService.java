@@ -77,6 +77,33 @@ public class KhuyenMaiService {
             return 0;
         }
     }
+
+    public KhuyenMai findKhuyenMaiByMaKhuyenMai(String maKhuyenMai) {
+        KhuyenMai km = null;
+
+        sql = "select id, maKM, tenKM, loaiKM, ngayBatDau, ngayKetThuc, giaTri from KhuyenMai where maKM = ?";
+        
+
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, maKhuyenMai);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                 km = new KhuyenMai(rs.getInt(1), rs.getString(3),
+                        rs.getString(2), rs.getString(4),
+                        rs.getDate(5), rs.getDate(6),
+                        rs.getInt(7));
+
+            }
+            return km;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     
    
 

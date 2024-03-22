@@ -16,8 +16,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author admin
  */
 public class DangNhapFame extends javax.swing.JFrame {
-    
+
     private NhanVienService nhanVienService = new NhanVienService();
+
     /**
      * Creates new form DangNhapFame
      */
@@ -29,15 +30,14 @@ public class DangNhapFame extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
-    
+
     private void login() {
 
         String sdt = txtEmail.getText().trim();
 
         String matKhau = txtMatKhau.getText().trim();
-
         if (sdt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập email");
             return;
@@ -46,7 +46,6 @@ public class DangNhapFame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
-        
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
@@ -57,7 +56,6 @@ public class DangNhapFame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng");
             return;
         }
-        
     }
 
     /**
