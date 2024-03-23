@@ -8,12 +8,12 @@ package app.view;
  *
  * @author admin
  */
-public class ThongKeMainPanel extends javax.swing.JPanel {
+public class QuanLyGia extends javax.swing.JPanel {
 
     /**
-     * Creates new form ThongKeMainPanel
+     * Creates new form QuanLyGia
      */
-    public ThongKeMainPanel() {
+    public QuanLyGia() {
         initComponents();
     }
 
@@ -26,30 +26,21 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
+        setPreferredSize(new java.awt.Dimension(1300, 790));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(648, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(216, 216, 216))
+            .addGap(0, 1299, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jButton1)
-                .addContainerGap(383, Short.MAX_VALUE))
+            .addGap(0, 795, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
