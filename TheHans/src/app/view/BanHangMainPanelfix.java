@@ -5,20 +5,25 @@
 package app.view;
 
 import app.dto.HoaDonChiTietDTO;
+import app.dto.HoaDonDTO;
 import app.model.ChatLieu;
 import app.model.ChiTietSanPham;
 import app.model.HoaDon;
+import app.model.HoaDonChiTiet;
 import app.model.KhachHang;
 import app.model.KhuyenMai;
 import app.model.NhanVien;
 import app.model.Voucher;
 import app.service.HoaDonChiTietService;
+import app.service.HoaDonService;
 import app.service.KhachHangService;
 import app.service.KhuyenMaiService;
 import app.service.SanPhamChiTietService;
+import app.service.VoucherService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -39,9 +44,11 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     private DefaultTableModel model = new DefaultTableModel(); // model bảng sản hẩm
     private DefaultTableModel modelGioHang = new DefaultTableModel();
     private KhachHangService khachHangService = new KhachHangService();
-    private KhuyenMaiService khuyenMaiService = new KhuyenMaiService();
+    private VoucherService voucherService = new VoucherService();
 
     HoaDonChiTietService hoaDonChiTietService = new HoaDonChiTietService();
+
+    private HoaDonService hoaDonService = new HoaDonService();
 
     /**
      * Creates new form BanHangMainPanelfix
@@ -652,6 +659,11 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                 "STT", "Mã CTSP", "Tên SP", "Chất Liệu", "Hãng ", "Size", "Màu Sắc", "Gía ", "Số Lượng"
             }
         ));
+        tbl_giohang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_giohangMouseClicked(evt);
+            }
+        });
         tbl_giohang.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tbl_giohangPropertyChange(evt);
@@ -704,7 +716,7 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -731,24 +743,41 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_huyHDActionPerformed
 
     private void btnThemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemVoucherActionPerformed
-        String maKhuyenMai = JOptionPane.showInputDialog(this, "Vui lòng nhập mã khuyến mãi");
-        if (!maKhuyenMai.trim().isEmpty()) {
-            KhuyenMai khuyenMai = khuyenMaiService.findKhuyenMaiByMaKhuyenMai(maKhuyenMai);
-            tinhTienKhuyenMai(khuyenMai);
+        String maVoucher = JOptionPane.showInputDialog(this, "Vui lòng nhập mã khuyến mãi");
+        if (maVoucher == null) {
+            return;
         }
+
+        if (!maVoucher.isEmpty()) {
+            Voucher voucher = voucherService.findKhuyenMaiByMaKhuyenMai(maVoucher);
+            tinhTienKhuyenMai(voucher);
+        }
+        if (txt_tienKhachTra.getText().isEmpty()) {
+            return;
+        }
+        Double tienSauGiamGia = (Double.parseDouble(txt_tiensgg.getText().trim().toString()));
+        Double tienKhachTra = Double.parseDouble(txt_tienKhachTra.getText().trim().toString());
+        if (tienKhachTra > tienSauGiamGia) {
+            Double tienThua = tienKhachTra - tienSauGiamGia;
+            txt_tienthua.setText(tienThua.toString());
+        } else {
+            JOptionPane.showMessageDialog(this, "Tiền khách trả chưa đủ còn thiếu ");
+            return;
+        }
+
     }//GEN-LAST:event_btnThemVoucherActionPerformed
 
-    void tinhTienKhuyenMai(KhuyenMai khuyenMai) {
-        if (khuyenMai == null) {
+    void tinhTienKhuyenMai(Voucher voucher) {
+        if (voucher == null) {
             JOptionPane.showMessageDialog(this, "Mã khuyến mãi không hợp lệ");
         } else {
             Double tongTien = 0.0;
             for (ChiTietSanPham chiTietSanPhamTrongGioHang : listChiTietGioHang) {
                 tongTien = tongTien + (chiTietSanPhamTrongGioHang.getGiaBan() * chiTietSanPhamTrongGioHang.getSoLuongTrongGioHang());
             }
-            txt_voucher.setText(khuyenMai.getMa());
+            txt_voucher.setText(voucher.getMa());
 
-            Double soTienDuocGiam = tongTien * ((double) khuyenMai.getGiatri() / 100);
+            Double soTienDuocGiam = tongTien * ((double) voucher.getGiatri() / 100);
             txt_tienDuocGiam.setText(soTienDuocGiam.toString());
             Double tienConLai = tongTien - soTienDuocGiam;
             txt_tiensgg.setText(String.valueOf(tienConLai));
@@ -794,13 +823,12 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                     break;
                 }
             }
-            List<ChiTietSanPham> listChiTietSanPham = spcts.getAllSPCT();
+            List<ChiTietSanPham> listChiTietSanPham = spcts.getAllSPCTCoId();
             if (found == false) {
                 for (ChiTietSanPham chiTietSanPham : listChiTietSanPham) {
                     if (chiTietSanPham.getMaCTSP().equals(maSP)) {
                         chiTietSanPham.setSoLuongTrongGioHang(soLuong);
                         listChiTietGioHang.add(chiTietSanPham);
-
                         break;
                     }
                 }
@@ -810,14 +838,14 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                 tongTien = tongTien + (chiTietSanPhamTrongGioHang.getGiaBan() * chiTietSanPhamTrongGioHang.getSoLuongTrongGioHang());
             }
             txt_tongtien.setText(String.valueOf(tongTien));
-            String maKhuyenMai = txt_voucher.getText();
-            if (maKhuyenMai != null) {
-                maKhuyenMai.trim();
+            String maVoucher = txt_voucher.getText();
+            if (maVoucher != null) {
+                maVoucher.trim();
             }
-            if (!maKhuyenMai.isEmpty()) {
-                KhuyenMai khuyenMai = khuyenMaiService.findKhuyenMaiByMaKhuyenMai(maKhuyenMai);
-                if (khuyenMai != null) {
-                    tinhTienKhuyenMai(khuyenMai);
+            if (!maVoucher.isEmpty()) {
+                Voucher voucher = voucherService.findKhuyenMaiByMaKhuyenMai(maVoucher);
+                if (voucher != null) {
+                    tinhTienKhuyenMai(voucher);
                 }
             } else {
                 txt_tiensgg.setText(String.valueOf(tongTien));
@@ -846,6 +874,16 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
                 tongTien = tongTien + (chiTietSanPhamTrongGioHang.getGiaBan() * chiTietSanPhamTrongGioHang.getSoLuongTrongGioHang());
             }
             txt_tongtien.setText(String.valueOf(tongTien));
+
+            // Có hai trường hợp/. 1 là có khuyến mãi. hai là chưa có khuyến mại á.
+            String maVoucher = txt_voucher.getText().toString();
+            if (!maVoucher.isEmpty()) {
+                Voucher voucher = voucherService.findKhuyenMaiByMaKhuyenMai(maVoucher);
+                tinhTienKhuyenMai(voucher);
+            } else {
+                txt_tiensgg.setText(String.valueOf(tongTien));
+            }
+
             loadToTableGioHang(listChiTietGioHang);
 
         } else {
@@ -858,13 +896,12 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         // TODO add your handling code here:
         // Call api tạo 1 hóa đơn. Sau đó chỉnh sửa giá trị
 //        Lấy mã chi tiết sản phẩm. 
-        Double tienSauGiamGia = (Double.parseDouble(txt_tiensgg.getText().trim().toString()));
-        Double tienKhachTra = Double.parseDouble(txt_tienKhachTra.getText().trim().toString());
-
-        int rowCount = modelGioHang.getRowCount();
-        if (rowCount < 1) {
+        String voucher = txt_voucher.getText();
+        if (listChiTietGioHang.size() < 1) {
             JOptionPane.showMessageDialog(this, "Chưa có sản phẩm trong giỏ hàng");
+            return;
         }
+
         if (txt_sdt.getText().trim() == "") {
             int chon = JOptionPane.showConfirmDialog(this, "Bạn muốn bỏ qua nhập số điện thoại khách hàng");
             if (chon != 0) {
@@ -881,7 +918,10 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 //                khachHang = khachHangService.findKhachHangBySdt(txt_sdt.getText().trim());
 //            }
         }
+        
         // Tính toán tổng số tiền trong giỏ hàng . 
+        Double tienSauGiamGia = (Double.parseDouble(txt_tiensgg.getText().trim().toString()));
+        Double tienKhachTra = Double.parseDouble(txt_tienKhachTra.getText().trim().toString());
 
         if (tienKhachTra < tienSauGiamGia) {
             JOptionPane.showMessageDialog(this, "Số tiền khách trả không đủ");
@@ -891,16 +931,54 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         Double tienThuaCuaKhach = tienKhachTra - tienSauGiamGia;
         txt_tienthua.setText(tienThuaCuaKhach.toString());
 
-        int kqTaoHoaDon = hoaDonChiTietService.taoHoaDonByHoaDonChiTietNhanVienAndKhachHang(listChiTietGioHang, nhanVienBanHang, khachHang);
-        if (kqTaoHoaDon > 0) {
-            JOptionPane.showMessageDialog(this, "Đã tạo hóa đơn. Vui lòng xác thực thanh toán");
-            // Gọi hàm load table những Hóa Đơn chưa thanh toán sắp xếp theo thứ tự mới nhấp.
-        } else {
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra trong quá trình tạo hóa đơn.");
-
+        HoaDon hoaDon = new HoaDon();
+        hoaDon.setIdKhachHang(1); // Truyền vào id khách hàng
+        hoaDon.setIdNhanVien(nhanVienBanHang.getId());
+        hoaDon.setGhiChu(txt_ghichu.getText().trim());
+        hoaDon.setTienKhachTra(Double.parseDouble(txt_tienKhachTra.getText()));
+        hoaDon.setTienThuaLai(Double.parseDouble(txt_tienthua.getText()));
+        hoaDon.setThanhTien(Double.parseDouble(txt_tongtien.getText()));
+        hoaDon.setTienSauGiamGia(Double.parseDouble(txt_tiensgg.getText()));
+        if (!voucher.trim().isEmpty()) {
+            Voucher voucherItem = voucherService.findKhuyenMaiByMaKhuyenMai(voucher);
+           
+            hoaDon.setIdVoucher(voucherItem.getId());
         }
+        if (cbo_hinhthuc.getSelectedItem().toString().equalsIgnoreCase("Tiền Mặt")) {
+            hoaDon.setHinhThucThanhToan("TIEN_MAT");
+        } else {
+            hoaDon.setHinhThucThanhToan("CHUYEN_KHOAN");
+        }
+        UUID uuid = UUID.randomUUID();
+        String maHoaDon = uuid.toString();
+        hoaDon.setMaHoaDon(maHoaDon);
+        // Tạo ra hóa đơn chi tiết. 
+        String maHoaDonSauKhiTao = hoaDonService.taoHoaDon(hoaDon);
 
-        // Tạo giỏ hàng như set là chưa thanh Toán.    
+        if (maHoaDonSauKhiTao == null) {
+            JOptionPane.showMessageDialog(this, "Tạo hóa đơn không thành công. Vui lòng kiểm tra lại");
+            return;
+        }
+        HoaDonDTO hoaDonSauKhiTao = hoaDonService.findHoaDonByMaHoaDon(maHoaDon);
+              
+        List<HoaDonChiTiet> hoaDonChiTietList = new ArrayList<>();
+        // Duyệt mảng lấy giá và số lượng
+        for (ChiTietSanPham chiTietSanPham : listChiTietGioHang) {
+            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
+            hoaDonChiTiet.setDonGia(chiTietSanPham.getGiaBan());
+            hoaDonChiTiet.setId_CTSP(chiTietSanPham.getId());
+            hoaDonChiTiet.setIdHoaDon(hoaDonSauKhiTao.getHoaDonId());
+            hoaDonChiTiet.setSoLuong(chiTietSanPham.getSoLuongTrongGioHang());
+            hoaDonChiTietList.add(hoaDonChiTiet);
+        }
+        
+        System.out.println(hoaDonChiTietList);
+        int kq =  hoaDonChiTietService.taoHoaDonChiTietByListHoaDonChiTiet(hoaDonChiTietList);
+        if (kq > 0) {
+            JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
+        }else {
+             JOptionPane.showMessageDialog(this, "Tạo hóa đơn không thành công");
+        }
 
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
@@ -941,18 +1019,24 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     private void btnTinhTienThuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhTienThuaActionPerformed
 
         if (txt_tienKhachTra.getText().isEmpty()) {
-                
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tiền khách trả");
+
+            return;
         }
         Double tienSauGiamGia = (Double.parseDouble(txt_tiensgg.getText().trim().toString()));
         Double tienKhachTra = Double.parseDouble(txt_tienKhachTra.getText().trim().toString());
         if (tienKhachTra > tienSauGiamGia) {
             Double tienThua = tienKhachTra - tienSauGiamGia;
             txt_tienthua.setText(tienThua.toString());
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Tiền khách trả chưa đủ còn thiếu ");
-                return;
+            return;
         }
     }//GEN-LAST:event_btnTinhTienThuaActionPerformed
+
+    private void tbl_giohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_giohangMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_giohangMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

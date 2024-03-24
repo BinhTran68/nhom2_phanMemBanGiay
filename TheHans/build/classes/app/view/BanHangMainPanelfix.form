@@ -25,7 +25,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -955,6 +955,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_giohangMouseClicked"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tbl_giohangPropertyChange"/>
                 <EventHandler event="vetoableChange" listener="java.beans.VetoableChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tbl_giohangVetoableChange"/>
               </Events>

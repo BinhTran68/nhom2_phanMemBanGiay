@@ -5,13 +5,17 @@
 package app.service;
 
 import app.dto.HoaDonDTO;
+import app.model.ChiTietSanPham;
 import app.model.HoaDon;
+import app.model.HoaDonChiTiet;
+import app.repository.HoaDonRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -28,6 +32,8 @@ public class HoaDonService {
     Connection connection = null;
 
     private List<HoaDonDTO> hoaDonDTOs = null;
+
+    private HoaDonRepository hoaDonRepository = new HoaDonRepository();
 
     public List<HoaDonDTO> findAllHoaDon() {
         try {
@@ -61,9 +67,9 @@ public class HoaDonService {
                         resultSet.getString(4),
                         resultSet.getString(5),
                         resultSet.getString(6),
-                        resultSet.getLong(7),
-                        resultSet.getLong(8),
-                        resultSet.getLong(9),
+                        resultSet.getDouble(7),
+                        resultSet.getDouble(8),
+                        resultSet.getDouble(9),
                         resultSet.getBoolean(10),
                         resultSet.getDate(11),
                         resultSet.getDate(12),
@@ -91,9 +97,7 @@ public class HoaDonService {
         return hoaDonDTOs;
     }
 
-    public HoaDon findHoaDonByMaHoaDon(String maHoaDon) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     public List<HoaDonDTO> locTheoGiaTri(String trangThai, String hinhThucThanhToan, Date tuNgay, Date denNgay) {
         List<HoaDonDTO> hoaDonDTOs = new ArrayList<>();
@@ -149,7 +153,7 @@ public class HoaDonService {
                 java.sql.Date sqlTuNgay = new java.sql.Date(tuNgay.getTime());
                 java.sql.Date sqlDenNgay = new java.sql.Date(denNgay.getTime());
                 preparedStatement.setDate(count++, sqlTuNgay);
-                preparedStatement.setDate(count++,  sqlDenNgay);
+                preparedStatement.setDate(count++, sqlDenNgay);
             }
 
             resultSet = preparedStatement.executeQuery();
@@ -161,9 +165,9 @@ public class HoaDonService {
                         resultSet.getString(4),
                         resultSet.getString(5),
                         resultSet.getString(6),
-                        resultSet.getLong(7),
-                        resultSet.getLong(8),
-                        resultSet.getLong(9),
+                        resultSet.getDouble(7),
+                        resultSet.getDouble(8),
+                        resultSet.getDouble(9),
                         resultSet.getBoolean(10),
                         resultSet.getDate(11),
                         resultSet.getDate(12),
@@ -194,5 +198,17 @@ public class HoaDonService {
         }
         return hoaDonDTOs;
     }
+
+    public String taoHoaDon(HoaDon hoaDon) {
+        String maHoaDon = hoaDonRepository.taoHoaDonByHoaDon(hoaDon);
+        System.out.println(maHoaDon);
+        return maHoaDon;
+    }
+    
+    public HoaDonDTO findHoaDonByMaHoaDon(String maHoaDon) {
+        return hoaDonRepository.findHoaDonByMaHoaDon(maHoaDon);
+    }
+    
+    
 
 }

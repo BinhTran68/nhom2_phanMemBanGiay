@@ -7,8 +7,11 @@ package app.service;
 import app.dto.HoaDonChiTietDTO;
 import app.model.ChiTietSanPham;
 import app.model.HoaDon;
+import app.model.HoaDonChiTiet;
 import app.model.KhachHang;
 import app.model.NhanVien;
+import app.repository.HoaDonChiTietRepository;
+import app.repository.HoaDonRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +26,7 @@ import java.util.UUID;
  */
 public class HoaDonChiTietService {
     
-   
-    
+    private HoaDonChiTietRepository hoaDonChiTietRepository = new HoaDonChiTietRepository();
 
     PreparedStatement preparedStatement = null;
 
@@ -33,11 +35,13 @@ public class HoaDonChiTietService {
     String sql = "";
 
     Connection connection = null;
+
+    List<HoaDonChiTietDTO> hoaDonChiTietDTOs = null;
     
-    List<HoaDonChiTietDTO > hoaDonChiTietDTOs = null;
+    HoaDonRepository hoaDonRepository = new HoaDonRepository();
 
     public List<HoaDonChiTietDTO> getHoaDonChiTietDTO(int idHoaDon) {
-           
+
         hoaDonChiTietDTOs = new ArrayList<>();
         sql = "SELECT [id_HoaDon]\n"
                 + "      ,[id_CTSP]\n"
@@ -49,15 +53,15 @@ public class HoaDonChiTietService {
                 + "	  SanPham.ten,\n"
                 + "	  ChiTietSanPham.giaBan\n"
                 + "FROM [dbo].[HoaDonChiTiet] join HoaDon on HoaDon.id = HoaDonChiTiet.id_HoaDon join ChiTietSanPham on ChiTietSanPham.id = HoaDonChiTiet.id_CTSP join SanPham on ChiTietSanPham.id_SanPham = SanPham.id where HoaDon.id = ? \n"
-                + "" ;
-        
+                + "";
+
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, idHoaDon);
             resultSet = preparedStatement.executeQuery();
-            
-            while (resultSet.next()) {                
+
+            while (resultSet.next()) {
                 HoaDonChiTietDTO hoaDonChiTietDTO = new HoaDonChiTietDTO(
                         resultSet.getInt(1),
                         resultSet.getString(2),
@@ -65,13 +69,13 @@ public class HoaDonChiTietService {
                         resultSet.getInt(4),
                         resultSet.getInt(5),
                         resultSet.getDate(6),
-                        resultSet.getDate(7), 
-                        resultSet.getString(8), 
+                        resultSet.getDate(7),
+                        resultSet.getString(8),
                         resultSet.getLong(9));
-                
+
                 hoaDonChiTietDTOs.add(hoaDonChiTietDTO);
             }
-            
+
             return hoaDonChiTietDTOs;
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,31 +88,12 @@ public class HoaDonChiTietService {
             }
         }
         return null;
-        
+
     }
 
-    public int taoHoaDonByHoaDonChiTietNhanVienAndKhachHang(List<ChiTietSanPham> listChiTietSanPham, NhanVien nhanVienBanHang, KhachHang khachHang) {
-        try {
-            UUID uuid = UUID.randomUUID();
-            String maHoaDon = uuid.toString();
-            HoaDon hoaDon = new HoaDon();
-            hoaDon.setMaHoaDon(maHoaDon);
-            hoaDon.setHinhThucThanhToan(null);
-            hoaDon.setIdKhachHang(-1);
-            hoaDon.setIdNhanVien(nhanVienBanHang.getId());
-            
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-             try {
-                connection.close();
-                preparedStatement.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return -1;
+    public int taoHoaDonChiTietByListHoaDonChiTiet(List<HoaDonChiTiet> hoaDonChiTietList) {
+       return hoaDonChiTietRepository.taoHoaDonChiTiet(hoaDonChiTietList);
     }
 
+   
 }

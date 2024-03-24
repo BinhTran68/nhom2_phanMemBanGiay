@@ -1,7 +1,9 @@
 package app.view;
 
 import app.model.KhuyenMai;
+import app.model.Voucher;
 import app.service.KhuyenMaiService;
+import app.service.VoucherService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class KhuyenMaiMainPanel extends javax.swing.JPanel {
 
-    private KhuyenMaiService ss = new KhuyenMaiService();
+    private VoucherService ss = new VoucherService();
     private DefaultTableModel dtm = new DefaultTableModel();
-    private List<KhuyenMai> listKM = new ArrayList<>();
+    private List<Voucher> listKM = new ArrayList<>();
     private int index = -1;
 
     public KhuyenMaiMainPanel() {
@@ -28,10 +30,10 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         this.fillTable(ss.getAll());
     }
 
-    void fillTable(List<KhuyenMai> m) {
+    void fillTable(List<Voucher> m) {
         dtm = (DefaultTableModel) tblQLPGG.getModel();
         dtm.setRowCount(0);
-        for (KhuyenMai x : m) {
+        for (Voucher x : m) {
             dtm.addRow(x.toDataRow());
         }
     }
@@ -55,7 +57,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
 
     }
 
-    KhuyenMai readForm() {
+    Voucher readForm() {
         String ma, ten, loai;
         ma = txtMa.getText().trim();
         ten = txtTen.getText().trim();
@@ -91,7 +93,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
-        return new KhuyenMai(ma, ten, loai, end_Date, end_Date, gtri);
+        return new Voucher(ma, ten, loai, end_Date, end_Date, gtri);
     }
 
     /**
@@ -431,7 +433,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "bạn chưa chọn sửa");
         } else {
             String ma = tblQLPGG.getValueAt(index, 1).toString();
-            KhuyenMai km = readForm();
+            Voucher km = readForm();
             if (ss.updateKM(ma, km) > 0) {
                 JOptionPane.showMessageDialog(this, "Sửa thành công");
                 this.fillTable(ss.getAll());

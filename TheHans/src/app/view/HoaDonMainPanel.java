@@ -197,6 +197,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         btnLoc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
+        btnReload = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -305,6 +306,18 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblHoaDon);
 
+        btnReload.setText("Refesh");
+        btnReload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReloadMouseClicked(evt);
+            }
+        });
+        btnReload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReloadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -343,7 +356,9 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnXuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1237, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -353,14 +368,16 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnXuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnXuatDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(2, 2, 2)))
+                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -591,10 +608,19 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
+    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReloadMouseClicked
+
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+        fillTableHoaDon(hoaDonService.findAllHoaDon());  
+    }//GEN-LAST:event_btnReloadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInHoaDon;
     private javax.swing.JButton btnLoc;
+    private javax.swing.JButton btnReload;
     private javax.swing.JButton btnXuatDanhSach;
     private javax.swing.JComboBox<String> cboHinhThucThanhToan;
     private javax.swing.JComboBox<String> cboTrangThai;
