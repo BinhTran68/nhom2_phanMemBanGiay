@@ -29,6 +29,10 @@ public class HoaDonDTO {
     private String tenKhachHang;
     private String sdtKhachHang;
     private String hinhThucThanhToan;
+    private Integer trangThaiThanhToan;
+    private String maVoucher;
+   
+    
 
     public HoaDonDTO() {
     }
@@ -73,9 +77,52 @@ public class HoaDonDTO {
         this.sdtKhachHang = sdtKhachHang;
         this.hinhThucThanhToan = hinhThucThanhToan;
     }
-    
-    
 
+    public HoaDonDTO(int hoaDonId, int id_KhachHang, int id_NhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Double tienKhachTra, Double tienThuaLai, Double thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String tenNhanVien, String tenKhachHang, String sdtKhachHang, String hinhThucThanhToan, Integer trangThaiThanhToan) {
+        this.hoaDonId = hoaDonId;
+        this.id_KhachHang = id_KhachHang;
+        this.id_NhanVien = id_NhanVien;
+        this.maHoaDon = maHoaDon;
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.diaChi = diaChi;
+        this.tienKhachTra = tienKhachTra;
+        this.tienThuaLai = tienThuaLai;
+        this.thanhTien = thanhTien;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.ghiChu = ghiChu;
+        this.tenNhanVien = tenNhanVien;
+        this.tenKhachHang = tenKhachHang;
+        this.sdtKhachHang = sdtKhachHang;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.trangThaiThanhToan = trangThaiThanhToan;
+    }
+
+    public HoaDonDTO(int hoaDonId, int id_KhachHang, int id_NhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Double tienKhachTra, Double tienThuaLai, Double thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String tenNhanVien, String tenKhachHang, String sdtKhachHang, String hinhThucThanhToan, Integer trangThaiThanhToan, String maVoucher) {
+        this.hoaDonId = hoaDonId;
+        this.id_KhachHang = id_KhachHang;
+        this.id_NhanVien = id_NhanVien;
+        this.maHoaDon = maHoaDon;
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.diaChi = diaChi;
+        this.tienKhachTra = tienKhachTra;
+        this.tienThuaLai = tienThuaLai;
+        this.thanhTien = thanhTien;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.ghiChu = ghiChu;
+        this.tenNhanVien = tenNhanVien;
+        this.tenKhachHang = tenKhachHang;
+        this.sdtKhachHang = sdtKhachHang;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.trangThaiThanhToan = trangThaiThanhToan;
+        this.maVoucher = maVoucher;
+    }
+    
+    
+    
     public int getHoaDonId() {
         return hoaDonId;
     }
@@ -211,6 +258,23 @@ public class HoaDonDTO {
     public void setHinhThucThanhToan(String hinhThucThanhToan) {
         this.hinhThucThanhToan = hinhThucThanhToan;
     }
+
+    public Integer getTrangThaiThanhToan() {
+        return trangThaiThanhToan;
+    }
+
+    public void setTrangThaiThanhToan(Integer trangThaiThanhToan) {
+        this.trangThaiThanhToan = trangThaiThanhToan;
+    }
+
+    public String getMaVoucher() {
+        return maVoucher;
+    }
+
+    public void setMaVoucher(String maVoucher) {
+        this.maVoucher = maVoucher;
+    }
+    
     
     
 

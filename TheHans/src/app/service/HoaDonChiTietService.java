@@ -65,7 +65,7 @@ public class HoaDonChiTietService {
                 HoaDonChiTietDTO hoaDonChiTietDTO = new HoaDonChiTietDTO(
                         resultSet.getInt(1),
                         resultSet.getString(2),
-                        resultSet.getLong(3),
+                        resultSet.getDouble(3),
                         resultSet.getInt(4),
                         resultSet.getInt(5),
                         resultSet.getDate(6),

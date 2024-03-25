@@ -65,12 +65,12 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     }
 
     void fillTableHoaDon(List<HoaDonDTO> listHoaDon) {
-        int i = 0;
+        int i = 1;
         defaultTableModelHoaDon.setRowCount(0);
         for (HoaDonDTO hoaDon : listHoaDon) {
             defaultTableModelHoaDon.addRow(new Object[]{
-                i++,
                 hoaDon.getHoaDonId(),
+                hoaDon.getMaHoaDon(),
                 hoaDon.getId_NhanVien(),
                 hoaDon.getTenKhachHang(),
                 hoaDon.getSdtKhachHang(),
@@ -80,8 +80,9 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
                 hoaDon.getTienKhachTra(),
                 hoaDon.getTienThuaLai(),
                 hoaDon.getGhiChu(),
-                hoaDon.isTrangThaiXoa(),
-                hoaDon.getHinhThucThanhToan()
+                hoaDon.getTrangThaiThanhToan() == 1 ? "Đã thanh toán" : "Chưa thanh toán" ,
+                hoaDon.getHinhThucThanhToan(),
+                hoaDon.getMaVoucher() == null ? "None" : hoaDon.getMaVoucher()
             });
         }
     }
@@ -93,10 +94,10 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
 
         // Create header row with meaningful column titles
         Row headerRow = sheet.createRow(rowNum++);
-        headerRow.createCell(0).setCellValue("Mã Hóa Đơn");
-        headerRow.createCell(1).setCellValue("Mã Khách Hàng");
-        headerRow.createCell(2).setCellValue("Mã Nhân Viên");
-        headerRow.createCell(3).setCellValue("Mã Hóa Đơn (khác)");
+        headerRow.createCell(0).setCellValue("ID Hóa Đơn");
+        headerRow.createCell(1).setCellValue("ID Khách Hàng");
+        headerRow.createCell(2).setCellValue("ID Nhân Viên");
+        headerRow.createCell(3).setCellValue("Mã Hóa Đơn");
         headerRow.createCell(4).setCellValue("Tên Người Nhận");
         headerRow.createCell(5).setCellValue("Địa Chỉ Người Nhận");
         headerRow.createCell(6).setCellValue("Tiền Khách Trả");
@@ -155,10 +156,12 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
             defaultTableModelHoaDonChiTiet.addRow(new Object[]{
                 i++,
                 hoaDonChiTietDTO.getId_CTSP(),
+                hoaDonChiTietDTO.getId_HoaDon(),
                 hoaDonChiTietDTO.getTenSanPham(),
                 hoaDonChiTietDTO.getSoLuong(),
                 hoaDonChiTietDTO.getGiaBan(),
-                hoaDonChiTietDTO.getGiaBan() * hoaDonChiTietDTO.getSoLuong()
+                hoaDonChiTietDTO.getGiaBan() * hoaDonChiTietDTO.getSoLuong(),
+                hoaDonChiTietDTO.getNgayTao()
             });
         }
     }
@@ -287,13 +290,13 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         tblHoaDon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã Hóa Đơn", "Mã Nhân Viên", "Tên Khách Hàng", "Số ĐT", "Ngày Tạo", "Ngày Thanh Toán", "Tổng Tiền", "Tiền Khách Trả", "Tiền Thừa lại", "GHi Chú", "Trạng Thái", "Hình Thức TT"
+                "ID", "Mã Hóa Đơn", "ID Nhân Viên", "Tên Khách Hàng", "Số ĐT", "Ngày Tạo", "Ngày Thanh Toán", "Tổng Tiền", "Tiền Khách Trả", "Tiền Thừa lại", "GHi Chú", "Trạng Thái", "Hình Thức TT", "Mã Voucher"
             }
         ));
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -402,19 +405,16 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
 
         tblHoaDonChiTiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã CTSP", "Tên Sản Phẩm", "Số Lượng", "Gía", "Tổng tiền"
+                "STT", "ID CTSP", "ID Hóa Đơn", "Tên Sản Phẩm", "Số Lượng", "Gía", "Tổng tiền", "Ngày Tạo"
             }
         ));
         jScrollPane2.setViewportView(tblHoaDonChiTiet);
-        if (tblHoaDonChiTiet.getColumnModel().getColumnCount() > 0) {
-            tblHoaDonChiTiet.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -515,17 +515,27 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     private void btnXuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDanhSachActionPerformed
         try {
             writeExcel(hoaDonService.findAllHoaDon());
+            JOptionPane.showMessageDialog(this, "Xuất Dữ Liệu ra Exel thành công");
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Xuất danh sách thất bại");
         }
     }//GEN-LAST:event_btnXuatDanhSachActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         rowTblHoaDon = tblHoaDon.getSelectedRow();
 
-        String idHoaDon = tblHoaDon.getValueAt(rowTblHoaDon, 1).toString();
-
-        List<HoaDonChiTietDTO> hoaDonChiTietDTOList = hoaDonChiTietService.getHoaDonChiTietDTO(Integer.parseInt(idHoaDon));
+        String maHoaDon = tblHoaDon.getValueAt(rowTblHoaDon, 0).toString();
+//        HoaDonDTO hoaDon = hoaDonService.findHoaDonByMaHoaDon(maHoaDon);
+//        if (hoaDon == null) {
+//            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra.");
+//            return;
+//        }
+//        Integer idHoaDon = hoaDon.getHoaDonId();
+        
+        List<HoaDonChiTietDTO> hoaDonChiTietDTOList = hoaDonChiTietService.getHoaDonChiTietDTO(Integer.valueOf(maHoaDon));
+        
+        
         if (hoaDonChiTietDTOList == null || hoaDonChiTietDTOList.isEmpty()) {
             defaultTableModelHoaDonChiTiet.setRowCount(0);
             return;
@@ -599,13 +609,6 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         String maHoaDon = (String) tblHoaDon.getValueAt(rowTblHoaDon, 1);
         
         
-        
-        
-        
-       
-        
-        
-        
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
     private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
@@ -614,6 +617,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
 
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
         fillTableHoaDon(hoaDonService.findAllHoaDon());  
+        defaultTableModelHoaDonChiTiet.setRowCount(0);
     }//GEN-LAST:event_btnReloadActionPerformed
 
 

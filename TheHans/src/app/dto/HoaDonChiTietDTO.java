@@ -14,7 +14,7 @@ public class HoaDonChiTietDTO {
     
     private int id_HoaDon;
     private String id_CTSP;
-    private Long donGia;
+    private Double donGia;
     private int soLuong;
     private int trangThaiXoa;
     private Date ngayTao;
@@ -22,7 +22,7 @@ public class HoaDonChiTietDTO {
     private String tenSanPham; // Tên sản phẩm từ bảng SanPham
     private double giaBan;
 
-    public HoaDonChiTietDTO(int id_HoaDon, String id_CTSP, Long donGia, int soLuong, int trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String tenSanPham, double giaBan) {
+    public HoaDonChiTietDTO(int id_HoaDon, String id_CTSP, Double donGia, int soLuong, int trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String tenSanPham, double giaBan) {
         this.id_HoaDon = id_HoaDon;
         this.id_CTSP = id_CTSP;
         this.donGia = donGia;
@@ -58,11 +58,11 @@ public class HoaDonChiTietDTO {
 
     
 
-    public Long getDonGia() {
+    public Double getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(Long donGia) {
+    public void setDonGia(Double donGia) {
         this.donGia = donGia;
     }
 

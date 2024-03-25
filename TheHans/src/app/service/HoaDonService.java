@@ -54,8 +54,11 @@ public class HoaDonService {
                     + "      ,ghiChu,\n"
                     + "	  NhanVien.hoTen,\n"
                     + "	  KhachHang.hoTen,\n"
-                    + "	  KhachHang.SDT, hinhThucThanhToan \n"
-                    + "  FROM [dbo].[HoaDon] left join NhanVien on HoaDon.id_NhanVien = NhanVien.id left join KhachHang on KhachHang.id = HoaDon.id";
+                    + "	  KhachHang.SDT, hinhThucThanhToan, trangThaiThanhToan,Voucher.maVoucher  \n"
+                    + "  FROM [dbo].[HoaDon] "
+                    + " left join NhanVien on HoaDon.id_NhanVien = NhanVien.id "
+                    + " left join KhachHang on KhachHang.id = HoaDon.id_KhachHang "
+                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher";
 
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
@@ -77,7 +80,10 @@ public class HoaDonService {
                         resultSet.getString(14),
                         resultSet.getString(15),
                         resultSet.getString(16),
-                        resultSet.getString(17)
+                        resultSet.getString(17),
+                        resultSet.getInt(18),
+                        resultSet.getString(19)
+                        
                 );
                 hoaDonDTOs.add(hoaDonDTO);
 
@@ -109,10 +115,26 @@ public class HoaDonService {
             connection = DBConnect.getConnection();
             hoaDonDTOs = new ArrayList<>();
 
-            String sql = "SELECT [HoaDon].id, id_KhachHang, id_NhanVien, maHoaDon, tenNguoiNhan, [HoaDon].diaChi, tienKhachTra, tienThuaLai, thanhTien, [HoaDon].trangThaiXoa, [HoaDon].ngayTao, [HoaDon].ngaySuaCuoi, ghiChu, NhanVien.hoTen, KhachHang.hoTen, KhachHang.SDT, hinhThucThanhToan "
-                    + "FROM [dbo].[HoaDon] "
-                    + "LEFT JOIN NhanVien ON HoaDon.id_NhanVien = NhanVien.id "
-                    + "LEFT JOIN KhachHang ON KhachHang.id = HoaDon.id";
+            String sql =  sql = "SELECT [HoaDon].id\n"
+                    + "      ,id_KhachHang\n"
+                    + "      ,id_NhanVien\n"
+                    + "      ,maHoaDon\n"
+                    + "      ,tenNguoiNhan\n"
+                    + "      ,[HoaDon].diaChi\n"
+                    + "      ,tienKhachTra\n"
+                    + "      ,tienThuaLai\n"
+                    + "      ,thanhTien\n"
+                    + "      ,[HoaDon].trangThaiXoa\n"
+                    + "      ,[HoaDon].ngayTao\n"
+                    + "      ,[HoaDon].ngaySuaCuoi\n"
+                    + "      ,ghiChu,\n"
+                    + "	  NhanVien.hoTen,\n"
+                    + "	  KhachHang.hoTen,\n"
+                    + "	  KhachHang.SDT, hinhThucThanhToan, trangThaiThanhToan,Voucher.maVoucher  \n"
+                    + "  FROM [dbo].[HoaDon] "
+                    + " left join NhanVien on HoaDon.id_NhanVien = NhanVien.id "
+                    + " left join KhachHang on KhachHang.id = HoaDon.id_KhachHang "
+                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher";
 
             int count = 1;
 
@@ -159,7 +181,7 @@ public class HoaDonService {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 HoaDonDTO hoaDonDTO = new HoaDonDTO(
-                        resultSet.getInt(1),
+                         resultSet.getInt(1),
                         resultSet.getInt(2),
                         resultSet.getInt(3),
                         resultSet.getString(4),
@@ -175,7 +197,9 @@ public class HoaDonService {
                         resultSet.getString(14),
                         resultSet.getString(15),
                         resultSet.getString(16),
-                        resultSet.getString(17)
+                        resultSet.getString(17),
+                        resultSet.getInt(18),
+                        resultSet.getString(19)
                 );
                 hoaDonDTOs.add(hoaDonDTO);
             }
