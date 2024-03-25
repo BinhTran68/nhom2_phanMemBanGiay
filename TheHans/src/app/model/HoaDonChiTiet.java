@@ -16,18 +16,20 @@ public class HoaDonChiTiet {
     
     private int id_CTSP;
     
-    private Long donGia;
+    private Double donGia;
     
     private int trangThaiXoa;
     
     private Date ngayTao;
     
     private Date ngaySua;
+    
+    private int soLuong;
 
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(int idHoaDon, int id_CTSP, Long donGia, int trangThaiXoa, Date ngayTao, Date ngaySua) {
+    public HoaDonChiTiet(int idHoaDon, int id_CTSP, Double donGia, int trangThaiXoa, Date ngayTao, Date ngaySua) {
         this.idHoaDon = idHoaDon;
         this.id_CTSP = id_CTSP;
         this.donGia = donGia;
@@ -36,6 +38,17 @@ public class HoaDonChiTiet {
         this.ngaySua = ngaySua;
     }
 
+    public HoaDonChiTiet(int idHoaDon, int id_CTSP, Double donGia, int trangThaiXoa, Date ngayTao, Date ngaySua, int soLuong) {
+        this.idHoaDon = idHoaDon;
+        this.id_CTSP = id_CTSP;
+        this.donGia = donGia;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.soLuong = soLuong;
+    }
+
+    
     
 
     public int getIdHoaDon() {
@@ -54,11 +67,11 @@ public class HoaDonChiTiet {
         this.id_CTSP = id_CTSP;
     }
 
-    public Long getDonGia() {
+    public Double getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(Long donGia) {
+    public void setDonGia(Double donGia) {
         this.donGia = donGia;
     }
 
@@ -85,6 +98,16 @@ public class HoaDonChiTiet {
     public void setNgaySua(Date ngaySua) {
         this.ngaySua = ngaySua;
     }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+    
+    
     
     
     
