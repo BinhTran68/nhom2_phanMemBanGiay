@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package app.view;
 
 import app.model.NhanVien;
@@ -11,21 +7,17 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author Admin
- */
 public class LoginFrame extends javax.swing.JFrame {
 
     private NhanVienService nhanVienService = new NhanVienService();
 
     public LoginFrame() {
         initComponents();
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            UIManager.setLookAndFeel(new FlatLightLaf());
+//        } catch (UnsupportedLookAndFeelException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -43,7 +35,6 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
-        
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
@@ -68,14 +59,14 @@ public class LoginFrame extends javax.swing.JFrame {
 
         panelBtn = new javax.swing.JPanel();
         panelLogin = new javax.swing.JPanel();
+        txtMatKhau = new app.view.swing.MyPasswordField();
         labelTitle = new javax.swing.JLabel();
+        txtEmail = new app.view.swing.MyTextField();
         labelEmailError = new javax.swing.JLabel();
         labelPasswordError = new javax.swing.JLabel();
         cbShowPass = new javax.swing.JCheckBox();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
-        txtEmail = new javax.swing.JTextField();
-        txtMatKhau = new javax.swing.JPasswordField();
 
         panelBtn.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,10 +88,26 @@ public class LoginFrame extends javax.swing.JFrame {
         panelLogin.setBackground(new java.awt.Color(51, 204, 255));
         panelLogin.setRequestFocusEnabled(false);
 
+        txtMatKhau.setForeground(new java.awt.Color(255, 255, 255));
+        txtMatKhau.setHint("Mật Khẩu");
+        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatKhauActionPerformed(evt);
+            }
+        });
+
         labelTitle.setBackground(new java.awt.Color(51, 51, 51));
         labelTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(51, 51, 255));
         labelTitle.setText("Đăng Nhập");
+
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        txtEmail.setHint("Email");
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         labelEmailError.setForeground(new java.awt.Color(255, 0, 0));
         labelEmailError.setPreferredSize(new java.awt.Dimension(0, 15));
@@ -138,21 +145,21 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
-                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                                 .addComponent(labelEmailError, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEmail))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                                 .addComponent(labelPasswordError, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelLoginLayout.createSequentialGroup()
                                         .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(54, 54, 54)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cbShowPass)
-                                    .addComponent(txtMatKhau))))
+                                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(183, 183, 183))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                         .addComponent(labelTitle)
@@ -165,16 +172,14 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(labelTitle)
                 .addGap(48, 48, 48)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelEmailError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLoginLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(labelPasswordError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLoginLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(labelEmailError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPasswordError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(cbShowPass)
                 .addGap(28, 28, 28)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -199,13 +204,13 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPassActionPerformed
-//        if (cbShowPass.isSelected()) {
-//            txtMatKhau.setEchoChar((char) 0); //password = JPasswordField
-//        } else {
-//            txtMatKhau.setEchoChar('*');
-//        }
+        if (cbShowPass.isSelected()) {
+            txtMatKhau.setEchoChar((char) 0); //password = JPasswordField
+        } else {
+            txtMatKhau.setEchoChar('*');
+        }
     }//GEN-LAST:event_cbShowPassActionPerformed
-    
+
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
@@ -266,7 +271,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelBtn;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JPasswordField txtMatKhau;
+    private app.view.swing.MyTextField txtEmail;
+    private app.view.swing.MyPasswordField txtMatKhau;
     // End of variables declaration//GEN-END:variables
 }
