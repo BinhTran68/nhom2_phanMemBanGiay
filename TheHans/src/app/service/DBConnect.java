@@ -14,10 +14,6 @@ import java.sql.SQLException;
  */
 public class DBConnect {
 
-    static void closeConnection(Connection con) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
  
     protected Connection connection;
     private static final String HOSTNAME = "localhost";

@@ -97,7 +97,9 @@ public class ThuocTinhService {
     }
 
     public int addChatLieu(ChatLieu cl) {
-
+        if (cl == null) {
+            return 0;
+        }
         sql = "insert into ChatLieu\n"
                 + "values \n"
                 + "(?,?,?,getDate(),getDate())";
@@ -114,7 +116,9 @@ public class ThuocTinhService {
     }
 
     public int addHang(Hang h) {
-
+        if (h == null) {
+            return 0;
+        }
         sql = "insert into Hang\n"
                 + "values \n"
                 + "(?,?,?,getDate(),getDate())";
@@ -131,7 +135,9 @@ public class ThuocTinhService {
     }
 
     public int addKichCo(KichCo kc) {
-
+        if (kc == null) {
+            return 0;
+        }
         sql = "insert into KichCo\n"
                 + "values \n"
                 + "(?,?,?,getDate(),getDate())";
@@ -148,7 +154,9 @@ public class ThuocTinhService {
     }
 
     public int addMauSac(MauSac ms) {
-
+        if (ms == null) {
+            return 0;
+        }
         sql = "insert into MauSac\n"
                 + "values \n"
                 + "(?,?,?,getDate(),getDate())";
@@ -165,6 +173,9 @@ public class ThuocTinhService {
     }
 
     public int suaChatLieu(ChatLieu cl, String ma) {
+        if (cl == null) {
+            return 0;
+        }
         sql = "update ChatLieu set maChatLieu = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maChatLieu = ?";
         try {
             con = DBConnect.getConnection();
@@ -180,6 +191,9 @@ public class ThuocTinhService {
     }
 
     public int suaHang(Hang h, String ma) {
+        if (h == null) {
+            return 0;
+        }
         sql = "update Hang set maHang = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maHang = ?";
         try {
             con = DBConnect.getConnection();
@@ -195,6 +209,9 @@ public class ThuocTinhService {
     }
 
     public int suaKichCo(KichCo cl, String ma) {
+        if (cl == null) {
+            return 0;
+        }
         sql = "update KichCo set maKichCo = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maKichCo = ?";
         try {
             con = DBConnect.getConnection();
@@ -210,6 +227,9 @@ public class ThuocTinhService {
     }
 
     public int suaMauSac(MauSac cl, String ma) {
+        if (cl == null) {
+            return 0;
+        }
         sql = "update MauSac set maMauSac = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maMauSac = ?";
         try {
             con = DBConnect.getConnection();
@@ -222,6 +242,134 @@ public class ThuocTinhService {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public boolean kiemTraTrungMaChatLieu(String ma) {
+        sql = "select maChatLieu from chatlieu where maChatLieu = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenChatLieu(String ten) {
+        sql = "select ten from chatlieu where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenHang(String ten) {
+        sql = "select ten from hang where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungMaHang(String ma) {
+        sql = "select mahang from hang where mahang = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenKichCo(String ten) {
+        sql = "select ten from KichCo where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungMaKichCo(String ma) {
+        sql = "select maKichCo from kichco where maKichCo = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenMauSac(String ten) {
+        sql = "select ten from mauSac where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungMaMauSac(String ma) {
+        sql = "select maMauSac from MauSac where maMauSac = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
     public static void main(String[] args) {

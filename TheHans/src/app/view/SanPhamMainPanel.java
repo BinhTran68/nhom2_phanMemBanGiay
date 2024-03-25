@@ -74,6 +74,9 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         addCbo(ctspsv.getTenKichCo(), cboKichCo);
         addCbo(ctspsv.getTenMauSac(), cboMauSac);
         addCbo(ctspsv.getTenSanPham(), cboTenSP);
+        rdoConBan.setSelected(false);
+        rdoHetHang.setSelected(false);
+        fillToTableCTSP(ctspsv.getAllCTSP());
     }
 
     private void cboLoaiThuocTinh() {
@@ -250,6 +253,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private ChatLieu readFormChatLieu() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaChatLieu(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenChatLieu(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -262,6 +273,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private Hang readFormHang() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaHang(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenHang(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -274,6 +293,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private KichCo readFormKichCo() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaKichCo(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenKichCo(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -286,6 +313,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private SanPham readFormSanPham() {
         String ma = txtMaSanPham.getText();
         String ten = txtTenSanPham.getText();
+//        if (sps.kiemTraTrungMaSP(ma)) {
+//            JOptionPane.showMessageDialog(this, "trùng mã");
+//            return null;
+//        }
+//        if (sps.kiemTraTrungtenSP(ten)) {
+//            JOptionPane.showMessageDialog(this, "trùng tên");
+//            return null;
+//        }
         int trangThai;
         if (rdoDangBan.isSelected()) {
             trangThai = 1;
@@ -298,6 +333,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private MauSac readFormMauSac() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaMauSac(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenMauSac(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;

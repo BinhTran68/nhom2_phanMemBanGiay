@@ -26,6 +26,9 @@ public class ChiTietSanPham {
     private String mota;
     private String maVach;
 
+    private int soLuongTrongGioHang;
+    private String maKhuyenMai;
+
     public ChiTietSanPham() {
     }
 
@@ -91,7 +94,8 @@ public class ChiTietSanPham {
         this.mota = mota;
         this.maVach = maVach;
     }
-public ChiTietSanPham(String id_SanPham, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int soLuongCon, String maCTSP, double giaBan) {
+
+    public ChiTietSanPham(String id_SanPham, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int soLuongCon, String maCTSP, double giaBan) {
         this.id_SanPham = id_SanPham;
         this.id_MauSac = id_MauSac;
         this.id_KichCo = id_KichCo;
@@ -101,6 +105,46 @@ public ChiTietSanPham(String id_SanPham, String id_MauSac, String id_KichCo, Str
         this.maCTSP = maCTSP;
         this.giaBan = giaBan;
     }
+
+    public ChiTietSanPham(String id_SanPham, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int soLuongCon, String maCTSP, double giaBan, int id) {
+        this.id_SanPham = id_SanPham;
+        this.id_MauSac = id_MauSac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.soLuongCon = soLuongCon;
+        this.maCTSP = maCTSP;
+        this.giaBan = giaBan;
+        this.id = id;
+    }
+
+    public ChiTietSanPham(int id, String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, String ngayTao, String ngaySuaCuoi, int trangThaiXoa, String mota, String maVach, int soLuongTrongGioHang) {
+        this.id = id;
+        this.maCTSP = maCTSP;
+        this.id_SanPham = id_SanPham;
+        this.giaBan = giaBan;
+        this.soLuongCon = soLuongCon;
+        this.id_MauSac = id_MauSac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.id_CTSP_KhuyenMai = id_CTSP_KhuyenMai;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.trangThaiXoa = trangThaiXoa;
+        this.mota = mota;
+        this.maVach = maVach;
+        this.soLuongTrongGioHang = soLuongTrongGioHang;
+    }
+
+    public int getSoLuongTrongGioHang() {
+        return soLuongTrongGioHang;
+    }
+
+    public void setSoLuongTrongGioHang(int soLuongTrongGioHang) {
+        this.soLuongTrongGioHang = soLuongTrongGioHang;
+    }
+
     @Override
     public String toString() {
         return "ChiTietSanPham{" + "id=" + id + ", maCTSP=" + maCTSP + ", id_SanPham=" + id_SanPham + ", giaBan=" + giaBan + ", soLuongCon=" + soLuongCon + ", id_MauSac=" + id_MauSac + ", id_KichCo=" + id_KichCo + ", id_Hang=" + id_Hang + ", id_ChatLieu=" + id_ChatLieu + ", id_CTSP_KhuyenMai=" + id_CTSP_KhuyenMai + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + ", trangThaiXoa=" + trangThaiXoa + ", mota=" + mota + ", maVach=" + maVach + '}';
