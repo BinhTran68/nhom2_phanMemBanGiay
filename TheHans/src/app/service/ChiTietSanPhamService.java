@@ -332,6 +332,21 @@ public class ChiTietSanPhamService {
             return 0;
         }
     }
+     public boolean kiemTraTrungMaCTSP(String ma) {
+        sql = "select maCTSP from chitietsanpham where mactsp = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         List<ChiTietSanPham> list = new ArrayList<>();
