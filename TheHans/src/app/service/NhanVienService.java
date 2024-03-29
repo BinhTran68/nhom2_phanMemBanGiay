@@ -4,9 +4,7 @@
  */
 package app.service;
 
-import app.model.ChatLieu;
 import app.model.NhanVien;
-import java.time.Instant;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +85,7 @@ public class NhanVienService {
    
     public  List<NhanVien> getAll(){
         listNV = new ArrayList<>();
-        sql = "	select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi from NhanVien";
+        sql = "	select id, maNV ,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi from NhanVien";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
