@@ -253,14 +253,6 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private ChatLieu readFormChatLieu() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
-        if (tts.kiemTraTrungMaChatLieu(ma)) {
-            JOptionPane.showMessageDialog(this, "trùng mã");
-            return null;
-        }
-        if (tts.kiemTraTrungTenChatLieu(ten)) {
-            JOptionPane.showMessageDialog(this, "trùng tên");
-            return null;
-        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -589,7 +581,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "tên chất liệu là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                if (!ma.equals(tblThuocTinh.getValueAt(index, 1))) {
                     if (tts.kiemTraTrungMaChatLieu(ma)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
