@@ -10,15 +10,29 @@ import app.model.ChiTietSanPham;
 import app.model.HoaDon;
 import app.model.HoaDonChiTiet;
 import app.repository.HoaDonRepository;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -339,9 +353,23 @@ public class HoaDonService {
             mapHoaDon.put("employee", "Tên nhân viên");
             mapHoaDon.put("Code", hoaDon.getMaHoaDon());
             mapHoaDon.put("dateCreate", hoaDon.getNgayTao());
-            mapHoaDon.put("ProductDataSource", hoaDonChiTietDTOs);
+            mapHoaDon.put("ProductDataSource", new JRBeanCollectionDataSource(hoaDonChiTietDTOs));
+
             mapHoaDon.put("totalMoney", hoaDon.getThanhTien().toString());
 
+            JasperReport rpt = JasperCompileManager.compileReport("src/app/jesport/JasportOder.jrxml");
+            JasperPrint print = JasperFillManager.fillReport(rpt, mapHoaDon, new JREmptyDataSource());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            String timestamp = dateFormat.format(new Date());
+
+            String pdfFileName = "src/app/export/hoadon_" + timestamp + ".pdf";
+            JasperExportManager.exportReportToPdfFile(print, pdfFileName);
+            try {
+                Desktop.getDesktop().open(new File(pdfFileName));
+            } catch (IOException ex) {
+
+            }
+            JasperViewer.viewReport(print, false);
         } catch (Exception e) {
         }
         ;
