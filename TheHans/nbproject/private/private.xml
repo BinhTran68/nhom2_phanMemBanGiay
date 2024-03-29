@@ -6,12 +6,14 @@
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/LoginFrame.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/ThuocTinhService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/model/KhuyenMai.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/KhachHangMainPanel.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/SanPhamService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/NhanVienMainPanel.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/HoaDonService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/model/ChiTietSanPham.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/HoaDonChiTietService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/KhuyenMaiService.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/NhanVienService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/dto/HoaDonDTO.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/MainApplicationView.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/HoaDonMainPanel.java</file>
@@ -22,6 +24,7 @@
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/KhachHangService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/ChiTietSanPhamService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/SanPhamMainPanel.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/dto/LichSuKH.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/model/LichSuGia.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/BanHangMainPanelfix.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/VoucherService.java</file>
