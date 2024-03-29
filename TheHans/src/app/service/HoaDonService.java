@@ -4,18 +4,35 @@
  */
 package app.service;
 
+import app.dto.HoaDonChiTietDTO;
 import app.dto.HoaDonDTO;
 import app.model.ChiTietSanPham;
 import app.model.HoaDon;
 import app.model.HoaDonChiTiet;
 import app.repository.HoaDonRepository;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -34,6 +51,8 @@ public class HoaDonService {
     private List<HoaDonDTO> hoaDonDTOs = null;
 
     private HoaDonRepository hoaDonRepository = new HoaDonRepository();
+
+    private HoaDonChiTietService hoaDonChiTietService = new HoaDonChiTietService();
 
     public List<HoaDonDTO> findAllHoaDon() {
         try {
@@ -83,7 +102,6 @@ public class HoaDonService {
                         resultSet.getString(17),
                         resultSet.getInt(18),
                         resultSet.getString(19)
-                        
                 );
                 hoaDonDTOs.add(hoaDonDTO);
 
@@ -103,8 +121,6 @@ public class HoaDonService {
         return hoaDonDTOs;
     }
 
-
-
     public List<HoaDonDTO> locTheoGiaTri(String trangThai, String hinhThucThanhToan, Date tuNgay, Date denNgay) {
         List<HoaDonDTO> hoaDonDTOs = new ArrayList<>();
         Connection connection = null;
@@ -115,7 +131,7 @@ public class HoaDonService {
             connection = DBConnect.getConnection();
             hoaDonDTOs = new ArrayList<>();
 
-            String sql =  sql = "SELECT [HoaDon].id\n"
+            String sql = sql = "SELECT [HoaDon].id\n"
                     + "      ,id_KhachHang\n"
                     + "      ,id_NhanVien\n"
                     + "      ,maHoaDon\n"
@@ -181,7 +197,7 @@ public class HoaDonService {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 HoaDonDTO hoaDonDTO = new HoaDonDTO(
-                         resultSet.getInt(1),
+                        resultSet.getInt(1),
                         resultSet.getInt(2),
                         resultSet.getInt(3),
                         resultSet.getString(4),
@@ -223,7 +239,7 @@ public class HoaDonService {
         }
         return hoaDonDTOs;
     }
-    
+
     public List<HoaDonDTO> getHoaDonToDay() {
         List<HoaDonDTO> hoaDonDTOs = new ArrayList<>();
         Connection connection = null;
@@ -234,7 +250,7 @@ public class HoaDonService {
             connection = DBConnect.getConnection();
             hoaDonDTOs = new ArrayList<>();
 
-            String sql =  sql = "SELECT [HoaDon].id\n"
+            String sql = sql = "SELECT [HoaDon].id\n"
                     + "      ,id_KhachHang\n"
                     + "      ,id_NhanVien\n"
                     + "      ,maHoaDon\n"
@@ -261,7 +277,7 @@ public class HoaDonService {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 HoaDonDTO hoaDonDTO = new HoaDonDTO(
-                         resultSet.getInt(1),
+                        resultSet.getInt(1),
                         resultSet.getInt(2),
                         resultSet.getInt(3),
                         resultSet.getString(4),
@@ -303,14 +319,13 @@ public class HoaDonService {
         }
         return hoaDonDTOs;
     }
-    
 
     public String taoHoaDon(HoaDon hoaDon) {
         String maHoaDon = hoaDonRepository.taoHoaDonByHoaDon(hoaDon);
         System.out.println(maHoaDon);
         return maHoaDon;
     }
-    
+
     public HoaDonDTO findHoaDonByMaHoaDon(String maHoaDon) {
         return hoaDonRepository.findHoaDonByMaHoaDon(maHoaDon);
     }
@@ -320,13 +335,44 @@ public class HoaDonService {
     }
 
     public List<ChiTietSanPham> findChiTietSanPhamByMaHoaDon(String maHoaDon) {
-       return hoaDonRepository.findChiTietSanPhamByMaHoaDon(maHoaDon);
+        return hoaDonRepository.findChiTietSanPhamByMaHoaDon(maHoaDon);
     }
 
     public int updateHoaDonByHoaDonUpdate(HoaDonDTO hoaDonUpdate) {
         return hoaDonRepository.updateHoaDonByHoaDonDTO(hoaDonUpdate);
     }
-    
-    
+
+    public void inHoaDonRaPDF(String maHoaDon) {
+        List<HoaDonChiTietDTO> hoaDonChiTietDTOs = hoaDonChiTietService.getHoaDonChiTietDTOByMaHoaDon(maHoaDon);
+        HoaDonDTO hoaDon = hoaDonRepository.findHoaDonByMaHoaDon(maHoaDon);
+
+        try {
+            Map<String, Object> mapHoaDon = new HashMap<>();
+            mapHoaDon.put("STT", "1");
+            mapHoaDon.put("Custommer", "Tên khách hàng");
+            mapHoaDon.put("employee", "Tên nhân viên");
+            mapHoaDon.put("Code", hoaDon.getMaHoaDon());
+            mapHoaDon.put("dateCreate", hoaDon.getNgayTao());
+            mapHoaDon.put("ProductDataSource", new JRBeanCollectionDataSource(hoaDonChiTietDTOs));
+
+            mapHoaDon.put("totalMoney", hoaDon.getThanhTien().toString());
+
+            JasperReport rpt = JasperCompileManager.compileReport("src/app/jesport/JasportOder.jrxml");
+            JasperPrint print = JasperFillManager.fillReport(rpt, mapHoaDon, new JREmptyDataSource());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            String timestamp = dateFormat.format(new Date());
+
+            String pdfFileName = "src/app/export/hoadon_" + timestamp + ".pdf";
+            JasperExportManager.exportReportToPdfFile(print, pdfFileName);
+            try {
+                Desktop.getDesktop().open(new File(pdfFileName));
+            } catch (IOException ex) {
+
+            }
+            JasperViewer.viewReport(print, false);
+        } catch (Exception e) {
+        }
+        ;
+    }
 
 }

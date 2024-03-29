@@ -591,13 +591,16 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         if (tblHoaDonChiTiet.getRowCount() <= 0) {
             return;
         }
-
         if (rowTblHoaDon < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn Hóa Đơn");
             return;
         }
         rowTblHoaDon = tblHoaDon.getSelectedRow();
         String maHoaDon = (String) tblHoaDon.getValueAt(rowTblHoaDon, 1);
+        
+        hoaDonService.inHoaDonRaPDF(maHoaDon);
+        
+        
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
     private void btnXuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDanhSachActionPerformed
