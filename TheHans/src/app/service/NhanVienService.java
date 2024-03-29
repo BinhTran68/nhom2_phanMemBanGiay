@@ -136,31 +136,31 @@ public class NhanVienService {
     }
     
     public int updateNhanVien(String ma, NhanVien nv){
-        sql = "update NhanVien set maNV = ?, hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ? where maNV like ?";
+        sql = "update NhanVien set hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ? where maNV like ?";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setObject(1, nv.getMaNV());
-            preparedStatement.setObject(2, nv.getHoTen());
-            preparedStatement.setObject(3, nv.getVaiTro());
-            preparedStatement.setObject(4, nv.getNgaySinh());
-            preparedStatement.setObject(5, nv.getGioiTinh());
-            preparedStatement.setObject(6, nv.getSdt());
-            preparedStatement.setObject(7, nv.getEmail());
-            preparedStatement.setObject(8, nv.getDiaChi());
+            preparedStatement.setObject(8, nv.getMaNV());
+            preparedStatement.setObject(1, nv.getHoTen());
+            preparedStatement.setObject(2, nv.getVaiTro());
+            preparedStatement.setObject(3, nv.getNgaySinh());
+            preparedStatement.setObject(4, nv.getGioiTinh());
+            preparedStatement.setObject(5, nv.getSdt());
+            preparedStatement.setObject(6, nv.getEmail());
+            preparedStatement.setObject(7, nv.getDiaChi());
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;   
         }
     }
-    public List<NhanVien> timTheoMa(String ma){
+    public List<NhanVien> timTheoTen(String ten){
         try {
             listNV = new ArrayList<>();
             connection = DBConnect.getConnection();
-            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi from NhanVien where maNV like ?";
+            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi from NhanVien where hoTen like ?";
             preparedStatement = connection.prepareCall(sql);
-            preparedStatement.setString(2, "%"+ma+"%");
+            preparedStatement.setString(1, "%"+ten+"%");
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {                
                 NhanVien nv = new NhanVien(
@@ -182,5 +182,17 @@ public class NhanVienService {
         }
     }
     
+    public int deleteNV(String ma) {
+        sql = "delete from KhachHang where maKH like ?";
+        try {// xóa được 
+            connection = DBConnect.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, ma);
+            return preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
     

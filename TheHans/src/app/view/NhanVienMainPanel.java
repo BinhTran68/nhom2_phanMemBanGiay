@@ -41,6 +41,8 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
         }
     }
     
+    
+    
     private void showData(int index){ 
         txtmaNV.setText(tblNhanVien.getValueAt(index, 1).toString());
         txtTenNV.setText(tblNhanVien.getValueAt(index, 2).toString());
@@ -65,6 +67,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
         txtTenNV.setText("");
         txtDiaChi.setText("");
         txtMail.setText("");
+        dataNgaySinh.setDate(null);
         txtSĐT.setText("");
         rdoNam.setSelected(true);
         cboChucVu.setSelectedItem("");
@@ -104,9 +107,9 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
         rdoNu = new javax.swing.JRadioButton();
         cboChucVu = new javax.swing.JComboBox<>();
         txtmaNV = new javax.swing.JTextField();
+        btnXoa = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        txtTimKiem = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -214,6 +217,13 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -250,7 +260,9 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnSua)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMoi))
+                        .addComponent(btnMoi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnXoa))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtDiaChi, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(dataNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
@@ -290,33 +302,34 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnSua)
-                            .addComponent(btnMoi))
+                            .addComponent(btnMoi)
+                            .addComponent(btnXoa))
                         .addGap(19, 19, 19))))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel14.setText("Tìm kiếm");
+        btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel14)
-                .addGap(31, 31, 31)
-                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addGap(116, 116, 116)
+                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(392, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(btnTimKiem)
                 .addGap(13, 13, 13))
         );
 
@@ -495,11 +508,38 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
         newFrom();
     }//GEN-LAST:event_btnMoiActionPerformed
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+        String ten = JOptionPane.showInputDialog("nhập tên: ");
+        if (nvs.timTheoTen(ten).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "không tìm thấy");
+            return;
+        }
+        fillTable(nvs.timTheoTen(ten));
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        index = tblNhanVien.getSelectedRow();
+        if (index == -1) 
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng xóa");
+        else{
+            String ma = tblNhanVien.getValueAt(index, 1).toString();
+            if (nvs.deleteNV(ma)>0) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công ");
+                this.fillTable(nvs.getAll());
+            }
+            else JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTimKiem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboChucVu;
     private com.toedter.calendar.JDateChooser dataNgaySinh;
@@ -510,7 +550,6 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
@@ -532,7 +571,6 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtSĐT;
     private javax.swing.JTextField txtTenNV;
-    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtmaNV;
     // End of variables declaration//GEN-END:variables
 }

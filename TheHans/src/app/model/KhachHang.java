@@ -23,6 +23,8 @@ public class KhachHang {
     private boolean trangThaiXoa;
     private Date ngayTao;   
     private Date ngaySuaCuoi;
+    
+    
 
     public KhachHang() {
     }
@@ -165,7 +167,7 @@ public class KhachHang {
 
     public Object[] toDataRow(){
         return new Object[]{
-            this.id, this. maKH, this.hoTen, this.ngaySinh, this.gioiTinh, this.diaChi, this.sdt, this.email, this.capBac, this.trangThaiXoa, this.ngayTao, this.ngaySuaCuoi
+            this.id, this. maKH, this.hoTen, this.ngaySinh, this.gioiTinh,  this.email, this.sdt,this.diaChi, this.capBac, this.trangThaiXoa, this.ngayTao, this.ngaySuaCuoi
         };
     }
     
