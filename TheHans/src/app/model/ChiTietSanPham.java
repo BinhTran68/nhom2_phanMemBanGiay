@@ -117,6 +117,19 @@ public class ChiTietSanPham {
         this.giaBan = giaBan;
         this.id = id;
     }
+    
+    public ChiTietSanPham(String id_SanPham, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, int soLuongCon, String maCTSP, double giaBan, int id, int soLuongTrongGioHang) {
+        this.id_SanPham = id_SanPham;
+        this.id_MauSac = id_MauSac;
+        this.id_KichCo = id_KichCo;
+        this.id_Hang = id_Hang;
+        this.id_ChatLieu = id_ChatLieu;
+        this.soLuongCon = soLuongCon;
+        this.maCTSP = maCTSP;
+        this.giaBan = giaBan;
+        this.id = id;
+        this.soLuongTrongGioHang = soLuongTrongGioHang;
+    }
 
     public ChiTietSanPham(int id, String maCTSP, String id_SanPham, double giaBan, int soLuongCon, String id_MauSac, String id_KichCo, String id_Hang, String id_ChatLieu, String id_CTSP_KhuyenMai, String ngayTao, String ngaySuaCuoi, int trangThaiXoa, String mota, String maVach, int soLuongTrongGioHang) {
         this.id = id;

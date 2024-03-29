@@ -220,7 +220,7 @@ public class DangNhapFame extends javax.swing.JFrame {
             public void run() {
                 new DangNhapFame().setVisible(true);
             }
-        });
+        }); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
