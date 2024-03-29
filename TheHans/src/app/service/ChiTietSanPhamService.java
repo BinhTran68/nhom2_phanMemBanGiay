@@ -10,6 +10,10 @@ import app.model.Hang;
 import app.model.KichCo;
 import app.model.MauSac;
 import app.model.SanPham;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -251,6 +255,38 @@ public class ChiTietSanPhamService {
         return 0;
     }
 
+    public int getIDCTSP(String maCTSP) {
+        sql = "select id from chitietsanpham where maCTSP = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, maCTSP);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return 0;
+    }
+
+    public int capNhatLichSuGia(int maCTSP, double giaCu, double giaMoi) {
+        sql = "exec CapNhatLichSuGia  ?,?,?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, maCTSP);
+            ps.setDouble(2, giaCu);
+            ps.setDouble(3, giaMoi);
+            return ps.executeUpdate();
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+    }
+
     public int suaCTSP(ChiTietSanPham ctsp, String maCTSP) {
         sql = "update ChiTietSanPham set maCTSP = ?, id_SanPham = ?, giaBan = ?,"
                 + " soLuongCon = ?,id_MauSac = ?, id_KichCo = ?, id_Hang = ?,id_ChatLieu = ?,"
@@ -277,14 +313,35 @@ public class ChiTietSanPhamService {
         }
     }
 
+    public byte[] imgToByte(String imagePath) throws IOException {
+        Path path = Paths.get(imagePath);
+        byte[] imageBytes = Files.readAllBytes(path);
+        return imageBytes;
+    }
+
+    public int themSuaQR(String qr, String maCTSP) {
+        sql = "update chitietsanpham set mavach = ? where mactsp = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, qr);
+            ps.setString(2, maCTSP);
+
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         List<ChiTietSanPham> list = new ArrayList<>();
         ChiTietSanPhamService qld = new ChiTietSanPhamService();
-        list = qld.getAllCTSP();
-
-        for (ChiTietSanPham grade : list) {
-            System.out.println(grade.toString());
-        }
+//        list = qld.getAllCTSP();
+//
+//        for (ChiTietSanPham grade : list) {
+//            System.out.println(grade.toString());
+//        }
+    qld.capNhatLichSuGia(1, 120, 34435);
     }
 
 }
