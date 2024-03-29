@@ -74,6 +74,9 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         addCbo(ctspsv.getTenKichCo(), cboKichCo);
         addCbo(ctspsv.getTenMauSac(), cboMauSac);
         addCbo(ctspsv.getTenSanPham(), cboTenSP);
+        rdoConBan.setSelected(false);
+        rdoHetHang.setSelected(false);
+        fillToTableCTSP(ctspsv.getAllCTSP());
     }
 
     private void cboLoaiThuocTinh() {
@@ -250,6 +253,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private ChatLieu readFormChatLieu() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaChatLieu(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenChatLieu(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -262,6 +273,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private Hang readFormHang() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaHang(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenHang(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -274,6 +293,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private KichCo readFormKichCo() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaKichCo(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenKichCo(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -298,6 +325,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private MauSac readFormMauSac() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
+        if (tts.kiemTraTrungMaMauSac(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return null;
+        }
+        if (tts.kiemTraTrungTenMauSac(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return null;
+        }
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -335,6 +370,24 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         switch (thuocTinhDangChon) {
             case "Chất Liệu":
                 int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm chất liệu không");
+                String ma = txtMaThuocTinh.getText().trim();
+                String ten = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma)) {
+                    JOptionPane.showMessageDialog(this, "mã chất liệu là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+                    JOptionPane.showMessageDialog(this, "tên chất liệu là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (tts.kiemTraTrungMaChatLieu(ma)) {
+                    JOptionPane.showMessageDialog(this, "trùng mã");
+                    return;
+                }
+                if (tts.kiemTraTrungTenChatLieu(ten)) {
+                    JOptionPane.showMessageDialog(this, "trùng tên");
+                    return;
+                }
                 if (check1 == JOptionPane.YES_OPTION) {
                     if (tts.addChatLieu(readFormChatLieu()) > 0) {
                         JOptionPane.showMessageDialog(this, "Thêm Chất Liệu Thành Công");
@@ -348,6 +401,24 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 break;
             case "Hãng":
                 int check2 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm Hãng không");
+                String ma1 = txtMaThuocTinh.getText().trim();
+                String ten1 = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma1)) {
+                    JOptionPane.showMessageDialog(this, "mã hãng là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten1)) {
+                    JOptionPane.showMessageDialog(this, "tên hãng là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (tts.kiemTraTrungMaHang(ma1)) {
+                    JOptionPane.showMessageDialog(this, "trùng mã");
+                    return;
+                }
+                if (tts.kiemTraTrungTenHang(ten1)) {
+                    JOptionPane.showMessageDialog(this, "trùng tên");
+                    return;
+                }
                 if (check2 == JOptionPane.YES_OPTION) {
                     if (tts.addHang(readFormHang()) > 0) {
                         JOptionPane.showMessageDialog(this, "Thêm Hãng Thành Công");
@@ -361,6 +432,24 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 break;
             case "Kích Cỡ":
                 int check3 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm kích cỡ không");
+                String ma2 = txtMaThuocTinh.getText().trim();
+                String ten2 = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma2)) {
+                    JOptionPane.showMessageDialog(this, "mã kích cỡ là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten2)) {
+                    JOptionPane.showMessageDialog(this, "tên kích cỡ là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (tts.kiemTraTrungMaKichCo(ma2)) {
+                    JOptionPane.showMessageDialog(this, "trùng mã");
+                    return;
+                }
+                if (tts.kiemTraTrungTenKichCo(ten2)) {
+                    JOptionPane.showMessageDialog(this, "trùng tên");
+                    return;
+                }
                 if (check3 == JOptionPane.YES_OPTION) {
                     if (tts.addKichCo(readFormKichCo()) > 0) {
                         JOptionPane.showMessageDialog(this, "Thêm Kích Cỡ Thành Công");
@@ -374,6 +463,24 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 break;
             case "Màu Sắc":
                 int check4 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm Màu sắc không");
+                String ma3 = txtMaThuocTinh.getText().trim();
+                String ten3 = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma3)) {
+                    JOptionPane.showMessageDialog(this, "mã màu sắc là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten3)) {
+                    JOptionPane.showMessageDialog(this, "tên màu sắc là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (tts.kiemTraTrungMaMauSac(ma3)) {
+                    JOptionPane.showMessageDialog(this, "trùng mã");
+                    return;
+                }
+                if (tts.kiemTraTrungTenMauSac(ten3)) {
+                    JOptionPane.showMessageDialog(this, "trùng tên");
+                    return;
+                }
                 if (check4 == JOptionPane.YES_OPTION) {
                     if (tts.addMauSac(readFormMauSac()) > 0) {
                         JOptionPane.showMessageDialog(this, "Thêm Màu Sắc Thành Công");
@@ -393,6 +500,24 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void themSanPham() {
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm sản phẩm không");
+        String ma = txtMaSanPham.getText().trim();
+        String ten = txtTenSanPham.getText().trim();
+        if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma)) {
+            JOptionPane.showMessageDialog(this, "mã sp là chữ ko dấu ít hơn 20 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+            JOptionPane.showMessageDialog(this, "tên sp là chữ ít hơn 30 kí tự");
+            return;
+        }
+        if (sps.kiemTraTrungMaSP(ma)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return;
+        }
+        if (sps.kiemTraTrungtenSP(ten)) {
+            JOptionPane.showMessageDialog(this, "trùng tên");
+            return;
+        }
         if (check1 == JOptionPane.YES_OPTION) {
             if (sps.themSanPham(readFormSanPham()) > 0) {
                 JOptionPane.showMessageDialog(this, "Thêm  Sản Phẩm Thành Công");
@@ -406,6 +531,31 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void themCTSP() {
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm CTSP không");
+        String maCTSP = txtMaSPCT.getText().trim();
+        String donGia = txtDonGia.getText().trim();
+        String soLuong = txtSoLuong.getText().trim();
+        String moTa = txtMoTa.getText().trim();
+        if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", maCTSP)) {
+            JOptionPane.showMessageDialog(this, "mã CTSP là chữ ko dấu ít hơn 20 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[0-9. ]{1,30}$", donGia)) {
+            JOptionPane.showMessageDialog(this, "đơn giá là số ít hơn 30 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[0-9 ]{1,20}$", soLuong)) {
+            JOptionPane.showMessageDialog(this, "số lượng phải là số ít hơn 7 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,200}$", moTa)) {
+            JOptionPane.showMessageDialog(this, "mô tả ít hơn 200 kí tự");
+            return;
+        }
+        if (ctspsv.kiemTraTrungMaCTSP(maCTSP)) {
+            JOptionPane.showMessageDialog(this, "trùng mã");
+            return;
+        }
+
         if (check1 == JOptionPane.YES_OPTION) {
             if (ctspsv.themCTSP(readCTSP()) > 0) {
                 JOptionPane.showMessageDialog(this, "Thêm  CTSP Thành Công");
@@ -429,6 +579,28 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         switch (thuocTinhDangChon) {
             case "Chất Liệu":
                 int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa chất liệu không");
+                String ma = txtMaThuocTinh.getText().trim();
+                String ten = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma)) {
+                    JOptionPane.showMessageDialog(this, "mã chất liệu là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+                    JOptionPane.showMessageDialog(this, "tên chất liệu là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (!ma.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                    if (tts.kiemTraTrungMaChatLieu(ma)) {
+                        JOptionPane.showMessageDialog(this, "trùng mã");
+                        return;
+                    }
+                }
+                if (!ten.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                    if (tts.kiemTraTrungTenChatLieu(ten)) {
+                        JOptionPane.showMessageDialog(this, "trùng tên");
+                        return;
+                    }
+                }
                 if (check1 == JOptionPane.YES_OPTION) {
                     if (tts.suaChatLieu(readFormChatLieu(), tblThuocTinh.getValueAt(index, 1).toString()) > 0) {
                         JOptionPane.showMessageDialog(this, "Sửa Chất Liệu Thành Công");
@@ -442,6 +614,28 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 break;
             case "Hãng":
                 int check2 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa Hãng không");
+                String ma2 = txtMaThuocTinh.getText().trim();
+                String ten2 = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma2)) {
+                    JOptionPane.showMessageDialog(this, "mã hãng là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten2)) {
+                    JOptionPane.showMessageDialog(this, "tên hãng là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (!ma2.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                    if (tts.kiemTraTrungMaHang(ma2)) {
+                        JOptionPane.showMessageDialog(this, "trùng mã");
+                        return;
+                    }
+                }
+                if (!ten2.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                    if (tts.kiemTraTrungTenHang(ten2)) {
+                        JOptionPane.showMessageDialog(this, "trùng tên");
+                        return;
+                    }
+                }
                 if (check2 == JOptionPane.YES_OPTION) {
                     if (tts.suaHang(readFormHang(), tblThuocTinh.getValueAt(index, 1).toString()) > 0) {
                         JOptionPane.showMessageDialog(this, "Sửa  Hãng Thành Công");
@@ -455,6 +649,28 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 break;
             case "Kích Cỡ":
                 int check3 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa kích cỡ không");
+                String ma3 = txtMaThuocTinh.getText().trim();
+                String ten3 = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma3)) {
+                    JOptionPane.showMessageDialog(this, "mã kích cỡ là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten3)) {
+                    JOptionPane.showMessageDialog(this, "tên kích cỡ là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (!ma3.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                    if (tts.kiemTraTrungMaKichCo(ma3)) {
+                        JOptionPane.showMessageDialog(this, "trùng mã");
+                        return;
+                    }
+                }
+                if (!ten3.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                    if (tts.kiemTraTrungTenKichCo(ten3)) {
+                        JOptionPane.showMessageDialog(this, "trùng tên");
+                        return;
+                    }
+                }
                 if (check3 == JOptionPane.YES_OPTION) {
                     if (tts.suaKichCo(readFormKichCo(), tblThuocTinh.getValueAt(index, 1).toString()) > 0) {
                         JOptionPane.showMessageDialog(this, "Sửa Kích Cỡ Thành Công");
@@ -468,6 +684,28 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 break;
             case "Màu Sắc":
                 int check4 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa Màu sắc không");
+                String ma4 = txtMaThuocTinh.getText().trim();
+                String ten4 = txtTenThuocTinh.getText().trim();
+                if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma4)) {
+                    JOptionPane.showMessageDialog(this, "mã màu sắc là chữ ko dấu ít hơn 20 kí tự");
+                    return;
+                }
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten4)) {
+                    JOptionPane.showMessageDialog(this, "tên màu sắc là chữ ít hơn 30 kí tự");
+                    return;
+                }
+                if (!ma4.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                    if (tts.kiemTraTrungMaMauSac(ma4)) {
+                        JOptionPane.showMessageDialog(this, "trùng mã");
+                        return;
+                    }
+                }
+                if (!ten4.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                    if (tts.kiemTraTrungTenMauSac(ten4)) {
+                        JOptionPane.showMessageDialog(this, "trùng tên");
+                        return;
+                    }
+                }
                 if (check4 == JOptionPane.YES_OPTION) {
                     if (tts.suaMauSac(readFormMauSac(), tblThuocTinh.getValueAt(index, 1).toString()) > 0) {
                         JOptionPane.showMessageDialog(this, "Sửa Màu Sắc Thành Công");
@@ -493,6 +731,29 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
 
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa Sản Phẩm không");
+
+        String ma = txtMaSanPham.getText().trim();
+        String ten = txtTenSanPham.getText().trim();
+        if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", ma)) {
+            JOptionPane.showMessageDialog(this, "mã sp là chữ ko dấu ít hơn 20 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+            JOptionPane.showMessageDialog(this, "tên sp là chữ ít hơn 30 kí tự");
+            return;
+        }
+        if (!ma.equals(tblSanPham.getValueAt(index, 1).toString())) {
+            if (sps.kiemTraTrungMaSP(ma)) {
+                JOptionPane.showMessageDialog(this, "trùng mã");
+                return;
+            }
+        }
+        if (!ten.equals(tblSanPham.getValueAt(index, 2).toString())) {
+            if (sps.kiemTraTrungtenSP(ten)) {
+                JOptionPane.showMessageDialog(this, "trùng tên");
+                return;
+            }
+        }
         if (check1 == JOptionPane.YES_OPTION) {
             if (sps.suaSanPham(readFormSanPham(), tblSanPham.getValueAt(index, 1).toString()) > 0) {
                 JOptionPane.showMessageDialog(this, "Sửa Sản Phẩm Thành Công");
@@ -512,6 +773,33 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
 
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn sửa CTSP không");
+        String maCTSP = txtMaSPCT.getText().trim();
+        String donGia = txtDonGia.getText().trim();
+        String soLuong = txtSoLuong.getText().trim();
+        String moTa = txtMoTa.getText().trim();
+        if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,20}$", maCTSP)) {
+            JOptionPane.showMessageDialog(this, "mã CTSP là chữ ko dấu ít hơn 20 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[0-9. ]{1,30}$", donGia)) {
+            JOptionPane.showMessageDialog(this, "đơn giá là số ít hơn 30 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[0-9 ]{1,20}$", soLuong)) {
+            JOptionPane.showMessageDialog(this, "số lượng phải là số ít hơn 7 kí tự");
+            return;
+        }
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,200}$", moTa)) {
+            JOptionPane.showMessageDialog(this, "mô tả ít hơn 200 kí tự");
+            return;
+        }
+        if (!maCTSP.equals(tblCTSP.getValueAt(index, 1))) {
+            if (ctspsv.kiemTraTrungMaCTSP(maCTSP)) {
+                JOptionPane.showMessageDialog(this, "trùng mã");
+                return;
+            }
+        }
+
         if (check1 == JOptionPane.YES_OPTION) {
             if (ctspsv.suaCTSP(readCTSP(), tblCTSP.getValueAt(index, 1).toString()) > 0) {
                 JOptionPane.showMessageDialog(this, "Sửa CTSP Thành Công");
@@ -567,6 +855,17 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
         return "eror";
+    }
+
+    private boolean kiemTraChuoi(String chuoiChinhQuy, String ChuoiKiemTra) {
+        if (ChuoiKiemTra.equals("")) {
+            JOptionPane.showMessageDialog(this, "không được để trống ô nhập");
+        }
+        if (ChuoiKiemTra.matches(chuoiChinhQuy)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

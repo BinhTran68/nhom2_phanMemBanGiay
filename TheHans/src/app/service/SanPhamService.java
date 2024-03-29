@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,6 +80,9 @@ public class SanPhamService {
     }
 
     public int themSanPham(SanPham sp) {
+        if (sp == null) {
+            return 0;
+        }
 
         sql = "insert into SanPham\n"
                 + "values \n"
@@ -96,6 +100,9 @@ public class SanPhamService {
     }
 
     public int suaSanPham(SanPham sp, String ma) {
+        if (sp == null) {
+            return 0;
+        }
         sql = "update SanPham set maSP = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maSP = ?";
         try {
             con = DBConnect.getConnection();
@@ -108,6 +115,38 @@ public class SanPhamService {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public boolean kiemTraTrungMaSP(String ma) {
+        sql = "select maSP from sanpham where masp = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungtenSP(String ten) {
+        sql = "select ten from sanpham where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
     public static void main(String[] args) {
