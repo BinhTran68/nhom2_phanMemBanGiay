@@ -259,4 +259,31 @@ public class HoaDonRepository {
         return kq;
     }
 
+    public void truSoLuongTrongSanPham(String maCTSP, int soLuongTrongGioHang) {
+        int kq = -1;
+        try {
+            connection = DBConnect.getConnection();
+            // Tạo hóa đơn. Lấy ra id hóa đơn rồi tạo  
+            sql = "UPDATE ChiTietSanPham\n"
+                    + "SET soLuongCon = soLuongCon - ? \n"
+                    + "WHERE ChiTietSanPham.maCTSP = ?"; // Tạo hóa đơn xong lấy id hóa đơn và danh sách sản phẩm. 
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, soLuongTrongGioHang);
+            preparedStatement.setObject(2, maCTSP);
+
+            kq = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }

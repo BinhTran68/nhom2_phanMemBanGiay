@@ -170,6 +170,11 @@ public class KhachHang {
             this.id, this. maKH, this.hoTen, this.ngaySinh, this.gioiTinh,  this.email, this.sdt,this.diaChi, this.capBac, this.trangThaiXoa, this.ngayTao, this.ngaySuaCuoi
         };
     }
+
+    @Override
+    public String toString() {
+        return "KhachHang{" + "id=" + id + ", maKH=" + maKH + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", capBac=" + capBac + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
+    }
     
     
     

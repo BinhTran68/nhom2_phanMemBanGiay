@@ -182,4 +182,61 @@ public class KhachHangService {
         }
         return 0;
     }
+    
+     public KhachHang timTheoSoDienThoai(String sdt){
+                System.out.println(sdt);
+               KhachHang khachHang = null;
+        try {
+            connection = DBConnect.getConnection();
+            sql = "select id, maKH,hoTen, ngaySinh, gioiTinh, SDT, email, diaChi from KhachHang where SDT = ?";
+            preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, sdt);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {                
+                 khachHang = new KhachHang(
+                        resultSet.getInt(1), 
+                        resultSet.getString(2), 
+                        resultSet.getString(3), 
+                        resultSet.getDate(4), 
+                        resultSet.getInt(5) , 
+                        resultSet.getString(6), 
+                        resultSet.getString(7), 
+                        resultSet.getString(8));
+                
+            }
+            System.out.println(khachHang.toString());
+            return khachHang;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  khachHang;
+    }
+     
+       public KhachHang timTheoMaKH(String maKH){
+           
+               KhachHang khachHang = null;
+        try {
+            connection = DBConnect.getConnection();
+            sql = "select id, maKH,hoTen, ngaySinh, gioiTinh, SDT, email, diaChi from KhachHang where maKH = ?";
+            preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, maKH);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {                
+                 khachHang = new KhachHang(
+                        resultSet.getInt(1), 
+                        resultSet.getString(2), 
+                        resultSet.getString(3), 
+                        resultSet.getDate(4), 
+                        resultSet.getInt(5) , 
+                        resultSet.getString(6), 
+                        resultSet.getString(7), 
+                        resultSet.getString(8));
+                
+            }
+            return khachHang;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  khachHang;
+    }
 }
