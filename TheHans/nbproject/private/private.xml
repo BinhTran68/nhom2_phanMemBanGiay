@@ -8,13 +8,19 @@
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/KhuyenMaiMainPanel.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/KhachHangService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/SanPhamMainPanel.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/dto/LichSuKH.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/jesport/JasportOder.jrxml</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/HoaDonService.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/NhanVienMainPanel.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/BanHangMainPanelfix.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/repository/HoaDonChiTietRepository.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/repository/HoaDonRepository.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/HoaDonChiTietService.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/dto/HoaDonChiTietDTO.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/service/DBConnect.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/dto/HoaDonDTO.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/HoaDonMainPanel.java</file>
+            <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/MainApplicationView.java</file>
             <file>file:/D:/JAVA3_18403/DuAn1/TheHans/src/app/view/DangNhapFame.java</file>
         </group>
     </open-files>

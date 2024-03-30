@@ -8,31 +8,21 @@ import app.dto.HoaDonChiTietDTO;
 import app.dto.HoaDonDTO;
 import app.model.ChiTietSanPham;
 import app.model.HoaDon;
-import app.model.HoaDonChiTiet;
 import app.repository.HoaDonRepository;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -346,42 +336,80 @@ public class HoaDonService {
         List<HoaDonChiTietDTO> hoaDonChiTietDTOs = hoaDonChiTietService.getHoaDonChiTietDTOByMaHoaDon(maHoaDon);
         HoaDonDTO hoaDon = hoaDonRepository.findHoaDonByMaHoaDon(maHoaDon);
 
+        Document document = new Document();
+
         try {
-            Map<String, Object> mapHoaDon = new HashMap<>();
-            mapHoaDon.put("STT", "1");
-            mapHoaDon.put("Custommer", "Tên khách hàng");
-            mapHoaDon.put("employee", "Tên nhân viên");
-            mapHoaDon.put("Code", hoaDon.getMaHoaDon());
-            mapHoaDon.put("dateCreate", hoaDon.getNgayTao());
-            mapHoaDon.put("ProductDataSource", new JRBeanCollectionDataSource(hoaDonChiTietDTOs));
+            PdfWriter.getInstance(document, new FileOutputStream("output.pdf"));
+            document.open();
+            addContent(document, hoaDonChiTietDTOs, hoaDon);
+            document.close();
+            System.out.println("PDF printed successfully!");
 
-            mapHoaDon.put("totalMoney", hoaDon.getThanhTien().toString());
-
-            JasperReport rpt = JasperCompileManager.compileReport("src/app/jesport/JasportOder.jrxml");
-            JasperPrint print = JasperFillManager.fillReport(rpt, mapHoaDon, new JREmptyDataSource());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-            String timestamp = dateFormat.format(new Date());
-
-            String pdfFileName = "src/app/export/hoadon_" + timestamp + ".pdf";
-            JasperExportManager.exportReportToPdfFile(print, pdfFileName);
-            try {
-                Desktop.getDesktop().open(new File(pdfFileName));
-            } catch (IOException ex) {
-
-            }
-            JasperViewer.viewReport(print, false);
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        ;
     }
+
+     public static void addContent(Document document, List<HoaDonChiTietDTO> hoaDonChiTietDTOs, HoaDonDTO hoaDon) throws DocumentException {
+        // Thêm tiêu đề hóa đơn
+        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+        Paragraph title = new Paragraph("THE HANS SHOP \nHOA DON MUA HANG", titleFont);
+        title.setAlignment(Element.ALIGN_CENTER);
+        document.add(title);
+
+        // Thêm thông tin hóa đơn
+        Font infoFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+        Paragraph info = new Paragraph("Ngay : " + hoaDon.getNgaySuaCuoi() + "\nMa Hoa Don : " + hoaDon.getMaHoaDon() +
+                "\nKhach Hang : " + hoaDon.getTenKhachHang() + "\n\n");
+        info.setFont(infoFont);
+        document.add(info);
+
+        // Tạo bảng danh sách sản phẩm
+        PdfPTable table = new PdfPTable(4); // Số cột của bảng
+
+        // Đặt tiêu đề cho các cột
+        table.addCell("Ten San Pham");
+        table.addCell("Don Gia");
+        table.addCell("So Luong");
+        table.addCell("Thanh Tien");
+
+        // Thêm từng sản phẩm vào bảng
+        for (HoaDonChiTietDTO chiTiet : hoaDonChiTietDTOs) {
+            table.addCell(chiTiet.getTenSanPham());
+            table.addCell(String.valueOf(chiTiet.getDonGia()));
+            table.addCell(String.valueOf(chiTiet.getSoLuong()));
+            table.addCell(String.valueOf(chiTiet.getDonGia() * chiTiet.getSoLuong()));
+        }
+
+        // Thêm bảng vào tài liệu
+        document.add(table);
+
+        // Thêm tổng cộng
+        Paragraph total = new Paragraph("\nTong Cong: " + hoaDon.getThanhTien());
+        total.setFont(infoFont);
+        document.add(total);
+
+        Paragraph tienKhachTra = new Paragraph("Tien Khach Tra: " + hoaDon.getTienKhachTra());
+        tienKhachTra.setFont(infoFont);
+        document.add(tienKhachTra);
+
+        Paragraph vouCher = new Paragraph("Ma Voucher: " + hoaDon.getMaVoucher());
+        vouCher.setFont(infoFont);
+        document.add(vouCher);
+
+        Paragraph tienSauGiamGia = new Paragraph("Tien sau giam gia: " + hoaDon.getTienSauGiamGia());
+        tienSauGiamGia.setFont(infoFont);
+        document.add(tienSauGiamGia);
+    }
+
+
 
 //    public void truHangTonKhoTrongSanPham(List<ChiTietSanPham> listChiTietGioHang) {
 //        
 //    }
-
     public void truHangTonKhoTrongSanPham(List<ChiTietSanPham> listChiTietGioHang) {
-      for (ChiTietSanPham chiTietSanPham : listChiTietGioHang) {
-           hoaDonRepository.truSoLuongTrongSanPham(chiTietSanPham.getMaCTSP(), chiTietSanPham.getSoLuongTrongGioHang());
+        for (ChiTietSanPham chiTietSanPham : listChiTietGioHang) {
+            hoaDonRepository.truSoLuongTrongSanPham(chiTietSanPham.getMaCTSP(), chiTietSanPham.getSoLuongTrongGioHang());
         }
     }
 
