@@ -375,4 +375,14 @@ public class HoaDonService {
         ;
     }
 
+//    public void truHangTonKhoTrongSanPham(List<ChiTietSanPham> listChiTietGioHang) {
+//        
+//    }
+
+    public void truHangTonKhoTrongSanPham(List<ChiTietSanPham> listChiTietGioHang) {
+      for (ChiTietSanPham chiTietSanPham : listChiTietGioHang) {
+           hoaDonRepository.truSoLuongTrongSanPham(chiTietSanPham.getMaCTSP(), chiTietSanPham.getSoLuongTrongGioHang());
+        }
+    }
+
 }
