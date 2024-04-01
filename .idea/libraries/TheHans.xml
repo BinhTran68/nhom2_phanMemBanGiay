@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TheHans">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TheHans/dist/TheHans.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
