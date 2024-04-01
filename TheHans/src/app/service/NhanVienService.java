@@ -43,30 +43,30 @@ public class NhanVienService {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, sdt);
             preparedStatement.setObject(2, matKhau);
-            
+
             resultSet = preparedStatement.executeQuery();
-            
+
             if (resultSet == null) {
-                return  null;
+                return null;
             }
             NhanVien nhanVien = null;
-            while (resultSet.next()) {                
+            while (resultSet.next()) {
                 nhanVien = new NhanVien(
-                        resultSet.getInt(1), 
-                        resultSet.getString(2), 
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
                         resultSet.getDate(3),
                         resultSet.getInt(4),
                         resultSet.getString(5),
                         resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getString(8),
-                        resultSet.getString(9), 
+                        resultSet.getString(9),
                         resultSet.getBoolean(10),
                         resultSet.getDate(11),
                         resultSet.getDate(12));
-            
+
             }
-               
+
             return nhanVien;
 
         } catch (Exception e) {
