@@ -16,10 +16,13 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,11 +66,11 @@ public class HoaDonService {
                     + "      ,ghiChu,\n"
                     + "	  NhanVien.hoTen,\n"
                     + "	  KhachHang.hoTen,\n"
-                    + "	  KhachHang.SDT, hinhThucThanhToan, trangThaiThanhToan,Voucher.maVoucher  \n"
+                    + "	  KhachHang.SDT, hinhThucThanhToan, trangThaiThanhToan,Voucher.maVoucher, tienSauGiamGia  \n"
                     + "  FROM [dbo].[HoaDon] "
                     + " left join NhanVien on HoaDon.id_NhanVien = NhanVien.id "
                     + " left join KhachHang on KhachHang.id = HoaDon.id_KhachHang "
-                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher";
+                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher order by HoaDon.ngayTao desc";
 
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
@@ -91,7 +94,8 @@ public class HoaDonService {
                         resultSet.getString(16),
                         resultSet.getString(17),
                         resultSet.getInt(18),
-                        resultSet.getString(19)
+                        resultSet.getString(19),
+                        resultSet.getDouble(20)
                 );
                 hoaDonDTOs.add(hoaDonDTO);
 
@@ -335,14 +339,18 @@ public class HoaDonService {
     public void inHoaDonRaPDF(String maHoaDon) {
         List<HoaDonChiTietDTO> hoaDonChiTietDTOs = hoaDonChiTietService.getHoaDonChiTietDTOByMaHoaDon(maHoaDon);
         HoaDonDTO hoaDon = hoaDonRepository.findHoaDonByMaHoaDon(maHoaDon);
-
         Document document = new Document();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = dateFormat.format(new Date());
+
+        String pdfFile = "src/HoaDon/" + "hoadon_" + timestamp + ".pdf";
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("output.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
             document.open();
             addContent(document, hoaDonChiTietDTOs, hoaDon);
             document.close();
+            openPDFFile(pdfFile);
             System.out.println("PDF printed successfully!");
 
         } catch (Exception e) {
@@ -350,7 +358,7 @@ public class HoaDonService {
         }
     }
 
-     public static void addContent(Document document, List<HoaDonChiTietDTO> hoaDonChiTietDTOs, HoaDonDTO hoaDon) throws DocumentException {
+    public static void addContent(Document document, List<HoaDonChiTietDTO> hoaDonChiTietDTOs, HoaDonDTO hoaDon) throws DocumentException {
         // Thêm tiêu đề hóa đơn
         Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
         Paragraph title = new Paragraph("THE HANS SHOP \nHOA DON MUA HANG", titleFont);
@@ -359,8 +367,8 @@ public class HoaDonService {
 
         // Thêm thông tin hóa đơn
         Font infoFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-        Paragraph info = new Paragraph("Ngay : " + hoaDon.getNgaySuaCuoi() + "\nMa Hoa Don : " + hoaDon.getMaHoaDon() +
-                "\nKhach Hang : " + hoaDon.getTenKhachHang() + "\n\n");
+        Paragraph info = new Paragraph("Ngay thanh toan : " + hoaDon.getNgaySuaCuoi() + "\nMa Hoa Don : " + hoaDon.getMaHoaDon()
+                + "\nKhach Hang : " + hoaDon.getTenKhachHang() + "\n\n");
         info.setFont(infoFont);
         document.add(info);
 
@@ -393,16 +401,33 @@ public class HoaDonService {
         tienKhachTra.setFont(infoFont);
         document.add(tienKhachTra);
 
-        Paragraph vouCher = new Paragraph("Ma Voucher: " + hoaDon.getMaVoucher());
-        vouCher.setFont(infoFont);
-        document.add(vouCher);
+        if (hoaDon.getMaVoucher() != null) {
+            Paragraph vouCher = new Paragraph("Ma Voucher: " + hoaDon.getMaVoucher());
+            vouCher.setFont(infoFont);
+            document.add(vouCher);
 
-        Paragraph tienSauGiamGia = new Paragraph("Tien sau giam gia: " + hoaDon.getTienSauGiamGia());
+            Paragraph tienDuocGiam = new Paragraph("Tien được giảm: " + (hoaDon.getThanhTien() - hoaDon.getTienSauGiamGia()));
+            tienDuocGiam.setFont(infoFont);
+            document.add(tienDuocGiam);
+        }
+        
+        Paragraph tienSauGiamGia = new Paragraph("Tien cần thanh toán: " + hoaDon.getTienSauGiamGia());
         tienSauGiamGia.setFont(infoFont);
         document.add(tienSauGiamGia);
     }
-
-
+    
+      public static void openPDFFile(String filePath) {
+        try {
+            File file = new File(filePath);
+            if (file.exists() && Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                System.out.println("File not found or desktop operations not supported.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 //    public void truHangTonKhoTrongSanPham(List<ChiTietSanPham> listChiTietGioHang) {
 //        

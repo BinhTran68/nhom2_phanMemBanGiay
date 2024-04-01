@@ -1180,7 +1180,8 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         txt_maHD.setText("");
         txt_ngaytao.setText("");
         listChiTietGioHang.clear();
-        loadToTableGioHang(listChiTietGioHang);
+        txt_tenKH.setText("");
+       loadToTableGioHang(listChiTietGioHang);
 
     }
 
@@ -1275,6 +1276,8 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
             KhachHang khachHang = khachHangService.timTheoSoDienThoai(sdt);
             if (khachHang == null) {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng. Vui lòng tạo mới khách hàng hoặc bỏ qua");
+                return;
+               
             } else {
                 txt_maKH.setText(khachHang.getMaKH());
                 txt_tenKH.setText(khachHang.getSdt());
