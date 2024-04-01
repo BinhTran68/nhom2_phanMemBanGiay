@@ -25,8 +25,8 @@ public class VoucherService {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                Voucher km = new Voucher(rs.getInt(1), rs.getString(2),
-                        rs.getString(3), rs.getString(4),
+                Voucher km = new Voucher(rs.getInt(1), rs.getString(3),
+                        rs.getString(2), rs.getString(4),
                         rs.getDate(5), rs.getDate(6),
                         rs.getInt(7));
 
@@ -41,15 +41,17 @@ public class VoucherService {
     }
 
     public int AddKM(Voucher km) {
+        System.out.println(km.toString());
         sql = "insert into Voucher (maVoucher, tenVoucher, loaiVoucher, ngayBatDau, ngayKetThuc, giaTri) values (?, ?, ?,?,?,?)";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, km.getTen());
-            ps.setObject(2, km.getLoaiGiam());
-            ps.setObject(3, km.getNgayBD());
-            ps.setObject(4, km.getNgayKT());
-            ps.setObject(5, km.getGiatri());
+            ps.setObject(1, km.getMa());
+            ps.setObject(2, km.getTen());
+            ps.setObject(3, km.getLoaiGiam());
+            ps.setObject(4, km.getNgayBD());
+            ps.setObject(5, km.getNgayKT());
+            ps.setObject(6, km.getGiatri());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

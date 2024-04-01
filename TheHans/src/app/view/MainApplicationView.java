@@ -198,7 +198,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         banHangPanel.setLayout(banHangPanelLayout);
         banHangPanelLayout.setHorizontalGroup(
             banHangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(banHangPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, banHangPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(banHangLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -226,7 +226,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         sanPhamPanel.setLayout(sanPhamPanelLayout);
         sanPhamPanelLayout.setHorizontalGroup(
             sanPhamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sanPhamPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sanPhamPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(sanPhamLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
