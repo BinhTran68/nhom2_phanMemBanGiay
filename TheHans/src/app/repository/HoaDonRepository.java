@@ -89,7 +89,7 @@ public class HoaDonRepository {
         try {
 
             connection = DBConnect.getConnection();
-            sql = "SELECT [HoaDon].id\n"
+             sql = "SELECT [HoaDon].id\n"
                     + "      ,id_KhachHang\n"
                     + "      ,id_NhanVien\n"
                     + "      ,maHoaDon\n"
@@ -104,8 +104,11 @@ public class HoaDonRepository {
                     + "      ,ghiChu,\n"
                     + "	  NhanVien.hoTen,\n"
                     + "	  KhachHang.hoTen,\n"
-                    + "	  KhachHang.SDT, hinhThucThanhToan, [trangThaiThanhToan] \n"
-                    + "  FROM [dbo].[HoaDon] left join NhanVien on HoaDon.id_NhanVien = NhanVien.id left join KhachHang on KhachHang.id = HoaDon.id";
+                    + "	  KhachHang.SDT, hinhThucThanhToan, trangThaiThanhToan,Voucher.maVoucher, tienSauGiamGia  \n"
+                    + "  FROM [dbo].[HoaDon] "
+                    + " left join NhanVien on HoaDon.id_NhanVien = NhanVien.id "
+                    + " left join KhachHang on KhachHang.id = HoaDon.id_KhachHang "
+                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher";
 
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
@@ -128,7 +131,9 @@ public class HoaDonRepository {
                         resultSet.getString(15),
                         resultSet.getString(16),
                         resultSet.getString(17),
-                        resultSet.getInt(18)
+                        resultSet.getInt(18),
+                        resultSet.getString(19),
+                        resultSet.getDouble(20)
                 );
             }
 

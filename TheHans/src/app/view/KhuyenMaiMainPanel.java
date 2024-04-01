@@ -93,7 +93,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
-        return new Voucher(ma, ten, loai, end_Date, end_Date, gtri);
+        return new Voucher(ten, ma, loai, end_Date, end_Date, gtri);
     }
 
     /**
