@@ -1097,7 +1097,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã SP", "Tên SP", "Trạng Thái", "Ngày Tạo", "Ngày Sửa Cuối"
+                "STT", "Mã SP", "Tên SP", "Trạng Thái Bán", "Ngày Tạo", "Ngày Sửa Cuối"
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
