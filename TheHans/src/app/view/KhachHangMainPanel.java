@@ -40,7 +40,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
                 kh.getMaKH(),
                 kh.getHoTen(),
                 kh.getNgaySinh(),
-                kh.getGioiTinh(),
+                kh.getGioiTinh() == 0 ? "Nữ" : "Nam" ,
                 kh.getEmail(),
                 kh.getSdt(),
                 kh.getDiaChi()
@@ -62,11 +62,16 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         txtTenKH.setText(tblThongTin.getValueAt(index, 2).toString());
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tblThongTin.getValueAt(index, 3).toString());
-            dataNgaySinh.setDate(date);
+            if (date == null) {
+                dataNgaySinh.setDate(null);
+            } else {
+                 dataNgaySinh.setDate(date);
+            }
+           
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (tblThongTin.getValueAt(index, 4).equals(1)) {
+        if (tblThongTin.getValueAt(index, 4).equals("Nam")) {
             rdoNam.setSelected(true);
         } else {
             rdoNu.setSelected(true);
@@ -487,6 +492,21 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+         KhachHang kh = readForm(); 
+         if (kh == null) {
+            return;
+        }
+         KhachHang checkTheoMaKhachHang = khs.timTheoMaKH(kh.getMaKH());
+         if (checkTheoMaKhachHang != null) {
+            JOptionPane.showMessageDialog(this, "Mã Khách hàng đã tồn tại");
+            return;
+        }
+         KhachHang checkTheoSdt = khs.timTheoSoDienThoai(kh.getSdt());
+         if (checkTheoSdt != null) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại khách hàng đã tồn tại");
+            return;
+        }
+        
         if (khs.insertKH(this.readForm()) > 0) {
             JOptionPane.showMessageDialog(this, "Thêm thành công ");
             this.fillTable(khs.getAll());
@@ -501,7 +521,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng sửa");
         else {
             String ma = tblThongTin.getValueAt(index, 1).toString();
-            KhachHang kh = readForm();
+            KhachHang kh = readForm();    
             if (khs.updateKhachHang(ma, kh) > 0) {
                 JOptionPane.showMessageDialog(this, "Sửa thành công ");
                 this.fillTable(khs.getAll());

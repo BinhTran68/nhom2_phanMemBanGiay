@@ -97,7 +97,6 @@ public class DangNhapFame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 255, 255));
-        setPreferredSize(new java.awt.Dimension(700, 450));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 450));
@@ -177,6 +176,11 @@ public class DangNhapFame extends javax.swing.JFrame {
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnThoat.setForeground(new java.awt.Color(0, 102, 51));
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDangNhap.setForeground(new java.awt.Color(0, 102, 51));
@@ -295,6 +299,10 @@ public class DangNhapFame extends javax.swing.JFrame {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments

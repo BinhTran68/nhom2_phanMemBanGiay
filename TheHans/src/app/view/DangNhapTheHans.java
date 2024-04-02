@@ -68,6 +68,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         txtMatKhau = new swing.MyPasswordField();
         txtEmail = new swing.MyTextField1();
         cbShowPass = new javax.swing.JCheckBox();
+        btnThoat = new swing.MyButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,7 +99,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
             }
         });
         panelBorder1.add(btnDangNhap);
-        btnDangNhap.setBounds(100, 290, 110, 40);
+        btnDangNhap.setBounds(30, 270, 110, 40);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -162,6 +163,20 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jPanel1);
         jPanel1.setBounds(0, 100, 310, 150);
 
+        btnThoat.setBackground(new java.awt.Color(51, 102, 0));
+        btnThoat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
+        btnThoat.setText("Thoát");
+        btnThoat.setColor(new java.awt.Color(51, 102, 0));
+        btnThoat.setColorOver(new java.awt.Color(0, 204, 0));
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
+        panelBorder1.add(btnThoat);
+        btnThoat.setBounds(180, 270, 110, 40);
+
         panelGradiente1.add(panelBorder1);
         panelBorder1.setBounds(350, 40, 310, 380);
 
@@ -212,9 +227,14 @@ public class DangNhapTheHans extends javax.swing.JFrame {
     private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-           login();
+            login();
         }
     }//GEN-LAST:event_txtMatKhauKeyPressed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        System.exit(0);
+
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,6 +276,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.MyButton btnDangNhap;
+    private swing.MyButton btnThoat;
     private javax.swing.JCheckBox cbShowPass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
