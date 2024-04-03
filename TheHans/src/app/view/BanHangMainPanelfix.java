@@ -32,10 +32,6 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author admin
- */
 public class BanHangMainPanelfix extends javax.swing.JPanel {
 
     private NhanVien nhanVienBanHang = MainApplicationView.getNhanVienDangNhap();

@@ -8,12 +8,12 @@ import app.model.ChatLieu;
 import app.model.Hang;
 import app.model.KichCo;
 import app.model.MauSac;
+
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 
 /**
- *
  * @author admin
  */
 public class ThuocTinhService {
@@ -149,6 +149,35 @@ public class ThuocTinhService {
 
     public int addMauSac(MauSac ms) {
 
+        if (ms.getMaMauSac() == null || ms.getMaMauSac().isEmpty()) {
+            throw new NullPointerException("Mã màu sắc không được để trống");
+        }
+        if (ms.getTen() == null || ms.getTen().isEmpty()) {
+            throw new NullPointerException("Tên màu sắc không được để trống");
+        }
+        if (ms.getNgayTao() == null ||
+                ms.getNgayTao().isEmpty()) {
+            throw new NullPointerException("Ngày tạo không thể để trống");
+        }
+        if (ms.getNgaySuaCuoi() == null ||
+                ms.getNgaySuaCuoi().isEmpty()) {
+            throw new NullPointerException("NGyaf sửa cuối không thể để trống dữ liệu");
+        }
+        if (ms.getTrangThaiXoa() != 0 && ms.getTrangThaiXoa() != 1) {
+            throw new IllegalArgumentException("Trạng thái không chính xác");
+        }
+        String maMauSac = ms.getMaMauSac();
+        if (maMauSac.length() < 3 || maMauSac.length() > 10) {
+            throw new IllegalArgumentException("Mã màu sắc phải có từ 3 đến 10 ký tự");
+        }
+
+        String ten = ms.getTen();
+        if (ten.length() < 1 || ten.length() > 20) {
+            throw new IllegalArgumentException("Tên màu sắc phải có từ 1 đến 20 ký tự");
+        }
+        if (ms.getNgayTao().compareTo(ms.getNgaySuaCuoi()) > 0) {
+            throw new IllegalArgumentException("Ngày tạo phải nhỏ hơn hoặc bằng ngày cập nhật");
+        }
         sql = "insert into MauSac\n"
                 + "values \n"
                 + "(?,?,?,getDate(),getDate())";
@@ -210,6 +239,39 @@ public class ThuocTinhService {
     }
 
     public int suaMauSac(MauSac cl, String ma) {
+        if (!ma.equals(cl.getMaMauSac())) {
+            throw new IllegalArgumentException("Mã màu sắc mới không trùng khớp với bất kỳ mã màu sắc nào khác trong cơ sở dữ liệu");
+        }
+
+        if (cl.getMaMauSac() == null || cl.getMaMauSac().isEmpty()) {
+            throw new NullPointerException("Mã màu sắc không được để trống");
+        }
+        if (cl.getTen() == null || cl.getTen().isEmpty()) {
+            throw new NullPointerException("Tên màu sắc không được để trống");
+        }
+        if (cl.getNgayTao() == null ||
+                cl.getNgayTao().isEmpty()) {
+            throw new NullPointerException("Ngày tạo không thể để trống");
+        }
+        if (cl.getNgaySuaCuoi() == null ||
+                cl.getNgaySuaCuoi().isEmpty()) {
+            throw new NullPointerException("NGyaf sửa cuối không thể để trống dữ liệu");
+        }
+        if (cl.getTrangThaiXoa() != 0 && cl.getTrangThaiXoa() != 1) {
+            throw new IllegalArgumentException("Trạng thái không chính xác");
+        }
+        String maMauSac = cl.getMaMauSac();
+        if (maMauSac.length() < 3 || maMauSac.length() > 10) {
+            throw new IllegalArgumentException("Mã màu sắc phải có từ 3 đến 10 ký tự");
+        }
+
+        String ten = cl.getTen();
+        if (ten.length() < 1 || ten.length() > 20) {
+            throw new IllegalArgumentException("Tên màu sắc phải có từ 1 đến 20 ký tự");
+        }
+        if (cl.getNgayTao().compareTo(cl.getNgaySuaCuoi()) > 0) {
+            throw new IllegalArgumentException("Ngày tạo phải nhỏ hơn hoặc bằng ngày cập nhật");
+        }
         sql = "update MauSac set maMauSac = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maMauSac = ?";
         try {
             con = DBConnect.getConnection();
