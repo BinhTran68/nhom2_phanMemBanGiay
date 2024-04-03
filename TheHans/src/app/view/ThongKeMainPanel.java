@@ -346,7 +346,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         tongNgay();
         tongNam();
         tongThang();
-        loadTableDate();
+//        loadTableDate();
     }//GEN-LAST:event_btn_lammoiActionPerformed
 
 
