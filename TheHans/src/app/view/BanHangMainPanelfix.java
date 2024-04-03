@@ -309,6 +309,11 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
 
         btn_thanhtoan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_thanhtoan.setText("In Hóa Đơn");
+        btn_thanhtoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_thanhtoanActionPerformed(evt);
+            }
+        });
 
         btnChoThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnChoThanhToan.setText("Chờ Thanh Toán");
@@ -1286,6 +1291,22 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại");
         }
     }//GEN-LAST:event_btnTimKiemKhachHangActionPerformed
+    
+    int indexHoaDon = -1;
+    
+    private void btn_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thanhtoanActionPerformed
+        int row = tblHoaDon.getSelectedRow();
+        System.out.println(row);
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn để in");
+        }else {
+            String maHoaDon = tblHoaDon.getValueAt(row, 0).toString();
+            hoaDonService.inHoaDonRaPDF(maHoaDon);
+        }   
+        
+        
+//          hoaDonService.inHoaDonRaPDF(maHoaDon);
+    }//GEN-LAST:event_btn_thanhtoanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

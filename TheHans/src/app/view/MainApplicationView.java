@@ -8,10 +8,10 @@ import app.model.NhanVien;
 import java.awt.Color;
 import java.net.URL;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.text.LabelView;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Dialog;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -627,6 +627,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(nhanVienPanel);
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
+     
         /// 
 
     }//GEN-LAST:event_doiMatKhauMouseClicked
