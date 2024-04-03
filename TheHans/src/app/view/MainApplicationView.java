@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Dialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -39,6 +40,8 @@ public class MainApplicationView extends javax.swing.JFrame {
     private SanPhamMainPanel sanPhamMainPanel; // Công
 
     private ThongKeMainPanel thongKeMainPanel; // Thảo
+    
+    private DoiMatKhauMainPanel doiMatKhauMainPanel; 
 
     private static NhanVien nhanVienDangNhap;
 
@@ -67,6 +70,8 @@ public class MainApplicationView extends javax.swing.JFrame {
         thongKeMainPanel = new ThongKeMainPanel();
 
         banHangMainPanel = new BanHangMainPanelfix();
+        
+        doiMatKhauMainPanel = new DoiMatKhauMainPanel();
 
         labelShowName.setText("Tên :" + nhanVien.getHoTen());
         labelShowOffice.setText("Chức vụ : " + nhanVien.getVaiTro());
@@ -544,6 +549,11 @@ public class MainApplicationView extends javax.swing.JFrame {
     }//GEN-LAST:event_sanPhamLabelMouseClicked
 
     private void nhanVienLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabelMouseClicked
+        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Admin")) {
+            JOptionPane.showMessageDialog(this, "Chỉ Admin mới có quyền truy cập");
+            return;
+        }
+        
         onClicked(nhanVienPanel);
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
@@ -627,7 +637,7 @@ public class MainApplicationView extends javax.swing.JFrame {
         unClicked(nhanVienPanel);
         unClicked(sanPhamPanel);
         unClicked(banHangPanel);
-     
+        showPanel(doiMatKhauMainPanel);
         /// 
 
     }//GEN-LAST:event_doiMatKhauMouseClicked
