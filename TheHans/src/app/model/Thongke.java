@@ -8,6 +8,9 @@ public class Thongke {
     private String ten;
     private int soLuong;
     private int tongTien;
+    private String maChiTietSanPham;
+    
+    private String thangString;
 
     public Thongke() {
 
@@ -17,6 +20,18 @@ public class Thongke {
         this.soLuong = soLuong;
         this.ten = ten;
     }
+
+    public Thongke(String ten, int soLuong, int tongTien, String maChiTietSanPham) {
+        this.ten = ten;
+        this.soLuong = soLuong;
+        this.tongTien = tongTien;
+        this.maChiTietSanPham = maChiTietSanPham;
+    }
+    
+    
+    
+    
+    
 
     public Thongke(Date thang, String ten, int soLuong, int tongTien) {
         this.thang = thang;
@@ -58,12 +73,30 @@ public class Thongke {
         this.tongTien = tongTien;
     }
 
+    public String getThangString() {
+        return thangString;
+    }
+
+    public void setThangString(String thangString) {
+        this.thangString = thangString;
+    }
+
+    public String getMaChiTietSanPham() {
+        return maChiTietSanPham;
+    }
+
+    public void setMaChiTietSanPham(String maChiTietSanPham) {
+        this.maChiTietSanPham = maChiTietSanPham;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Thongke{" + "thang=" + thang + ", ten=" + ten + ", soLuong=" + soLuong + ", tongTien=" + tongTien + '}';
     }
     public Object[] toDataRow() {
-        return new Object[]{this.getThang(), this.getTen(), this.getSoLuong(),
+        return new Object[]{this.getThang(), this.getTen(), this.getSoLuong(), 
             this.getTongTien()};
     }
 

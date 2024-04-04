@@ -406,25 +406,31 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        int check = JOptionPane.showConfirmDialog(this, "bạn muốn thêm  KHÔNG");
+        int check = JOptionPane.showConfirmDialog(this, "Bạn chắn chắn ?");
         if (check != JOptionPane.YES_OPTION) {
             return;
         }
-
+        // Check Ma Khuyến mãi đã tồn tại chưa
+        
+        Voucher voucher = ss.findKhuyenMaiByMaKhuyenMai(this.readForm().getMa());
+        if (voucher != null) {
+            JOptionPane.showMessageDialog(this, "Mã voucher đã tồn tại");
+            return;
+        }
+                
         if (ss.AddKM(this.readForm()) > 0) {
             JOptionPane.showMessageDialog(this, "thêm thành công");
             this.fillTable(ss.getAll());
         } else {
             JOptionPane.showMessageDialog(this, "thêm thất bại ");
-
-        }
-
-        
+        }    
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
         int check = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa không");
+        
+        
         if (check != JOptionPane.YES_OPTION) {
             return;
         }

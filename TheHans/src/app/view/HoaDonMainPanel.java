@@ -31,16 +31,13 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     private DefaultTableModel defaultTableModelHoaDonChiTiet;
 
     private DefaultTableModel defaultTableModelLichSuHoaDon;
-    
+
     private int idNhanVien = -1;
-    
+
     /**
      * Creates new form HoaDonPanel
      */
-
     int rowTblHoaDon = -1;
-    
-    
 
     public HoaDonMainPanel() {
         initComponents();
@@ -80,7 +77,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
                 hoaDon.getTienKhachTra(),
                 hoaDon.getTienThuaLai(),
                 hoaDon.getGhiChu(),
-                hoaDon.getTrangThaiThanhToan() == 1 ? "Đã thanh toán" : "Chưa thanh toán" ,
+                hoaDon.getTrangThaiThanhToan() == 1 ? "Đã thanh toán" : "Chưa thanh toán",
                 hoaDon.getHinhThucThanhToan(),
                 hoaDon.getMaVoucher() == null ? "None" : hoaDon.getMaVoucher()
             });
@@ -141,7 +138,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         String formattedDateTime = currentDateTime.format(formatter);
 
         // Tạo tên file sử dụng ngày giờ hiện tại
-        String fileName = "data_" + formattedDateTime + ".xlsx";
+        String fileName = "src/FileExcel/data_" + formattedDateTime + ".xlsx";
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
             workbook.write(outputStream);
         } catch (IOException e) {
@@ -531,9 +528,9 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         String maHoaDon = tblHoaDon.getValueAt(rowTblHoaDon, 0).toString();
         //        HoaDonDTO hoaDon = hoaDonService.findHoaDonByMaHoaDon(maHoaDon);
         //        if (hoaDon == null) {
-            //            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra.");
-            //            return;
-            //        }
+        //            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra.");
+        //            return;
+        //        }
         //        Integer idHoaDon = hoaDon.getHoaDonId();
 
         List<HoaDonChiTietDTO> hoaDonChiTietDTOList = hoaDonChiTietService.getHoaDonChiTietDTO(Integer.valueOf(maHoaDon));
@@ -548,12 +545,18 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
         // Lọc theo ngày + lọc theo tháng năm ...
         String trangThai = cboTrangThai.getSelectedItem().toString();
+        if (trangThai.equalsIgnoreCase("Đã Thanh Toán")) {
+            trangThai = "1";
+        } else if (trangThai.equalsIgnoreCase("Chưa Thanh Toán")) {
+            trangThai = "0";
+        } else if (trangThai.equalsIgnoreCase("Chọn")) {
+            trangThai = null;
+        } else {
+            trangThai = "2";
+        }
 
         String hinhThucThanhToan = cboHinhThucThanhToan.getSelectedItem().toString();
 
-        if (trangThai == "Chọn") {
-            trangThai = null;
-        }
         if (hinhThucThanhToan == "Chọn") {
             hinhThucThanhToan = null;
         }
@@ -562,11 +565,11 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
 
         Date denNgay = dateDenNgay.getDate();
 
-        if ( tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) > 0) {
+        if (tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) > 0) {
             System.out.println("Ngày bắt đầu lớn hơn ngày kết thúc");
             JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
             return;
-        } else if ( tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) < 0) {
+        } else if (tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) < 0) {
             List<HoaDonDTO> hoaDonDTOs = hoaDonService.locTheoGiaTri(trangThai, hinhThucThanhToan, tuNgay, denNgay);
             fillTableHoaDon(hoaDonDTOs);
             return;
@@ -597,10 +600,10 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         }
         rowTblHoaDon = tblHoaDon.getSelectedRow();
         String maHoaDon = (String) tblHoaDon.getValueAt(rowTblHoaDon, 1);
-        
+
         hoaDonService.inHoaDonRaPDF(maHoaDon);
-        
-        
+
+
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
     private void btnXuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDanhSachActionPerformed

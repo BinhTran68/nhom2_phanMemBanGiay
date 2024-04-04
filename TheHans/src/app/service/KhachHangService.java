@@ -239,4 +239,8 @@ public class KhachHangService {
         }
         return  khachHang;
     }
+
+//    public int kiemTraSoDienThoai(KhachHang kh) {
+//      
+//    }
 }
