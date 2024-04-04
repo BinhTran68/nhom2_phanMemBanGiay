@@ -19,8 +19,15 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -33,6 +40,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -581,13 +594,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "tên chất liệu là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma.equals(tblThuocTinh.getValueAt(index, 1))) {
+                if (!ma.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaChatLieu(ma)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenChatLieu(ten)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -616,13 +629,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "tên hãng là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma2.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                if (!ma2.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaHang(ma2)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten2.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten2.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenHang(ten2)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -651,13 +664,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "tên kích cỡ là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma3.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                if (!ma3.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaKichCo(ma3)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten3.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten3.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenKichCo(ten3)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -686,13 +699,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "tên màu sắc là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma4.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                if (!ma4.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaMauSac(ma4)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten4.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten4.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenMauSac(ten4)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -730,17 +743,17 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "mã sp là chữ ko dấu ít hơn 20 kí tự");
             return;
         }
-        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ0-9]{1,30}$", ten)) {
             JOptionPane.showMessageDialog(this, "tên sp là chữ ít hơn 30 kí tự");
             return;
         }
-        if (!ma.equals(tblSanPham.getValueAt(index, 1).toString())) {
+        if (!ma.equalsIgnoreCase(tblSanPham.getValueAt(index, 1).toString())) {
             if (sps.kiemTraTrungMaSP(ma)) {
                 JOptionPane.showMessageDialog(this, "trùng mã");
                 return;
             }
         }
-        if (!ten.equals(tblSanPham.getValueAt(index, 2).toString())) {
+        if (!ten.equalsIgnoreCase(tblSanPham.getValueAt(index, 2).toString())) {
             if (sps.kiemTraTrungtenSP(ten)) {
                 JOptionPane.showMessageDialog(this, "trùng tên");
                 return;
@@ -857,6 +870,64 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private int xuatExcel() {
+        // Định dạng ngày giờ thành chuỗi theo ý muốn
+        LocalDateTime currentDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss");
+        String formattedDate = currentDate.format(formatter);
+
+        String filePath = "excelTTCTSP\\TTCTSP_" + formattedDate + ".xlsx";
+
+        try {
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Sheet1");
+
+            // Lấy dữ liệu từ bảng
+            TableModel tableModel = tblCTSP.getModel();
+            int rowCount = tableModel.getRowCount();
+            int columnCount = tableModel.getColumnCount();
+
+            // Tạo header
+            Row headerRow = sheet.createRow(0);
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                Cell headerCell = headerRow.createCell(columnIndex);
+                headerCell.setCellValue(tableModel.getColumnName(columnIndex));
+            }
+
+            // Đổ dữ liệu vào từng dòng
+            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+                Row row = sheet.createRow(rowIndex + 1);
+                for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                    Cell cell = row.createCell(columnIndex);
+                    Object value = tableModel.getValueAt(rowIndex, columnIndex);
+                    if (value != null) {
+                        cell.setCellValue(value.toString());
+                    }
+
+                }
+            }
+
+            // Tự động điều chỉnh cỡ cột cho phù hợp với nội dung
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                sheet.autoSizeColumn(columnIndex);
+            }
+
+            // Lưu workbook xuống file
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+
+            // Đóng workbook
+            workbook.close();
+
+            System.out.println("xuất excel thành công :" + filePath);
+            return 1;
+        } catch (IOException e) {
+            System.out.println("Export failed: " + e.getMessage());
+            return 0;
         }
     }
 
@@ -1815,6 +1886,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        if (xuatExcel() == 1) {
+            JOptionPane.showMessageDialog(this, "xuất file thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "lỗi xuất file");
+
+        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
