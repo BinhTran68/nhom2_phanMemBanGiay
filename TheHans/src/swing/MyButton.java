@@ -74,7 +74,7 @@ public class MyButton extends JButton {
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(new Color(76, 181, 195));
+        g2.setColor(new Color(45, 104, 115));
         g2.fillRect(0, 0, getWidth(), getHeight());
         g2.setColor(getBackground());
         g2.fillRect(2, 2, getWidth() - 4, getHeight() - 4);
