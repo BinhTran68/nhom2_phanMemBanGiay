@@ -26,6 +26,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -1306,10 +1308,12 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     private void btnNewHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewHoaDonActionPerformed
         resetAllItem();
     }//GEN-LAST:event_btnNewHoaDonActionPerformed
-
+   
+    
     private void btnTimKiemKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemKhachHangActionPerformed
         String sdt = txt_sdt.getText();
         if (!sdt.trim().isEmpty()) {
+       
             KhachHang khachHang = khachHangService.timTheoSoDienThoai(sdt);
             if (khachHang == null) {
 
