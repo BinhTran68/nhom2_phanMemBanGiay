@@ -64,7 +64,7 @@ public class ChiTietSanPhamService {
     public List<String> getTenChatLieu() {
         listTenChatLieu = new ArrayList<>();
 
-        sql = "select machatlieu,ten,trangthaixoa,ngaytao,ngaysuacuoi from chatlieu";
+        sql = "select machatlieu,ten,trangthaixoa,ngaytao,ngaysuacuoi from chatlieu  where trangthaixoa = 1";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class ChiTietSanPhamService {
     public List<String> getTenHang() {
         listTenHang = new ArrayList<>();
 
-        sql = "select maHang,ten,trangthaixoa,ngaytao,ngaysuacuoi from hang";
+        sql = "select maHang,ten,trangthaixoa,ngaytao,ngaysuacuoi from hang  where trangthaixoa = 1";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class ChiTietSanPhamService {
     public List<String> getTenKichCo() {
         listTenKichCo = new ArrayList<>();
 
-        sql = "select makichco,ten,trangthaixoa,ngaytao,ngaysuacuoi from KichCo";
+        sql = "select makichco,ten,trangthaixoa,ngaytao,ngaysuacuoi from KichCo  where trangthaixoa = 1";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
@@ -118,7 +118,7 @@ public class ChiTietSanPhamService {
     public List<String> getTenMauSac() {
         listTenMau = new ArrayList<>();
 
-        sql = "select maMauSac,ten,trangthaixoa,ngaytao,ngaysuacuoi from MauSac";
+        sql = "select maMauSac,ten,trangthaixoa,ngaytao,ngaysuacuoi from MauSac  where trangthaixoa = 1";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
@@ -136,7 +136,7 @@ public class ChiTietSanPhamService {
     public List<String> getTenSanPham() {
         listTenSanPham = new ArrayList<>();
 
-        sql = "select maSP,ten,trangthaixoa,ngaytao,ngaysuacuoi from SanPham";
+        sql = "select maSP,ten,trangthaixoa,ngaytao,ngaysuacuoi from SanPham where trangthaixoa = 1";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

@@ -40,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BanHangMainPanelfix extends javax.swing.JPanel {
 
-    private NhanVien nhanVienBanHang = MainApplicationView.getNhanVienDangNhap();
+    private NhanVien nhanVienBanHang = MainApplicationView1.getNhanVienDangNhap();
     SanPhamChiTietService spcts = new SanPhamChiTietService();
     List<ChiTietSanPham> chiTietSanPhams = spcts.getAllSPCT();
     private DefaultTableModel model = new DefaultTableModel(); // model bảng sản hẩm

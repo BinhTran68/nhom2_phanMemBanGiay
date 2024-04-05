@@ -7,6 +7,7 @@ package app.view;
 import app.model.NhanVien;
 import app.service.NhanVienService;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +27,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void login() {
+    private void login(){
 
         String sdt = txtEmail.getText().trim();
 
@@ -42,7 +43,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
-            MainApplicationView applicationView = new MainApplicationView(nhanVien);
+            MainApplicationView1 applicationView = new MainApplicationView1(nhanVien);
             applicationView.setVisible(true);
             this.dispose();
         } else {
