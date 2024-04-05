@@ -111,7 +111,7 @@ public class NhanVienService {
     }
     
     public int insertNV(NhanVien nv) {
-        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi)values(?,?,?,?,?,?,?,?)";
+        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau)values(?,?,?,?,?,?,?,?,123)";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
