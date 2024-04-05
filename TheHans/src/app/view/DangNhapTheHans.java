@@ -6,9 +6,12 @@ package app.view;
 
 import app.model.NhanVien;
 import app.service.NhanVienService;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -25,6 +28,11 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+         try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
     }
 
     private void login(){
