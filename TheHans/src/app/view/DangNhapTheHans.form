@@ -36,7 +36,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="swing.PanelGradiente" name="panelGradiente1">
+    <Container class="org.netbeans.modules.form.InvalidComponent" name="panelGradiente1">
       <Properties>
         <Property name="colorPrimario" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="cc" red="cc" type="rgb"/>
@@ -53,7 +53,7 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <Container class="swing.PanelBorder" name="panelBorder1">
+        <Container class="org.netbeans.modules.form.InvalidComponent" name="panelBorder1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -89,7 +89,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="swing.MyButton" name="btnDangNhap">
+            <Component class="org.netbeans.modules.form.InvalidComponent" name="btnDangNhap">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="66" red="33" type="rgb"/>
@@ -110,9 +110,6 @@
                   <Color blue="0" green="cc" red="0" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangNhapActionPerformed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="30" y="270" width="110" height="40"/>
@@ -162,7 +159,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="swing.MyPasswordField" name="txtMatKhau">
+                <Component class="org.netbeans.modules.form.InvalidComponent" name="txtMatKhau">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="66" red="33" type="rgb"/>
@@ -172,12 +169,8 @@
                     </Property>
                     <Property name="hint" type="java.lang.String" value="M&#x1ead;t Kh&#x1ea9;u"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMatKhauActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMatKhauKeyPressed"/>
-                  </Events>
                 </Component>
-                <Component class="swing.MyTextField1" name="txtEmail">
+                <Component class="org.netbeans.modules.form.InvalidComponent" name="txtEmail">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="66" red="33" type="rgb"/>
@@ -187,9 +180,6 @@
                     </Property>
                     <Property name="hint" type="java.lang.String" value="S&#x110;T"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyPressed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="cbShowPass">
                   <Properties>
@@ -207,7 +197,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="swing.MyButton" name="btnThoat">
+            <Component class="org.netbeans.modules.form.InvalidComponent" name="btnThoat">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="66" red="33" type="rgb"/>
@@ -217,20 +207,17 @@
                     <EmptyBorder/>
                   </Border>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="66" red="33" type="rgb"/>
                 </Property>
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="cc" red="0" type="rgb"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThoatActionPerformed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="180" y="270" width="110" height="40"/>

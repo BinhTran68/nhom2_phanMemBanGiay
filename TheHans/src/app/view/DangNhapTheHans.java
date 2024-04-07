@@ -61,25 +61,22 @@ public class DangNhapTheHans extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelGradiente1 = new swing.PanelGradiente();
-        panelBorder1 = new swing.PanelBorder();
+        panelGradiente1 = new org.netbeans.modules.form.InvalidComponent();
+        panelBorder1 = new org.netbeans.modules.form.InvalidComponent();
         jLabel2 = new javax.swing.JLabel();
-        btnDangNhap = new swing.MyButton();
+        btnDangNhap = new org.netbeans.modules.form.InvalidComponent();
         jPanel1 = new javax.swing.JPanel();
-        txtMatKhau = new swing.MyPasswordField();
-        txtEmail = new swing.MyTextField1();
+        txtMatKhau = new org.netbeans.modules.form.InvalidComponent();
+        txtEmail = new org.netbeans.modules.form.InvalidComponent();
         cbShowPass = new javax.swing.JCheckBox();
-        btnThoat = new swing.MyButton();
+        btnThoat = new org.netbeans.modules.form.InvalidComponent();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelGradiente1.setColorPrimario(new java.awt.Color(204, 204, 0));
-        panelGradiente1.setColorSecundario(new java.awt.Color(0, 102, 0));
-        panelGradiente1.setPreferredSize(new java.awt.Dimension(700, 450));
+        panelGradiente1.setLayout(null);
 
-        panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
-        panelBorder1.setPreferredSize(new java.awt.Dimension(400, 450));
+        panelBorder1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 102, 0));
@@ -88,44 +85,11 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jLabel2);
         jLabel2.setBounds(30, 20, 250, 60);
 
-        btnDangNhap.setBackground(new java.awt.Color(51, 102, 0));
-        btnDangNhap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
-        btnDangNhap.setText("Đăng Nhập");
-        btnDangNhap.setColor(new java.awt.Color(51, 102, 0));
-        btnDangNhap.setColorOver(new java.awt.Color(0, 204, 0));
-        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangNhapActionPerformed(evt);
-            }
-        });
+        btnDangNhap.null;
         panelBorder1.add(btnDangNhap);
         btnDangNhap.setBounds(30, 270, 110, 40);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtMatKhau.setBackground(new java.awt.Color(51, 102, 0));
-        txtMatKhau.setForeground(new java.awt.Color(255, 255, 255));
-        txtMatKhau.setHint("Mật Khẩu");
-        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatKhauActionPerformed(evt);
-            }
-        });
-        txtMatKhau.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtMatKhauKeyPressed(evt);
-            }
-        });
-
-        txtEmail.setBackground(new java.awt.Color(51, 102, 0));
-        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
-        txtEmail.setHint("SĐT");
-        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtEmailKeyPressed(evt);
-            }
-        });
 
         cbShowPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cbShowPass.setForeground(new java.awt.Color(51, 102, 0));
@@ -164,17 +128,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jPanel1);
         jPanel1.setBounds(0, 100, 310, 150);
 
-        btnThoat.setBackground(new java.awt.Color(51, 102, 0));
-        btnThoat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
-        btnThoat.setText("Thoát");
-        btnThoat.setColor(new java.awt.Color(51, 102, 0));
-        btnThoat.setColorOver(new java.awt.Color(0, 204, 0));
-        btnThoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThoatActionPerformed(evt);
-            }
-        });
+        btnThoat.null;
         panelBorder1.add(btnThoat);
         btnThoat.setBounds(180, 270, 110, 40);
 
@@ -205,14 +159,6 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatKhauActionPerformed
 
-    private void cbShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPassActionPerformed
-        if (cbShowPass.isSelected()) {
-            txtMatKhau.setEchoChar((char) 0); //password = JPasswordField
-        } else {
-            txtMatKhau.setEchoChar('*');
-        }
-    }//GEN-LAST:event_cbShowPassActionPerformed
-
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
         login();
@@ -236,6 +182,14 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         System.exit(0);
 
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void cbShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPassActionPerformed
+        if (cbShowPass.isSelected()) {
+            txtMatKhau.setEchoChar((char) 0); //password = JPasswordField
+        } else {
+            txtMatKhau.setEchoChar('*');
+        }
+    }//GEN-LAST:event_cbShowPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,15 +230,15 @@ public class DangNhapTheHans extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.MyButton btnDangNhap;
-    private swing.MyButton btnThoat;
+    private org.netbeans.modules.form.InvalidComponent btnDangNhap;
+    private org.netbeans.modules.form.InvalidComponent btnThoat;
     private javax.swing.JCheckBox cbShowPass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private swing.PanelBorder panelBorder1;
-    private swing.PanelGradiente panelGradiente1;
-    private swing.MyTextField1 txtEmail;
-    private swing.MyPasswordField txtMatKhau;
+    private org.netbeans.modules.form.InvalidComponent panelBorder1;
+    private org.netbeans.modules.form.InvalidComponent panelGradiente1;
+    private org.netbeans.modules.form.InvalidComponent txtEmail;
+    private org.netbeans.modules.form.InvalidComponent txtMatKhau;
     // End of variables declaration//GEN-END:variables
 }

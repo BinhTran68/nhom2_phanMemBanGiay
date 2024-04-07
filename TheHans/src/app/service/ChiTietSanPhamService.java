@@ -60,7 +60,8 @@ public class ChiTietSanPhamService {
             return null;
         }
     }
-        public List<ChiTietSanPham> timTheoMa(String ma) {
+
+    public List<ChiTietSanPham> timTheoMa(String ma) {
         listCTSP = new ArrayList<>();
         sql = "select maCTSP,SanPham.ten as [tên sp],(select gia from LichSuGia where lichsugia.id_CTSP = ChiTietSanPham.id and lichsugia.ngayKetThuc is null) as[giaBan],soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
                 + "                	join SanPham on id_SanPham = SanPham.id\n"
@@ -295,21 +296,22 @@ public class ChiTietSanPhamService {
     }
 
     public int themCTSP(ChiTietSanPham ctsp) {
-        sql = "insert into  ChiTietSanPham (maCTSP,id_SanPham,soLuongCon,id_MauSac,id_KichCo,id_Hang,id_ChatLieu,ngayTao,ngaySuaCuoi,trangThaiXoa,mota,maVach)\n"
+        sql = "insert into  ChiTietSanPham (maCTSP,id_SanPham,soLuongCon,giaBan,id_MauSac,id_KichCo,id_Hang,id_ChatLieu,ngayTao,ngaySuaCuoi,trangThaiXoa,mota,maVach)\n"
                 + "values\n"
-                + "(?,?,?,?,?,?,?,GETDATE(),GETDATE(),?,?,null)";
+                + "(?,?,?,?,?,?,?,?,GETDATE(),GETDATE(),?,?,null)";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, ctsp.getMaCTSP());
             ps.setInt(2, Integer.parseInt(ctsp.getId_SanPham()));
-            ps.setInt(3, ctsp.getSoLuongCon());
-            ps.setInt(4, Integer.parseInt(ctsp.getId_MauSac()));
-            ps.setInt(5, Integer.parseInt(ctsp.getId_KichCo()));
-            ps.setInt(6, Integer.parseInt(ctsp.getId_Hang()));
-            ps.setInt(7, Integer.parseInt(ctsp.getId_ChatLieu()));
-            ps.setInt(8, ctsp.getTrangThaiXoa());
-            ps.setString(9, ctsp.getMota());
+            ps.setDouble(3, ctsp.getGiaBan());
+            ps.setInt(4, ctsp.getSoLuongCon());
+            ps.setInt(5, Integer.parseInt(ctsp.getId_MauSac()));
+            ps.setInt(6, Integer.parseInt(ctsp.getId_KichCo()));
+            ps.setInt(7, Integer.parseInt(ctsp.getId_Hang()));
+            ps.setInt(8, Integer.parseInt(ctsp.getId_ChatLieu()));
+            ps.setInt(9, ctsp.getTrangThaiXoa());
+            ps.setString(10, ctsp.getMota());
 
             return ps.executeUpdate();
         } catch (Exception e) {
@@ -430,7 +432,7 @@ public class ChiTietSanPhamService {
     }
 
     public int suaCTSP(ChiTietSanPham ctsp, String maCTSP) {
-        sql = "update ChiTietSanPham set maCTSP = ?, id_SanPham = ?,"
+        sql = "update ChiTietSanPham set maCTSP = ?, id_SanPham = ?,giaBan = ?"
                 + " soLuongCon = ?,id_MauSac = ?, id_KichCo = ?, id_Hang = ?,id_ChatLieu = ?,"
                 + "ngaySuaCuoi = GETDATE(),trangThaiXoa = ?,mota = ?,maVach = null"
                 + " where maCTSP = ?";
@@ -439,15 +441,15 @@ public class ChiTietSanPhamService {
             ps = con.prepareStatement(sql);
             ps.setString(1, ctsp.getMaCTSP());
             ps.setInt(2, Integer.parseInt(ctsp.getId_SanPham()));
-
-            ps.setInt(3, ctsp.getSoLuongCon());
-            ps.setInt(4, Integer.parseInt(ctsp.getId_MauSac()));
-            ps.setInt(5, Integer.parseInt(ctsp.getId_KichCo()));
-            ps.setInt(6, Integer.parseInt(ctsp.getId_Hang()));
-            ps.setInt(7, Integer.parseInt(ctsp.getId_ChatLieu()));
-            ps.setInt(8, ctsp.getTrangThaiXoa());
-            ps.setString(9, ctsp.getMota());
-            ps.setString(10, maCTSP);
+            ps.setDouble(3, ctsp.getGiaBan());
+            ps.setInt(4, ctsp.getSoLuongCon());
+            ps.setInt(5, Integer.parseInt(ctsp.getId_MauSac()));
+            ps.setInt(6, Integer.parseInt(ctsp.getId_KichCo()));
+            ps.setInt(7, Integer.parseInt(ctsp.getId_Hang()));
+            ps.setInt(8, Integer.parseInt(ctsp.getId_ChatLieu()));
+            ps.setInt(9, ctsp.getTrangThaiXoa());
+            ps.setString(10, ctsp.getMota());
+            ps.setString(11, maCTSP);
 
             return ps.executeUpdate();
         } catch (Exception e) {
