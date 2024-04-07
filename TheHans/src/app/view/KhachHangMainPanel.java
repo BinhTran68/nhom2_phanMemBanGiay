@@ -10,6 +10,8 @@ import app.service.KhachHangService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -80,19 +82,30 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         txtSDT.setText(tblThongTin.getValueAt(index, 6).toString());
         txtDiaChi.setText(tblThongTin.getValueAt(index, 7).toString());
     }
-
+    
+     private boolean isValidPhoneNumber(String phoneNumber) {
+        // Biểu thức chính quy kiểm tra số điện thoại ở Việt Nam
+        String regex = "0\\d{9,10}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
+    }
+    
     KhachHang readForm() {
         String maNV, hoTen, diaChi, sdt, email;
         int gioiTinh;
         Date ngaySinh;
-
-        maNV = txtMaKH.getText().trim();
+        maNV = txtMaKH.getText().trim();  
         hoTen = txtTenKH.getText().trim();
         diaChi = txtDiaChi.getText().trim();
         sdt = txtSDT.getText().trim();
+        if (!isValidPhoneNumber(sdt)) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
+            return  null;
+        }
         email = txtMail.getText().trim();
         ngaySinh = dataNgaySinh.getDate();
-
+            
         if (rdoNam.isSelected() == true) {
             gioiTinh = 1;
         } else {

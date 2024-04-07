@@ -204,7 +204,7 @@ public class KhachHangService {
                         resultSet.getString(8));
                 
             }
-            System.out.println(khachHang.toString());
+      
             return khachHang;
         } catch (Exception e) {
             e.printStackTrace();
