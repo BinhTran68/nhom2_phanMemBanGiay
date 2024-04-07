@@ -18,7 +18,7 @@ public class SanPhamChiTietService {
 public List<ChiTietSanPham> getAllSPCT() {
     List<ChiTietSanPham> list = new ArrayList<>();
     String sql = """
-       select maCTSP,SanPham.ten, ChatLieu.ten, KichCo.ten,MauSac.ten, Hang.ten, soLuongCon, giaBan  from ChiTietSanPham
+       select maCTSP,SanPham.ten, ChatLieu.ten, KichCo.ten,MauSac.ten, Hang.ten, soLuongCon,(select gia from LichSuGia where lichsugia.id_CTSP = ChiTietSanPham.id and lichsugia.ngayKetThuc is null) as[giaBan]  from ChiTietSanPham
                   join SanPham on SanPham.id = ChiTietSanPham.id_SanPham
                   join ChatLieu on ChatLieu.id = ChiTietSanPham.id_ChatLieu
                   join KichCo on KichCo.id = ChiTietSanPham.id_KichCo
