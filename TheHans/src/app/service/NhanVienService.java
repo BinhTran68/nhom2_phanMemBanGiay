@@ -46,7 +46,6 @@ public class NhanVienService {
                     + "  FROM [dbo].[NhanVien] WHERE SDT = ? ";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, sdt);
-     
 
             resultSet = preparedStatement.executeQuery();
 
@@ -70,11 +69,11 @@ public class NhanVienService {
                         resultSet.getDate(12));
             }
             if (nhanVien == null) {
-                return  null;
+                return null;
             }
             if (BCrypt.checkpw(matKhau, nhanVien.getMatKhau())) {
                 return nhanVien;
-            }else {
+            } else {
                 return null;
             }
         } catch (Exception e) {
@@ -92,24 +91,25 @@ public class NhanVienService {
     }
 
     public List<NhanVien> getAll() {
-        listNV = new ArrayList<>();
-        sql = "	select id, maNV ,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi, matKhau from NhanVien";
+        List<NhanVien> listNV = new ArrayList<>();
+        String sql = "SELECT id, maNV, hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi, matKhau, trangThaiXoa FROM NhanVien";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 NhanVien nv = new NhanVien(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getDate(5),
-                        resultSet.getInt(6),
-                        resultSet.getString(7),
-                        resultSet.getString(8),
-                        resultSet.getString(9),
-                        resultSet.getString(4),
-                        resultSet.getString(10)
+                        resultSet.getInt("id"),
+                        resultSet.getString("maNV"),
+                        resultSet.getString("hoTen"),
+                        resultSet.getDate("ngaySinh"),
+                        resultSet.getInt("gioiTinh"),
+                        resultSet.getString("diaChi"),
+                        resultSet.getString("SDT"),
+                        resultSet.getString("email"),
+                        resultSet.getString("vaiTro"),
+                        resultSet.getString("matKhau"),
+                        resultSet.getBoolean("trangThaiXoa")
                 );
 
                 listNV.add(nv);
@@ -118,11 +118,25 @@ public class NhanVienService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public int insertNV(NhanVien nv) {
-        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau)values(?,?,?,?,?,?,?,?,?)";
+        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau, trangThaiXoa)values(?,?,?,?,?,?,?,?,?, ?)";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -135,6 +149,7 @@ public class NhanVienService {
             preparedStatement.setObject(7, nv.getEmail());
             preparedStatement.setObject(8, nv.getDiaChi());
             preparedStatement.setObject(9, nv.getMatKhau());
+            preparedStatement.setObject(10, nv.isTrangThaiXoa());
             return preparedStatement.executeUpdate();
 
         } catch (Exception e) {
@@ -162,12 +177,26 @@ public class NhanVienService {
             return 0;
         }
     }
+    
+     public int doiMatKhauNhanVien(String ma, String matKhauMoi) {
+        sql = "update NhanVien set matKhau = ? where maNV = ?";
+        try {
+            connection = DBConnect.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, matKhauMoi);
+            preparedStatement.setObject(2, ma);
+            return preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
     public List<NhanVien> timTheoTen(String ten) {
         try {
             listNV = new ArrayList<>();
             connection = DBConnect.getConnection();
-            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau from NhanVien where hoTen like ?";
+            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau, trangThaiXoa from NhanVien where hoTen like ?";
             preparedStatement = connection.prepareCall(sql);
             preparedStatement.setString(1, "%" + ten + "%");
             resultSet = preparedStatement.executeQuery();
@@ -182,7 +211,8 @@ public class NhanVienService {
                         resultSet.getString(8),
                         resultSet.getString(9),
                         resultSet.getString(4),
-                        resultSet.getString(10)
+                        resultSet.getString(10),
+                        resultSet.getBoolean(11)
                 );
                 listNV.add(nv);
             }
@@ -204,6 +234,96 @@ public class NhanVienService {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public NhanVien timTheoSdt(String sdt) {
+        try {
+            connection = DBConnect.getConnection();
+            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau, trangThaiXoa from NhanVien where SDT =  ? ";
+            preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, sdt);
+            resultSet = preparedStatement.executeQuery();
+            NhanVien nv = null;
+            while (resultSet.next()) {
+                nv = new NhanVien(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(5),
+                        resultSet.getInt(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(4),
+                        resultSet.getString(10),
+                        resultSet.getBoolean(11)
+                );
+            }
+            return nv;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public NhanVien timTheoEmail(String email) {
+        try {
+            connection = DBConnect.getConnection();
+            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau, trangThaiXoa from NhanVien where email = ?";
+            preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+            NhanVien nv = null;
+            while (resultSet.next()) {
+                nv = new NhanVien(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(5),
+                        resultSet.getInt(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(4),
+                        resultSet.getString(10),
+                        resultSet.getBoolean(11)
+                );
+            }
+            return nv;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public NhanVien timTheoMaNV(String maNV) {
+        try {
+            connection = DBConnect.getConnection();
+            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau, trangThaiXoa from NhanVien where maNV = ?";
+            preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, maNV);
+            resultSet = preparedStatement.executeQuery();
+            NhanVien nv = null;
+            while (resultSet.next()) {
+                nv = new NhanVien(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(5),
+                        resultSet.getInt(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(4),
+                        resultSet.getString(10),
+                        resultSet.getBoolean(11)
+                );
+            }
+            return nv;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void main(String[] args) {

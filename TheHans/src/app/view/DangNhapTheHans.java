@@ -51,7 +51,6 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         }
         
         
-
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
           
