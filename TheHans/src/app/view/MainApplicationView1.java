@@ -35,7 +35,9 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 //    private BanHangMainPane banHangMainPanel;  // Hậu Lỗi 
     private BanHangMainPanelfix banHangMainPanel; // Hậu
 
-    private HoaDonMainPanel hoaDonMainPanel; // Bình
+//    private HoaDonMainPanel hoaDonMainPanel; // Bình
+    
+    private HoaDonMainPanel1 hoaDonMainPanel; // Bình
 
     private KhachHangMainPanel khachHangMainPanel; // Hà
 
@@ -63,7 +65,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         }
 
 //        banHangMainPanel = new BanHangMainPane();
-        hoaDonMainPanel = new HoaDonMainPanel();
+        hoaDonMainPanel = new HoaDonMainPanel1();
 
         khachHangMainPanel = new KhachHangMainPanel();
 
