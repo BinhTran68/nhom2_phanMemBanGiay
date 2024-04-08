@@ -6,8 +6,13 @@ package app.view;
 
 import app.model.NhanVien;
 import app.service.NhanVienService;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -24,9 +29,14 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+         try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void login() {
+    private void login(){
 
         String sdt = txtEmail.getText().trim();
 
@@ -39,10 +49,13 @@ public class DangNhapTheHans extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
+        
+        
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
-            MainApplicationView applicationView = new MainApplicationView(nhanVien);
+          
+            MainApplicationView1 applicationView = new MainApplicationView1(nhanVien);
             applicationView.setVisible(true);
             this.dispose();
         } else {
@@ -180,7 +193,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelGradiente1.add(panelBorder1);
         panelBorder1.setBounds(350, 40, 310, 380);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/the hans.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/icon/thehans.png"))); // NOI18N
         panelGradiente1.add(jLabel1);
         jLabel1.setBounds(-50, 90, 480, 280);
 

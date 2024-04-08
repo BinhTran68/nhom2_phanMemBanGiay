@@ -33,16 +33,16 @@ public class DangNhapFame extends javax.swing.JFrame {
      */
     public DangNhapFame() throws IOException {
         initComponents();
-          BufferedImage img = ImageIO.read(new File("icon\\the_hans.png"));
-        Image hinhSua = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-        logo.setText("");
-        logo.setIcon(new ImageIcon(hinhSua));
-        this.dispose();
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+//        BufferedImage img = ImageIO.read(new File("\\icon\\thehans.png"));
+//        Image hinhSua = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+//        logo.setText("");
+//        logo.setIcon(new ImageIcon(hinhSua));
+//        this.dispose();
+//        try {
+//            UIManager.setLookAndFeel(new FlatLightLaf());
+//        } catch (UnsupportedLookAndFeelException e) {
+//            e.printStackTrace();
+//        }
         setLocationRelativeTo(null);
     }
 
@@ -284,14 +284,14 @@ public class DangNhapFame extends javax.swing.JFrame {
 
     private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             login();
         }
     }//GEN-LAST:event_txtMatKhauKeyPressed
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtMatKhau.requestFocus();
         }
     }//GEN-LAST:event_txtEmailKeyPressed
@@ -340,7 +340,7 @@ public class DangNhapFame extends javax.swing.JFrame {
                     Logger.getLogger(DangNhapFame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }); 
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

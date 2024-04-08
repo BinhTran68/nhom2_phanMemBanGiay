@@ -19,8 +19,15 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -33,6 +40,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -265,14 +278,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private Hang readFormHang() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
-        if (tts.kiemTraTrungMaHang(ma)) {
-            JOptionPane.showMessageDialog(this, "trùng mã");
-            return null;
-        }
-        if (tts.kiemTraTrungTenHang(ten)) {
-            JOptionPane.showMessageDialog(this, "trùng tên");
-            return null;
-        }
+
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -285,14 +291,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private KichCo readFormKichCo() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
-        if (tts.kiemTraTrungMaKichCo(ma)) {
-            JOptionPane.showMessageDialog(this, "trùng mã");
-            return null;
-        }
-        if (tts.kiemTraTrungTenKichCo(ten)) {
-            JOptionPane.showMessageDialog(this, "trùng tên");
-            return null;
-        }
+       
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -317,14 +316,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private MauSac readFormMauSac() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
-        if (tts.kiemTraTrungMaMauSac(ma)) {
-            JOptionPane.showMessageDialog(this, "trùng mã");
-            return null;
-        }
-        if (tts.kiemTraTrungTenMauSac(ten)) {
-            JOptionPane.showMessageDialog(this, "trùng tên");
-            return null;
-        }
+      
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -461,7 +453,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "mã màu sắc là chữ ko dấu ít hơn 20 kí tự");
                     return;
                 }
-                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten3)) {
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ .-_0-9]{1,30}$", ten3)) {
                     JOptionPane.showMessageDialog(this, "tên màu sắc là chữ ít hơn 30 kí tự");
                     return;
                 }
@@ -498,7 +490,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "mã sp là chữ ko dấu ít hơn 20 kí tự");
             return;
         }
-        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ 0-9._-]{1,30}$", ten)) {
             JOptionPane.showMessageDialog(this, "tên sp là chữ ít hơn 30 kí tự");
             return;
         }
@@ -539,7 +531,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "số lượng phải là số ít hơn 7 kí tự");
             return;
         }
-        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,200}$", moTa)) {
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ._-0-9]{1,200}$", moTa)) {
             JOptionPane.showMessageDialog(this, "mô tả ít hơn 200 kí tự");
             return;
         }
@@ -577,17 +569,17 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "mã chất liệu là chữ ko dấu ít hơn 20 kí tự");
                     return;
                 }
-                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ._-]{1,30}$", ten)) {
                     JOptionPane.showMessageDialog(this, "tên chất liệu là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma.equals(tblThuocTinh.getValueAt(index, 1))) {
+                if (!ma.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaChatLieu(ma)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenChatLieu(ten)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -612,17 +604,18 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "mã hãng là chữ ko dấu ít hơn 20 kí tự");
                     return;
                 }
-                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten2)) {
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ 0-9._]{1,30}$", ten2)) {
                     JOptionPane.showMessageDialog(this, "tên hãng là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma2.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+
+                if (!ma2.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaHang(ma2)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten2.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten2.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenHang(ten2)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -647,17 +640,17 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "mã kích cỡ là chữ ko dấu ít hơn 20 kí tự");
                     return;
                 }
-                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten3)) {
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ._-]{1,30}$", ten3)) {
                     JOptionPane.showMessageDialog(this, "tên kích cỡ là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma3.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                if (!ma3.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaKichCo(ma3)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten3.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten3.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenKichCo(ten3)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -682,17 +675,17 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "mã màu sắc là chữ ko dấu ít hơn 20 kí tự");
                     return;
                 }
-                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten4)) {
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ 0-9]{1,30}$", ten4)) {
                     JOptionPane.showMessageDialog(this, "tên màu sắc là chữ ít hơn 30 kí tự");
                     return;
                 }
-                if (!ma4.equals(tblThuocTinh.getValueAt(index, 1).toString())) {
+                if (!ma4.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 1).toString())) {
                     if (tts.kiemTraTrungMaMauSac(ma4)) {
                         JOptionPane.showMessageDialog(this, "trùng mã");
                         return;
                     }
                 }
-                if (!ten4.equals(tblThuocTinh.getValueAt(index, 2).toString())) {
+                if (!ten4.equalsIgnoreCase(tblThuocTinh.getValueAt(index, 2).toString())) {
                     if (tts.kiemTraTrungTenMauSac(ten4)) {
                         JOptionPane.showMessageDialog(this, "trùng tên");
                         return;
@@ -730,17 +723,17 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "mã sp là chữ ko dấu ít hơn 20 kí tự");
             return;
         }
-        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ]{1,30}$", ten)) {
+        if (!kiemTraChuoi("[a-zA-ZÀ-ỹ0-9 ._-]{1,30}", ten)) {
             JOptionPane.showMessageDialog(this, "tên sp là chữ ít hơn 30 kí tự");
             return;
         }
-        if (!ma.equals(tblSanPham.getValueAt(index, 1).toString())) {
+        if (!ma.equalsIgnoreCase(tblSanPham.getValueAt(index, 1).toString())) {
             if (sps.kiemTraTrungMaSP(ma)) {
                 JOptionPane.showMessageDialog(this, "trùng mã");
                 return;
             }
         }
-        if (!ten.equals(tblSanPham.getValueAt(index, 2).toString())) {
+        if (!ten.equalsIgnoreCase(tblSanPham.getValueAt(index, 2).toString())) {
             if (sps.kiemTraTrungtenSP(ten)) {
                 JOptionPane.showMessageDialog(this, "trùng tên");
                 return;
@@ -860,6 +853,64 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
     }
 
+    private int xuatExcel() {
+        // Định dạng ngày giờ thành chuỗi theo ý muốn
+        LocalDateTime currentDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss");
+        String formattedDate = currentDate.format(formatter);
+
+        String filePath = "excelTTCTSP\\TTCTSP_" + formattedDate + ".xlsx";
+
+        try {
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Sheet1");
+
+            // Lấy dữ liệu từ bảng
+            TableModel tableModel = tblCTSP.getModel();
+            int rowCount = tableModel.getRowCount();
+            int columnCount = tableModel.getColumnCount();
+
+            // Tạo header
+            Row headerRow = sheet.createRow(0);
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                Cell headerCell = headerRow.createCell(columnIndex);
+                headerCell.setCellValue(tableModel.getColumnName(columnIndex));
+            }
+
+            // Đổ dữ liệu vào từng dòng
+            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+                Row row = sheet.createRow(rowIndex + 1);
+                for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                    Cell cell = row.createCell(columnIndex);
+                    Object value = tableModel.getValueAt(rowIndex, columnIndex);
+                    if (value != null) {
+                        cell.setCellValue(value.toString());
+                    }
+
+                }
+            }
+
+            // Tự động điều chỉnh cỡ cột cho phù hợp với nội dung
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                sheet.autoSizeColumn(columnIndex);
+            }
+
+            // Lưu workbook xuống file
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+
+            // Đóng workbook
+            workbook.close();
+
+            System.out.println("xuất excel thành công :" + filePath);
+            return 1;
+        } catch (IOException e) {
+            System.out.println("Export failed: " + e.getMessage());
+            return 0;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -931,6 +982,19 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCTSP = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        rdoConBan1 = new javax.swing.JRadioButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        cboHang1 = new javax.swing.JComboBox<>();
+        cboMauSac1 = new javax.swing.JComboBox<>();
+        cboChatLieu1 = new javax.swing.JComboBox<>();
+        cboKichCo1 = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        rdoHetHang1 = new javax.swing.JRadioButton();
+        myButton3 = new swing.MyButton();
+        myButton4 = new swing.MyButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
@@ -1166,7 +1230,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1415,13 +1479,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 205, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Danh Sách Sản Phẩm Chi Tiết"));
 
-        jLabel12.setText("Tìm Kiếm");
+        jLabel12.setText("Tìm Kiếm theo mã");
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1457,19 +1521,81 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             tblCTSP.getColumnModel().getColumn(11).setMaxWidth(50);
         }
 
+        jLabel20.setText("Kích Cỡ");
+
+        buttonGroup1.add(rdoConBan1);
+        rdoConBan1.setText("Còn bán");
+
+        jLabel21.setText("Hãng");
+
+        jLabel22.setText("Trạng Thái: ");
+
+        jLabel23.setText("Màu sắc");
+
+        cboHang1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cboMauSac1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cboChatLieu1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cboKichCo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboKichCo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboKichCo1ActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("Chất Liệu");
+
+        buttonGroup1.add(rdoHetHang1);
+        rdoHetHang1.setText("Ngưng bán");
+
+        myButton3.setText("Tìm");
+
+        myButton4.setText("Lọc");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(46, 46, 46)
-                        .addComponent(jTextField4)))
-                .addGap(18, 18, 18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(myButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboHang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboKichCo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboMauSac1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboChatLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdoHetHang1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoConBan1)
+                                .addGap(184, 184, 184)
+                                .addComponent(myButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1477,10 +1603,25 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(myButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(cboHang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(cboKichCo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(cboMauSac1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(cboChatLieu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(rdoHetHang1)
+                    .addComponent(rdoConBan1)
+                    .addComponent(myButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1500,7 +1641,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Sản Phẩm Chi Tiết", jPanel2);
@@ -1815,6 +1956,14 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+
+        if (xuatExcel() == 1) {
+            JOptionPane.showMessageDialog(this, "xuất file thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "lỗi xuất file");
+
+        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1843,15 +1992,23 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         fillToTableCTSP(ctspsv.getAllCTSP());
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void cboKichCo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboKichCo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboKichCo1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cboChatLieu;
+    private javax.swing.JComboBox<String> cboChatLieu1;
     private javax.swing.JComboBox<String> cboHang;
+    private javax.swing.JComboBox<String> cboHang1;
     private javax.swing.JComboBox<String> cboKichCo;
+    private javax.swing.JComboBox<String> cboKichCo1;
     private javax.swing.JComboBox<String> cboLoaiThuocTinh;
     private javax.swing.JComboBox<String> cboMauSac;
+    private javax.swing.JComboBox<String> cboMauSac1;
     private javax.swing.JComboBox<String> cboTenSP;
     private javax.swing.JComboBox<String> cboTimKiemSP;
     private javax.swing.JButton jButton1;
@@ -1877,6 +2034,11 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1904,12 +2066,16 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextField jTextField4;
+    private swing.MyButton myButton3;
+    private swing.MyButton myButton4;
     private javax.swing.JLabel qr;
     private javax.swing.JRadioButton rdoConBan;
+    private javax.swing.JRadioButton rdoConBan1;
     private javax.swing.JRadioButton rdoConHang;
     private javax.swing.JRadioButton rdoDangBan;
     private javax.swing.JRadioButton rdoHet;
     private javax.swing.JRadioButton rdoHetHang;
+    private javax.swing.JRadioButton rdoHetHang1;
     private javax.swing.JRadioButton rdoNgungBan;
     private javax.swing.JTable tblCTSP;
     private javax.swing.JTable tblSanPham;

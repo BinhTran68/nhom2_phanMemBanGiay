@@ -15,37 +15,6 @@ public class NhanVien {
     private int id;
     
     private String maNV;
-
-    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
-        this.id = id;
-        this.maNV = maNV;
-        this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.diaChi = diaChi;
-        this.sdt = sdt;
-        this.email = email;
-        this.matKhau = matKhau;
-        this.vaiTro = vaiTro;
-        this.trangThaiXoa = trangThaiXoa;
-        this.ngayTao = ngayTao;
-        this.ngaySuaCuoi = ngaySuaCuoi;
-    }
-
-    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro) {
-        this.id = id;
-        this.maNV = maNV;
-        this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.diaChi = diaChi;
-        this.sdt = sdt;
-        this.email = email;
-        this.vaiTro = vaiTro;
-    }
-
-    
-
     
     private String hoTen;
     
@@ -87,7 +56,7 @@ public class NhanVien {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
-    public NhanVien(String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro) {
+    public NhanVien(String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro, String matKhau) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -96,6 +65,36 @@ public class NhanVien {
         this.sdt = sdt;
         this.email = email;
         this.vaiTro = vaiTro;
+        this.matKhau = matKhau;
+    }
+    
+    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
+        this.id = id;
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+    }
+
+    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro, String matKhau) {
+        this.id = id;
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.vaiTro = vaiTro;
+        this.matKhau = matKhau;
     }
     
     
