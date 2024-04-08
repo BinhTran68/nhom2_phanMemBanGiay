@@ -48,6 +48,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import  org.apache.xmlbeans.*;
 
 /**
  *
@@ -863,6 +864,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private boolean kiemTraChuoi(String chuoiChinhQuy, String ChuoiKiemTra) {
         if (ChuoiKiemTra.equals("")) {
             JOptionPane.showMessageDialog(this, "không được để trống ô nhập");
+            return false;
         }
         if (ChuoiKiemTra.matches(chuoiChinhQuy)) {
             return true;
@@ -877,7 +879,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss");
         String formattedDate = currentDate.format(formatter);
 
-        String filePath = "excelTTCTSP\\TTCTSP_" + formattedDate + ".xlsx";
+        String filePath = "src\\excelTTCTSP\\TTCTSP_" + formattedDate + ".xlsx";
 
         try {
             Workbook workbook = new XSSFWorkbook();

@@ -434,7 +434,7 @@ public class ChiTietSanPhamService {
     public int suaCTSP(ChiTietSanPham ctsp, String maCTSP) {
         sql = "update ChiTietSanPham set maCTSP = ?, id_SanPham = ?,giaBan = ?,"
                 + " soLuongCon = ?,id_MauSac = ?, id_KichCo = ?, id_Hang = ?,id_ChatLieu = ?,"
-                + "ngaySuaCuoi = GETDATE(),trangThaiXoa = ?,mota = ?,maVach = null"
+                + "ngaySuaCuoi = GETDATE(),trangThaiXoa = ?,mota = ?"
                 + " where maCTSP = ?";
         try {
             con = DBConnect.getConnection();

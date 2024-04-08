@@ -4,19 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/DangNhapTheHans.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/service/SanPhamService.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/DangNhapFame.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/KhuyenMaiMainPanel.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/SanPhamMainPanel.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/MainApplicationView1.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/service/HoaDonChiTietService.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/HoaDonMainPanel.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/service/SanPhamChiTietService.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/swing/MyButton.java</file>
             <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/service/ChiTietSanPhamService.java</file>
-            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/service/HoaDonService.java</file>
+            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/SanPhamMainPanel.java</file>
             <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/BanHangMainPanelfix.java</file>
-            <file>jar:file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/lib/jcalendar-1.4.jar!/com/toedter/components/images/JLocaleChooserColor32.gif</file>
+            <file>file:/C:/Users/admin/Documents/duan1/nhom2_phanMemBanGiay/TheHans/src/app/view/HoaDonMainPanel.java</file>
         </group>
     </open-files>
 </project-private>
