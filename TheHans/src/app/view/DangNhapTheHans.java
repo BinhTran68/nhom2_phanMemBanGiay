@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -48,9 +49,12 @@ public class DangNhapTheHans extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
+        
+        
 
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
+          
             MainApplicationView1 applicationView = new MainApplicationView1(nhanVien);
             applicationView.setVisible(true);
             this.dispose();

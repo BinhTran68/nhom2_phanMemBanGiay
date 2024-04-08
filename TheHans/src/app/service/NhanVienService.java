@@ -8,12 +8,15 @@ import app.model.NhanVien;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
+import utils.Constant;
 
 /**
  *
  * @author admin
  */
 public class NhanVienService {
+
     List<NhanVien> listNV;
 
     PreparedStatement preparedStatement = null;
@@ -40,35 +43,40 @@ public class NhanVienService {
                     + "      ,[trangThaiXoa]\n"
                     + "      ,[ngayTao]\n"
                     + "      ,[ngaySuaCuoi]\n"
-                    + "  FROM [dbo].[NhanVien] WHERE SDT = ? AND matKhau = ?";
+                    + "  FROM [dbo].[NhanVien] WHERE SDT = ? ";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, sdt);
-            preparedStatement.setObject(2, matKhau);
-            
+     
+
             resultSet = preparedStatement.executeQuery();
-            
+
             if (resultSet == null) {
-                return  null;
+                return null;
             }
             NhanVien nhanVien = null;
-            while (resultSet.next()) {                
+            while (resultSet.next()) {
                 nhanVien = new NhanVien(
-                        resultSet.getInt(1), 
-                        resultSet.getString(2), 
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
                         resultSet.getDate(3),
                         resultSet.getInt(4),
                         resultSet.getString(5),
                         resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getString(8),
-                        resultSet.getString(9), 
+                        resultSet.getString(9),
                         resultSet.getBoolean(10),
                         resultSet.getDate(11),
                         resultSet.getDate(12));
             }
-               
-            return nhanVien;
-
+            if (nhanVien == null) {
+                return  null;
+            }
+            if (BCrypt.checkpw(matKhau, nhanVien.getMatKhau())) {
+                return nhanVien;
+            }else {
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -82,25 +90,28 @@ public class NhanVienService {
 
         return null;
     }
-   
-    public  List<NhanVien> getAll(){
+
+    public List<NhanVien> getAll() {
         listNV = new ArrayList<>();
-        sql = "	select id, maNV ,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi from NhanVien";
+        sql = "	select id, maNV ,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi, matKhau from NhanVien";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) { 
+            while (resultSet.next()) {
                 NhanVien nv = new NhanVien(
-                        resultSet.getInt(1), 
-                        resultSet.getString(2), 
-                        resultSet.getString(3), 
-                        resultSet.getDate(5), 
-                        resultSet.getInt(6) , 
-                        resultSet.getString(7), 
-                        resultSet.getString(8), 
-                        resultSet.getString(9), 
-                        resultSet.getString(4));
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(5),
+                        resultSet.getInt(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(4),
+                        resultSet.getString(10)
+                );
+
                 listNV.add(nv);
             }
             return listNV;
@@ -109,9 +120,9 @@ public class NhanVienService {
             return null;
         }
     }
-    
+
     public int insertNV(NhanVien nv) {
-        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau)values(?,?,?,?,?,?,?,?,123)";
+        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau)values(?,?,?,?,?,?,?,?,?)";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -123,16 +134,16 @@ public class NhanVienService {
             preparedStatement.setObject(6, nv.getSdt());
             preparedStatement.setObject(7, nv.getEmail());
             preparedStatement.setObject(8, nv.getDiaChi());
+            preparedStatement.setObject(9, nv.getMatKhau());
             return preparedStatement.executeUpdate();
-            
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
     }
-    
-    public int updateNhanVien(String ma, NhanVien nv){
+
+    public int updateNhanVien(String ma, NhanVien nv) {
         sql = "update NhanVien set hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ? where maNV like ?";
         try {
             connection = DBConnect.getConnection();
@@ -148,28 +159,31 @@ public class NhanVienService {
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;   
+            return 0;
         }
     }
-    public List<NhanVien> timTheoTen(String ten){
+
+    public List<NhanVien> timTheoTen(String ten) {
         try {
             listNV = new ArrayList<>();
             connection = DBConnect.getConnection();
-            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi from NhanVien where hoTen like ?";
+            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau from NhanVien where hoTen like ?";
             preparedStatement = connection.prepareCall(sql);
-            preparedStatement.setString(1, "%"+ten+"%");
+            preparedStatement.setString(1, "%" + ten + "%");
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {                
+            while (resultSet.next()) {
                 NhanVien nv = new NhanVien(
-                        resultSet.getInt(1), 
-                        resultSet.getString(2), 
-                        resultSet.getString(3), 
-                        resultSet.getDate(5), 
-                        resultSet.getInt(6) , 
-                        resultSet.getString(7), 
-                        resultSet.getString(8), 
-                        resultSet.getString(9), 
-                        resultSet.getString(4));
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(5),
+                        resultSet.getInt(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(4),
+                        resultSet.getString(10)
+                );
                 listNV.add(nv);
             }
             return listNV;
@@ -178,9 +192,9 @@ public class NhanVienService {
             return null;
         }
     }
-    
+
     public int deleteNV(String ma) {
-        sql = "delete from KhachHang where maKH like ?";
+        sql = "delete from KhachHang where maNV like ?";
         try {// xóa được 
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -191,5 +205,18 @@ public class NhanVienService {
         }
         return 0;
     }
+
+    public static void main(String[] args) {
+        String matKhauHash = BCrypt.hashpw("123", BCrypt.gensalt(Constant.saltRoundPassword));
+
+        String matKhauHashhNhapVao = "123";
+        System.out.println(matKhauHash);
+
+        if (BCrypt.checkpw(matKhauHashhNhapVao, matKhauHash)) {
+            System.out.println("ok");
+        } else {
+            System.out.println("k ok");
+        }
+    }
+
 }
-    
