@@ -410,13 +410,13 @@ public class HoaDonService {
             tienDuocGiam.setFont(infoFont);
             document.add(tienDuocGiam);
         }
-        
+
         Paragraph tienSauGiamGia = new Paragraph("Tien cần thanh toán: " + hoaDon.getTienSauGiamGia());
         tienSauGiamGia.setFont(infoFont);
         document.add(tienSauGiamGia);
     }
-    
-      public static void openPDFFile(String filePath) {
+
+    public static void openPDFFile(String filePath) {
         try {
             File file = new File(filePath);
             if (file.exists() && Desktop.isDesktopSupported()) {
