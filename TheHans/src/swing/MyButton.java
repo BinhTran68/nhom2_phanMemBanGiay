@@ -10,52 +10,63 @@ import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 public class MyButton extends JButton {
-
+    
     public Color getColorOver() {
         return colorOver;
     }
-
+    
     public void setColorOver(Color colorOver) {
         this.colorOver = colorOver;
     }
-
+    
     public Color getColor() {
         return color;
     }
-
+    
     public void setColor(Color color) {
         this.color = color;
     }
+    
+    public Color getColorClick() {
+        return colorClick;
+    }
+    
+    public void setColorClick(Color colorClick) {
+        this.colorClick = colorClick;
+    }
+    
     public boolean over;
     private Color colorOver;
     private Color color;
     private Color colorClick;
-
+    
     public MyButton() {
         setContentAreaFilled(false);
-        colorOver = new Color(181, 242, 254);
-        color = new Color(125, 224, 237);
-        colorClick = new Color(158, 212, 237);
+        colorOver = new Color(204, 204, 0);
+        color = new Color(51, 102, 0);
+        colorClick = new Color(200, 22, 51);
+        setBackground(new Color(51, 102, 0));
+        setForeground(new Color(255, 255, 255));
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
                 setBackground(getColorOver());
                 over = true;
             }
-
+            
             @Override
             public void mouseExited(MouseEvent me) {
                 setBackground(getColor());
                 over = false;
             }
-
+            
             @Override
             public void mousePressed(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
                     setBackground(colorClick);
                 }
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
@@ -66,10 +77,10 @@ public class MyButton extends JButton {
                     }
                 }
             }
-
+            
         });
     }
-
+    
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;

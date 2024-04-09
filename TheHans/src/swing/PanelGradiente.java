@@ -34,7 +34,8 @@ public class PanelGradiente extends JLayeredPane {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Paint gp = getGradientePaint();
         g2.setPaint(gp);
-        g2.fillRect(0, 0, getWidth(), getHeight());
+//        g2.fillRect(0, 0, getWidth(), getHeight());
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
         g2.setColor(getForeground());
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
         g2.dispose();

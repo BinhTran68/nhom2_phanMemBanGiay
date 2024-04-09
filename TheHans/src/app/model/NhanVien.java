@@ -41,7 +41,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(int id, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
+    public NhanVien(int id, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String maNV) {
         this.id = id;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -54,9 +54,10 @@ public class NhanVien {
         this.trangThaiXoa = trangThaiXoa;
         this.ngayTao = ngayTao;
         this.ngaySuaCuoi = ngaySuaCuoi;
+        this.maNV = maNV;
     }
-
-    public NhanVien(String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro, String matKhau) {
+ 
+    public NhanVien(String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro, String matKhau, Boolean trangThaiXoa) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -66,6 +67,7 @@ public class NhanVien {
         this.email = email;
         this.vaiTro = vaiTro;
         this.matKhau = matKhau;
+         this.trangThaiXoa = trangThaiXoa;
     }
     
     public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
@@ -84,7 +86,7 @@ public class NhanVien {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
-    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro, String matKhau) {
+    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro, String matKhau, Boolean trangThaiXoa) {
         this.id = id;
         this.maNV = maNV;
         this.hoTen = hoTen;
@@ -95,6 +97,8 @@ public class NhanVien {
         this.email = email;
         this.vaiTro = vaiTro;
         this.matKhau = matKhau;
+        this.trangThaiXoa = trangThaiXoa;
+        
     }
     
     
@@ -204,13 +208,14 @@ public class NhanVien {
     }
 
     
+    
     @Override
     public String toString() {
         return "NhanVien{" + "id=" + id + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", matKhau=" + matKhau + ", vaiTro=" + vaiTro + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
     }
     
     public Object[] toDataRow() {
-        return new Object[]{this.id, this.maNV, this.hoTen,this.vaiTro, this.ngaySinh, this.gioiTinh, this.diaChi,this.sdt, this.email, this.matKhau,  this.trangThaiXoa, this.ngayTao,this.ngaySuaCuoi
+        return new Object[]{this.id, this.maNV, this.hoTen,this.vaiTro, this.ngaySinh, this.gioiTinh, this.diaChi,this.sdt, this.email, this.trangThaiXoa,  this.matKhau,  this.trangThaiXoa, this.ngayTao,this.ngaySuaCuoi
         };
     }
     
