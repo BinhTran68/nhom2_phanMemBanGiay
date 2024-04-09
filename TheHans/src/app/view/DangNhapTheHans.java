@@ -29,31 +29,33 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-         try {
+        try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
     }
 
-    private void login(){
+    private void login() {
 
         String sdt = txtEmail.getText().trim();
 
         String matKhau = txtMatKhau.getText().trim();
         if (sdt.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập email");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại");
             return;
         }
         if (matKhau.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
-        
-        
+
         NhanVien nhanVien = nhanVienService.dangNhap(sdt, matKhau);
         if (nhanVien != null) {
-          
+            if (nhanVien.isTrangThaiXoa() != true) {
+                JOptionPane.showMessageDialog(this, "Bạn không có quyển đăng nhập");
+                return;
+            }
             MainApplicationView1 applicationView = new MainApplicationView1(nhanVien);
             applicationView.setVisible(true);
             this.dispose();

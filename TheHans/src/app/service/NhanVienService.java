@@ -42,7 +42,7 @@ public class NhanVienService {
                     + "      ,[vaiTro]\n"
                     + "      ,[trangThaiXoa]\n"
                     + "      ,[ngayTao]\n"
-                    + "      ,[ngaySuaCuoi]\n"
+                    + "      ,[ngaySuaCuoi]\n, maNV"
                     + "  FROM [dbo].[NhanVien] WHERE SDT = ? ";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, sdt);
@@ -66,7 +66,8 @@ public class NhanVienService {
                         resultSet.getString(9),
                         resultSet.getBoolean(10),
                         resultSet.getDate(11),
-                        resultSet.getDate(12));
+                        resultSet.getDate(12),resultSet.getString(13));
+                        
             }
             if (nhanVien == null) {
                 return null;
@@ -159,11 +160,11 @@ public class NhanVienService {
     }
 
     public int updateNhanVien(String ma, NhanVien nv) {
-        sql = "update NhanVien set hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ? where maNV like ?";
+        sql = "update NhanVien set hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ?, trangThaiXoa = ?  where maNV like ?";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setObject(8, nv.getMaNV());
+            preparedStatement.setObject(9, nv.getMaNV());
             preparedStatement.setObject(1, nv.getHoTen());
             preparedStatement.setObject(2, nv.getVaiTro());
             preparedStatement.setObject(3, nv.getNgaySinh());
@@ -171,6 +172,9 @@ public class NhanVienService {
             preparedStatement.setObject(5, nv.getSdt());
             preparedStatement.setObject(6, nv.getEmail());
             preparedStatement.setObject(7, nv.getDiaChi());
+            preparedStatement.setObject(8, nv.isTrangThaiXoa());
+
+            
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

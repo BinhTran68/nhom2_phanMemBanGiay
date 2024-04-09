@@ -35,7 +35,9 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 //    private BanHangMainPane banHangMainPanel;  // Hậu Lỗi 
     private BanHangMainPanelfix banHangMainPanel; // Hậu
 
-    private HoaDonMainPanel hoaDonMainPanel; // Bình
+//    private HoaDonMainPanel hoaDonMainPanel; // Bình
+    
+    private HoaDonMainPanel1 hoaDonMainPanel; // Bình
 
     private KhachHangMainPanel khachHangMainPanel; // Hà
 
@@ -63,7 +65,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         }
 
 //        banHangMainPanel = new BanHangMainPane();
-        hoaDonMainPanel = new HoaDonMainPanel();
+        hoaDonMainPanel = new HoaDonMainPanel1();
 
         khachHangMainPanel = new KhachHangMainPanel();
 
@@ -81,12 +83,9 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
         labelShowName.setText("Tên :" + nhanVien.getHoTen());
         labelShowOffice.setText("Chức vụ : " + nhanVien.getVaiTro());
-        
-        if (nhanVien.getVaiTro().equalsIgnoreCase("Quản Lý")) {
-            showPanel(thongKeMainPanel);
-        }else {
-              showPanel(banHangMainPanel);
-        }
+
+        showPanel(banHangMainPanel);
+
     }
 
     private static ImageIcon loadImageIcon(String path) {
@@ -647,7 +646,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
     private void nhanVienLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabel1MouseClicked
         // TODO add your handling code here:
         if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Quản Lý")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Admin mới có quyền truy cập");
+            JOptionPane.showMessageDialog(this, "Chỉ Quản Lý mới có quyền truy cập");
             return;
         }
 
@@ -664,7 +663,6 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     private void hoaDonLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoaDonLabel1MouseClicked
         // TODO add your handling code here:
-       
         onClicked(hoaDonPanel);
         unClicked(nhanVienPanel);
         unClicked(sanPhamPanel);
@@ -678,10 +676,6 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     private void khuyenMaiLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuyenMaiLabel1MouseClicked
         // TODO add your handling code here:
-         if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Quản Lý")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Quản Lý mới có quyền truy cập");
-            return;
-        }
         onClicked(khuyenMaiPanel);
         unClicked(khachHangPanel);
         unClicked(hoaDonPanel);
@@ -708,10 +702,6 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     private void thongKeLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeLabel1MouseClicked
         // TODO add your handling code here:
-          if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Quản Lý")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Quản Lý mới có quyền truy cập");
-            return;
-        }
         onClicked(thongKePanel);
         unClicked(khuyenMaiPanel);
         unClicked(khachHangPanel);
