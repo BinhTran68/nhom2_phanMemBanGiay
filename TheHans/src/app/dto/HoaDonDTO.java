@@ -31,7 +31,9 @@ public class HoaDonDTO {
     private String hinhThucThanhToan;
     private Integer trangThaiThanhToan;
     private String maVoucher;
-   
+    private Double tienSauGiamGia;
+    private Integer idVoucher;
+    
     
 
     public HoaDonDTO() {
@@ -120,6 +122,30 @@ public class HoaDonDTO {
         this.trangThaiThanhToan = trangThaiThanhToan;
         this.maVoucher = maVoucher;
     }
+
+    public HoaDonDTO(int hoaDonId, int id_KhachHang, int id_NhanVien, String maHoaDon, String tenNguoiNhan, String diaChi, Double tienKhachTra, Double tienThuaLai, Double thanhTien, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi, String ghiChu, String tenNhanVien, String tenKhachHang, String sdtKhachHang, String hinhThucThanhToan, Integer trangThaiThanhToan, String maVoucher, Double tienSauGiamGia) {
+        this.hoaDonId = hoaDonId;
+        this.id_KhachHang = id_KhachHang;
+        this.id_NhanVien = id_NhanVien;
+        this.maHoaDon = maHoaDon;
+        this.tenNguoiNhan = tenNguoiNhan;
+        this.diaChi = diaChi;
+        this.tienKhachTra = tienKhachTra;
+        this.tienThuaLai = tienThuaLai;
+        this.thanhTien = thanhTien;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+        this.ghiChu = ghiChu;
+        this.tenNhanVien = tenNhanVien;
+        this.tenKhachHang = tenKhachHang;
+        this.sdtKhachHang = sdtKhachHang;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.trangThaiThanhToan = trangThaiThanhToan;
+        this.maVoucher = maVoucher;
+        this.tienSauGiamGia = tienSauGiamGia;
+    }
+    
     
     
     
@@ -274,6 +300,23 @@ public class HoaDonDTO {
     public void setMaVoucher(String maVoucher) {
         this.maVoucher = maVoucher;
     }
+
+    public Double getTienSauGiamGia() {
+        return tienSauGiamGia;
+    }
+
+    public void setTienSauGiamGia(Double tienSauGiamGia) {
+        this.tienSauGiamGia = tienSauGiamGia;
+    }
+
+    public Integer getIdVoucher() {
+        return idVoucher;
+    }
+
+    public void setIdVoucher(Integer idVoucher) {
+        this.idVoucher = idVoucher;
+    }
+    
     
     
     

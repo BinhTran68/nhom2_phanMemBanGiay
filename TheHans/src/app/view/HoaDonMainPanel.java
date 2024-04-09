@@ -31,16 +31,13 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
     private DefaultTableModel defaultTableModelHoaDonChiTiet;
 
     private DefaultTableModel defaultTableModelLichSuHoaDon;
-    
+
     private int idNhanVien = -1;
-    
+
     /**
      * Creates new form HoaDonPanel
      */
-
     int rowTblHoaDon = -1;
-    
-    
 
     public HoaDonMainPanel() {
         initComponents();
@@ -80,7 +77,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
                 hoaDon.getTienKhachTra(),
                 hoaDon.getTienThuaLai(),
                 hoaDon.getGhiChu(),
-                hoaDon.getTrangThaiThanhToan() == 1 ? "Đã thanh toán" : "Chưa thanh toán" ,
+                hoaDon.getTrangThaiThanhToan() == 1 ? "Đã thanh toán" : "Chưa thanh toán",
                 hoaDon.getHinhThucThanhToan(),
                 hoaDon.getMaVoucher() == null ? "None" : hoaDon.getMaVoucher()
             });
@@ -141,7 +138,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         String formattedDateTime = currentDateTime.format(formatter);
 
         // Tạo tên file sử dụng ngày giờ hiện tại
-        String fileName = "data_" + formattedDateTime + ".xlsx";
+        String fileName = "src/FileExcel/data_" + formattedDateTime + ".xlsx";
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
             workbook.write(outputStream);
         } catch (IOException e) {
@@ -182,7 +179,6 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -206,6 +202,7 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoaDonChiTiet = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -224,9 +221,6 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel1.setText("Tab1");
-        jTabbedPane1.addTab("Tìm Kiếm Hóa Đơn", jLabel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -474,6 +468,9 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Hóa Đơn", jPanel2);
 
+        jLabel1.setText("Tab1");
+        jTabbedPane1.addTab("", jLabel1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -512,42 +509,76 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnXuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDanhSachActionPerformed
-        try {
-            writeExcel(hoaDonService.findAllHoaDon());
-            JOptionPane.showMessageDialog(this, "Xuất Dữ Liệu ra Exel thành công");
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Xuất danh sách thất bại");
-        }
-    }//GEN-LAST:event_btnXuatDanhSachActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+        fillTableHoaDon(hoaDonService.findAllHoaDon());
+        defaultTableModelHoaDonChiTiet.setRowCount(0);
+    }//GEN-LAST:event_btnReloadActionPerformed
+
+    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReloadMouseClicked
+
+    private void tblHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblHoaDonMouseEntered
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         rowTblHoaDon = tblHoaDon.getSelectedRow();
 
         String maHoaDon = tblHoaDon.getValueAt(rowTblHoaDon, 0).toString();
-//        HoaDonDTO hoaDon = hoaDonService.findHoaDonByMaHoaDon(maHoaDon);
-//        if (hoaDon == null) {
-//            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra.");
-//            return;
-//        }
-//        Integer idHoaDon = hoaDon.getHoaDonId();
-        
+        //        HoaDonDTO hoaDon = hoaDonService.findHoaDonByMaHoaDon(maHoaDon);
+        //        if (hoaDon == null) {
+        //            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra.");
+        //            return;
+        //        }
+        //        Integer idHoaDon = hoaDon.getHoaDonId();
+
         List<HoaDonChiTietDTO> hoaDonChiTietDTOList = hoaDonChiTietService.getHoaDonChiTietDTO(Integer.valueOf(maHoaDon));
-        
-        
+
         if (hoaDonChiTietDTOList == null || hoaDonChiTietDTOList.isEmpty()) {
             defaultTableModelHoaDonChiTiet.setRowCount(0);
             return;
         }
         fillTableHoaDonChiTiet(hoaDonChiTietDTOList);
-
-
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
-    private void tblHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblHoaDonMouseEntered
+    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
+        // Lọc theo ngày + lọc theo tháng năm ...
+        String trangThai = cboTrangThai.getSelectedItem().toString();
+        if (trangThai.equalsIgnoreCase("Đã Thanh Toán")) {
+            trangThai = "1";
+        } else if (trangThai.equalsIgnoreCase("Chưa Thanh Toán")) {
+            trangThai = "0";
+        } else if (trangThai.equalsIgnoreCase("Chọn")) {
+            trangThai = null;
+        } else {
+            trangThai = "2";
+        }
+
+        String hinhThucThanhToan = cboHinhThucThanhToan.getSelectedItem().toString();
+
+        if (hinhThucThanhToan == "Chọn") {
+            hinhThucThanhToan = null;
+        }
+
+        Date tuNgay = dateTuNgay.getDate();
+
+        Date denNgay = dateDenNgay.getDate();
+
+        if (tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) > 0) {
+            System.out.println("Ngày bắt đầu lớn hơn ngày kết thúc");
+            JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
+            return;
+        } else if (tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) < 0) {
+            List<HoaDonDTO> hoaDonDTOs = hoaDonService.locTheoGiaTri(trangThai, hinhThucThanhToan, tuNgay, denNgay);
+            fillTableHoaDon(hoaDonDTOs);
+            return;
+        } else {
+            List<HoaDonDTO> hoaDonDTOs = hoaDonService.locTheoGiaTri(trangThai, hinhThucThanhToan, tuNgay, denNgay);
+            fillTableHoaDon(hoaDonDTOs);
+            return;
+        }
+    }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnLocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLocMouseClicked
         String hinhThucThanhToan = cboHinhThucThanhToan.getSelectedItem().toString();
@@ -559,66 +590,35 @@ public class HoaDonMainPanel extends javax.swing.JPanel {
         System.out.println(denNgay);
     }//GEN-LAST:event_btnLocMouseClicked
 
-    private void cboHinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHinhThucThanhToanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboHinhThucThanhToanActionPerformed
-
-    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
-        // Lọc theo ngày + lọc theo tháng năm ...
-        String trangThai = cboTrangThai.getSelectedItem().toString();
-
-        String hinhThucThanhToan = cboHinhThucThanhToan.getSelectedItem().toString();
-        
-        if (trangThai == "Chọn") {
-            trangThai = null;
-        }
-        if (hinhThucThanhToan == "Chọn") {
-            hinhThucThanhToan = null;
-        }
-        
-        Date tuNgay = dateTuNgay.getDate();
-
-        Date denNgay = dateDenNgay.getDate();
-        
-        
-        if ( tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) > 0) {
-            System.out.println("Ngày bắt đầu lớn hơn ngày kết thúc");
-            JOptionPane.showMessageDialog(this, "Ngày bắt đầu không được lớn hơn ngày kết thúc");
-            return;
-        } else if ( tuNgay != null && denNgay != null && tuNgay.compareTo(denNgay) < 0) {
-            List<HoaDonDTO> hoaDonDTOs = hoaDonService.locTheoGiaTri(trangThai, hinhThucThanhToan, tuNgay, denNgay);
-            fillTableHoaDon(hoaDonDTOs);
-            return;
-        } else {
-           List<HoaDonDTO> hoaDonDTOs = hoaDonService.locTheoGiaTri(trangThai, hinhThucThanhToan, tuNgay, denNgay);
-            fillTableHoaDon(hoaDonDTOs);
-            return;
-        }
-    }//GEN-LAST:event_btnLocActionPerformed
-
     private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
         if (tblHoaDonChiTiet.getRowCount() <= 0) {
             return;
         }
-        
         if (rowTblHoaDon < 0) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn Hóa Đơn");
             return;
         }
         rowTblHoaDon = tblHoaDon.getSelectedRow();
         String maHoaDon = (String) tblHoaDon.getValueAt(rowTblHoaDon, 1);
-        
-        
+
+        hoaDonService.inHoaDonRaPDF(maHoaDon);
+
+
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
-    private void btnReloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReloadMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReloadMouseClicked
+    private void btnXuatDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDanhSachActionPerformed
+        try {
+            writeExcel(hoaDonService.findAllHoaDon());
+            JOptionPane.showMessageDialog(this, "Xuất Dữ Liệu ra Exel thành công");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Xuất danh sách thất bại");
+        }
+    }//GEN-LAST:event_btnXuatDanhSachActionPerformed
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
-        fillTableHoaDon(hoaDonService.findAllHoaDon());  
-        defaultTableModelHoaDonChiTiet.setRowCount(0);
-    }//GEN-LAST:event_btnReloadActionPerformed
+    private void cboHinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHinhThucThanhToanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboHinhThucThanhToanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

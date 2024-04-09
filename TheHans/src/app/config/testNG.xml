@@ -5,7 +5,10 @@
     </listeners>
     <test name="TestSanPham">
         <classes>
-            <class name="test.MauSacTest"/>
+            <class name="test.SanPhamTest"/>
+            <class name="test.NhanVienServiceTest"/>
+            <class name="test.ThuocTinhServiceTest"/>
+            <class name="test.KhachHangServiceTest"/>
         </classes>
     </test>
 </suite>

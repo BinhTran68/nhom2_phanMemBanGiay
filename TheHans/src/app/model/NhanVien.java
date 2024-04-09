@@ -14,6 +14,39 @@ public class NhanVien {
 
     private int id;
     
+    private String maNV;
+
+    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
+        this.id = id;
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+        this.trangThaiXoa = trangThaiXoa;
+        this.ngayTao = ngayTao;
+        this.ngaySuaCuoi = ngaySuaCuoi;
+    }
+
+    public NhanVien(int id, String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro) {
+        this.id = id;
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.vaiTro = vaiTro;
+    }
+
+    
+
+    
     private String hoTen;
     
     private Date ngaySinh;
@@ -57,6 +90,17 @@ public class NhanVien {
         this.trangThaiXoa = trangThaiXoa;
         this.ngayTao = ngayTao;
         this.ngaySuaCuoi = ngaySuaCuoi;
+    }
+
+    public NhanVien(String maNV, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String vaiTro) {
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.vaiTro = vaiTro;
     }
     
     
@@ -157,12 +201,24 @@ public class NhanVien {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
 
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    
     @Override
     public String toString() {
         return "NhanVien{" + "id=" + id + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", matKhau=" + matKhau + ", vaiTro=" + vaiTro + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
     }
     
-    
+    public Object[] toDataRow() {
+        return new Object[]{this.id, this.maNV, this.hoTen,this.vaiTro, this.ngaySinh, this.gioiTinh, this.diaChi,this.sdt, this.email, this.matKhau,  this.trangThaiXoa, this.ngayTao,this.ngaySuaCuoi
+        };
+    }
     
     
 }

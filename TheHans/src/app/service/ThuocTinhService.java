@@ -4,10 +4,7 @@
  */
 package app.service;
 
-import app.model.ChatLieu;
-import app.model.Hang;
-import app.model.KichCo;
-import app.model.MauSac;
+import app.model.*;
 
 import java.util.List;
 import java.sql.*;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
  * @author admin
  */
 public class ThuocTinhService {
-
+    List<SanPham> listSanPham;
     List<ChatLieu> listChatLieu;
     List<Hang> listHang;
     List<KichCo> listKichCo;
@@ -97,6 +94,27 @@ public class ThuocTinhService {
     }
 
     public int addChatLieu(ChatLieu cl) {
+        if (cl == null || cl.getMaChatLieu() == null || cl.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (cl.getMaChatLieu().isEmpty() || cl.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (cl.getMaChatLieu().length() < 3 || cl.getMaChatLieu().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
+        }
 
         sql = "insert into ChatLieu\n"
                 + "values \n"
@@ -114,6 +132,26 @@ public class ThuocTinhService {
     }
 
     public int addHang(Hang h) {
+        if (h == null || h.getMaHang() == null || h.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (h.getMaHang().isEmpty() || h.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (h.getMaHang().length() < 3 || h.getMaHang().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
+        }
 
         sql = "insert into Hang\n"
                 + "values \n"
@@ -131,6 +169,27 @@ public class ThuocTinhService {
     }
 
     public int addKichCo(KichCo kc) {
+        if (kc == null || kc.getMaKichCo() == null || kc.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (kc.getMaKichCo().isEmpty() || kc.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (kc.getMaKichCo().length() < 3 || kc.getMaKichCo().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
+        }
 
         sql = "insert into KichCo\n"
                 + "values \n"
@@ -148,36 +207,28 @@ public class ThuocTinhService {
     }
 
     public int addMauSac(MauSac ms) {
-
-        if (ms.getMaMauSac() == null || ms.getMaMauSac().isEmpty()) {
-            throw new NullPointerException("Mã màu sắc không được để trống");
-        }
-        if (ms.getTen() == null || ms.getTen().isEmpty()) {
-            throw new NullPointerException("Tên màu sắc không được để trống");
-        }
-        if (ms.getNgayTao() == null ||
-                ms.getNgayTao().isEmpty()) {
-            throw new NullPointerException("Ngày tạo không thể để trống");
-        }
-        if (ms.getNgaySuaCuoi() == null ||
-                ms.getNgaySuaCuoi().isEmpty()) {
-            throw new NullPointerException("NGyaf sửa cuối không thể để trống dữ liệu");
-        }
-        if (ms.getTrangThaiXoa() != 0 && ms.getTrangThaiXoa() != 1) {
-            throw new IllegalArgumentException("Trạng thái không chính xác");
-        }
-        String maMauSac = ms.getMaMauSac();
-        if (maMauSac.length() < 3 || maMauSac.length() > 10) {
-            throw new IllegalArgumentException("Mã màu sắc phải có từ 3 đến 10 ký tự");
+        if (ms == null || ms.getMaMauSac() == null || ms.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
-        String ten = ms.getTen();
-        if (ten.length() < 1 || ten.length() > 20) {
-            throw new IllegalArgumentException("Tên màu sắc phải có từ 1 đến 20 ký tự");
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (ms.getMaMauSac().isEmpty() || ms.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
-        if (ms.getNgayTao().compareTo(ms.getNgaySuaCuoi()) > 0) {
-            throw new IllegalArgumentException("Ngày tạo phải nhỏ hơn hoặc bằng ngày cập nhật");
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (ms.getMaMauSac().length() < 3 || ms.getMaMauSac().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
         }
+
         sql = "insert into MauSac\n"
                 + "values \n"
                 + "(?,?,?,getDate(),getDate())";
@@ -193,7 +244,30 @@ public class ThuocTinhService {
         }
     }
 
+
     public int suaChatLieu(ChatLieu cl, String ma) {
+        if (cl == null || cl.getMaChatLieu() == null || cl.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (cl.getMaChatLieu().isEmpty() || cl.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (cl.getMaChatLieu().length() < 3 || cl.getMaChatLieu().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
+        }
+
         sql = "update ChatLieu set maChatLieu = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maChatLieu = ?";
         try {
             con = DBConnect.getConnection();
@@ -209,6 +283,28 @@ public class ThuocTinhService {
     }
 
     public int suaHang(Hang h, String ma) {
+        if (h == null || h.getMaHang() == null || h.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (h.getMaHang().isEmpty() || h.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (h.getMaHang().length() < 3 || h.getMaHang().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
+        }
+
         sql = "update Hang set maHang = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maHang = ?";
         try {
             con = DBConnect.getConnection();
@@ -223,14 +319,32 @@ public class ThuocTinhService {
         }
     }
 
-    public int suaKichCo(KichCo cl, String ma) {
+    public int suaKichCo(KichCo kc, String ma) throws IllegalAccessException {
+        if (kc == null || kc.getMaKichCo() == null || kc.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (kc.getMaKichCo().isEmpty() || kc.getTen().isEmpty()) {
+            throw new IllegalAccessException("Không được để trống");
+        }
+
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (kc.getMaKichCo().length() < 3 || kc.getMaKichCo().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
+        }
+
         sql = "update KichCo set maKichCo = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maKichCo = ?";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, cl.getMaKichCo());
-            ps.setString(2, cl.getTen());
-            ps.setInt(3, cl.getTrangThaiXoa());
+            ps.setString(1, kc.getMaKichCo());
+            ps.setString(2, kc.getTen());
+            ps.setInt(3, kc.getTrangThaiXoa());
             ps.setString(4, ma);
             return ps.executeUpdate();
         } catch (Exception e) {
@@ -238,47 +352,36 @@ public class ThuocTinhService {
         }
     }
 
-    public int suaMauSac(MauSac cl, String ma) {
-        if (!ma.equals(cl.getMaMauSac())) {
-            throw new IllegalArgumentException("Mã màu sắc mới không trùng khớp với bất kỳ mã màu sắc nào khác trong cơ sở dữ liệu");
+    public int suaMauSac(MauSac ms, String ma) {
+        if (ms == null || ms.getMaMauSac() == null || ms.getTen() == null) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
-        if (cl.getMaMauSac() == null || cl.getMaMauSac().isEmpty()) {
-            throw new NullPointerException("Mã màu sắc không được để trống");
-        }
-        if (cl.getTen() == null || cl.getTen().isEmpty()) {
-            throw new NullPointerException("Tên màu sắc không được để trống");
-        }
-        if (cl.getNgayTao() == null ||
-                cl.getNgayTao().isEmpty()) {
-            throw new NullPointerException("Ngày tạo không thể để trống");
-        }
-        if (cl.getNgaySuaCuoi() == null ||
-                cl.getNgaySuaCuoi().isEmpty()) {
-            throw new NullPointerException("NGyaf sửa cuối không thể để trống dữ liệu");
-        }
-        if (cl.getTrangThaiXoa() != 0 && cl.getTrangThaiXoa() != 1) {
-            throw new IllegalArgumentException("Trạng thái không chính xác");
-        }
-        String maMauSac = cl.getMaMauSac();
-        if (maMauSac.length() < 3 || maMauSac.length() > 10) {
-            throw new IllegalArgumentException("Mã màu sắc phải có từ 3 đến 10 ký tự");
+        // Kiểm tra xem các trường có giá trị rỗng không
+        if (ms.getMaMauSac().isEmpty() || ms.getTen().isEmpty()) {
+            try {
+                throw new IllegalAccessException("Không được để trống");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
-        String ten = cl.getTen();
-        if (ten.length() < 1 || ten.length() > 20) {
-            throw new IllegalArgumentException("Tên màu sắc phải có từ 1 đến 20 ký tự");
+        // Kiểm tra mã từ 3 đến 10 ký tự
+        if (ms.getMaMauSac().length() < 3 || ms.getMaMauSac().length() > 10) {
+            throw new IndexOutOfBoundsException("sai định dạng");
         }
-        if (cl.getNgayTao().compareTo(cl.getNgaySuaCuoi()) > 0) {
-            throw new IllegalArgumentException("Ngày tạo phải nhỏ hơn hoặc bằng ngày cập nhật");
-        }
+
         sql = "update MauSac set maMauSac = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maMauSac = ?";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, cl.getMaMauSac());
-            ps.setString(2, cl.getTen());
-            ps.setInt(3, cl.getTrangThaiXoa());
+            ps.setString(1, ms.getMaMauSac());
+            ps.setString(2, ms.getTen());
+            ps.setInt(3, ms.getTrangThaiXoa());
             ps.setString(4, ma);
             return ps.executeUpdate();
         } catch (Exception e) {
@@ -286,12 +389,176 @@ public class ThuocTinhService {
         }
     }
 
-    public static void main(String[] args) {
-        List<KichCo> list = new ArrayList<>();
-        ThuocTinhService qld = new ThuocTinhService();
-        list = qld.getAllKichCo();
-        for (KichCo grade : list) {
-            System.out.println(grade.toString());
+    public boolean kiemTraTrungMaChatLieu(String ma) {
+        sql = "select maChatLieu from chatlieu where maChatLieu = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenChatLieu(String ten) {
+        sql = "select ten from chatlieu where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenHang(String ten) {
+        sql = "select ten from hang where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungMaHang(String ma) {
+        sql = "select mahang from hang where mahang = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenKichCo(String ten) {
+        sql = "select ten from KichCo where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungMaKichCo(String ma) {
+        sql = "select maKichCo from kichco where maKichCo = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungTenMauSac(String ten) {
+        sql = "select ten from mauSac where ten = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ten);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean kiemTraTrungMaMauSac(String ma) {
+        sql = "select maMauSac from MauSac where maMauSac = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ma);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+
+
+
+    public int themSanPham(SanPham sp) {
+        if (sp == null) {
+            return 0;
+        }
+
+        sql = "insert into SanPham\n"
+                + "values \n"
+                + "(?,?,?,getDate(),getDate())";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, sp.getMaSP());
+            ps.setString(2, sp.getTen());
+            ps.setInt(3, sp.getTrangThaiXoa());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
         }
     }
+
+    public int suaSanPham(SanPham sp, String ma) {
+        if (sp == null) {
+            return 0;
+        }
+        sql = "update SanPham set maSP = ?,ten = ?, trangThaiXoa = ?,ngaySuaCuoi = GETDATE() where maSP = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, sp.getMaSP());
+            ps.setString(2, sp.getTen());
+            ps.setInt(3, sp.getTrangThaiXoa());
+            ps.setString(4, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+
 }
+
+
