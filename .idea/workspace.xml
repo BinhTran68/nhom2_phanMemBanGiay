@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab9d2ffb-50c0-4748-b654-eae2a0502fc7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/FileExcel/data_20240402_101810.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_111122.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_112007.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_135038.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_135816.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_135841.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_135849.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240401_180020.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240402_101745.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240403_103449.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/HoaDon/hoadon_20240403_180945.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/MyClass/ClockThread.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/dto/LichSuKH.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/Thongke.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/repository/KhachHangRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$18.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$19.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$20.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$21.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapTheHans.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DoiMatKhauMainPanel$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DoiMatKhauMainPanel$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DoiMatKhauMainPanel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DoiMatKhauMainPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$8.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$10.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/QuanLyGia.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/QuanLyGia.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$19.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/ThongKeMainPanel$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/ThongKeMainPanel$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/icon/the hans.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/MyButton$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/MyButton.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/MyPassword.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/MyPasswordField.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/MyTextField.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/MyTextField1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/PanelBorder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/PanelGradiente$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/PanelGradiente$Gradiente.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/build/classes/swing/PanelGradiente.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/README.TXT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/barcode.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/commons-codec-1.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/commons-collections4-4.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/commons-compress-1.18.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/flatlaf-3.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/jcalendar-1.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/mssql-jdbc-12.2.0.jre11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/poi-4.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/poi-ooxml-4.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/poi-ooxml-schemas-4.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/qrgen-1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/xmlbeans-3.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/zxing-core-1.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/dist/lib/zxing-j2se-1.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/icon/the_hans.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/CTSP2QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp10QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp11QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp1QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp3QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp4QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp5QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp6QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp7QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/img/ctsp9QR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/barcode.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/commons-beanutils-1.8.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/commons-collections-3.2.1-1.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/commons-collections4-4.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/commons-digester-2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/commons-logging-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/itextpdf-5.5.13.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/jasperreports-6.5.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/qrgen-1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/zxing-core-1.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/lib/zxing-j2se-1.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/FileExcel/data_20240402_101810.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_111122.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_112007.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_135038.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_135816.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_135841.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_135849.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240401_180020.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240402_101745.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240403_103449.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/HoaDon/hoadon_20240403_180945.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/Test/KhachHangServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/Test/NhanVienServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/Test/ThuocTinhServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/dto/LichSuKH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/model/Thongke.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/repository/KhachHangRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/view/DangNhapTheHans.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/view/DangNhapTheHans.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/view/DoiMatKhauMainPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/view/DoiMatKhauMainPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/view/QuanLyGia.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/app/view/QuanLyGia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/icon/the hans.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/myclass/ClockThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/MyButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/MyPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/MyPasswordField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/MyTextField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/MyTextField1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/PanelBorder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheHans/src/swing/PanelGradiente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/dto/HoaDonChiTietDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/dto/HoaDonChiTietDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/dto/HoaDonDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/dto/HoaDonDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/jesport/JasportOder.jrxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/model/ChiTietSanPham.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/ChiTietSanPham.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/model/HoaDon.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/HoaDon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/model/KhachHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/KhachHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/model/KhuyenMai.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/KhuyenMai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/model/NhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/NhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/model/Voucher.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/model/Voucher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/repository/HoaDonRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/repository/HoaDonRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/ChiTietSanPhamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/ChiTietSanPhamService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/HoaDonChiTietService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/HoaDonChiTietService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/HoaDonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/HoaDonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/KhachHangService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/KhachHangService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/NhanVienService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/NhanVienService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/SanPhamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/SanPhamService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/ThongKeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/ThongKeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/ThuocTinhService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/ThuocTinhService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/service/VoucherService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/service/VoucherService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/BanHangMainPanelfix.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/DangNhapFame.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/HoaDonMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhachHangMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhuyenMaiMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/KhuyenMaiMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/LoginFrame.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/MainApplicationView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/NhanVienMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/SanPhamMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/ThongKeMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/ThongKeMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/app/view/ThongKeMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/app/view/ThongKeMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/cargo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/description.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/discount.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/dustbin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/exchange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/hand.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/icons8-calendar-20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/icons8-customer-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/icons8-plus-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/icons8-subtraction-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/logo_Shop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/logo_Shop_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/online-store.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/poster-giay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/product.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/staff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/main/conent/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/test/MauSacTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/test/MauSacTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/build/classes/test/MauSacTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/build/classes/test/MauSacTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/data_20240325_110507.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/dist/TheHans.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/dist/TheHans.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/config/testNG.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/config/testNG.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/dto/HoaDonDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/dto/HoaDonDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/jesport/JasportOder.jrxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/model/ChiTietSanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/model/ChiTietSanPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/model/KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/model/KhachHang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/model/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/model/NhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/repository/HoaDonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/repository/HoaDonRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/ChiTietSanPhamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/ChiTietSanPhamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/HoaDonChiTietService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/HoaDonChiTietService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/HoaDonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/HoaDonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/KhachHangService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/KhachHangService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/NhanVienService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/NhanVienService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/SanPhamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/SanPhamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/ThongKeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/ThongKeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/ThuocTinhService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/ThuocTinhService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/service/VoucherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/service/VoucherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/BanHangMainPanelfix.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/BanHangMainPanelfix.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/BanHangMainPanelfix.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/BanHangMainPanelfix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/DangNhapFame.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/DangNhapFame.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/DangNhapFame.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/DangNhapFame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/HoaDonMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/HoaDonMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/HoaDonMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/HoaDonMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/KhachHangMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/KhachHangMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/KhachHangMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/KhachHangMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/KhuyenMaiMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/KhuyenMaiMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/LoginFrame.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/LoginFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/MainApplicationView.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/MainApplicationView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/MainApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/MainApplicationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/NhanVienMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/NhanVienMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/NhanVienMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/NhanVienMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/SanPhamMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/SanPhamMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/SanPhamMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/SanPhamMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/ThongKeMainPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/ThongKeMainPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/app/view/ThongKeMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/app/view/ThongKeMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/cargo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/description.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/discount.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/dustbin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/exchange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/hand.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/icons8-calendar-20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/icons8-customer-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/icons8-plus-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/icons8-subtraction-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/logo_Shop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/logo_Shop_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/online-store.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/poster-giay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/product.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/staff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/main/conent/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/test/MauSacTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheHans/src/test/SanPhamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TheHans/src/test/SanPhamTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/git log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nhom2_phanMemBanGiay.iml" beforeDir="false" afterPath="$PROJECT_DIR$/nhom2_phanMemBanGiay.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/config/testNG.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/config/testNG.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/dto/HoaDonDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/dto/HoaDonDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/jesport/JasportOder.jrxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/model/ChiTietSanPham.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/model/ChiTietSanPham.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/model/KhachHang.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/model/KhachHang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/model/NhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/model/NhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/repository/HoaDonRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/repository/HoaDonRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/ChiTietSanPhamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/ChiTietSanPhamService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/HoaDonChiTietService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/HoaDonChiTietService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/HoaDonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/HoaDonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/KhachHangService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/KhachHangService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/NhanVienService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/NhanVienService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/SanPhamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/SanPhamService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/ThongKeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/ThongKeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/ThuocTinhService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/ThuocTinhService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/VoucherService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/service/VoucherService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/BanHangMainPanelfix.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/DangNhapFame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/HoaDonMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhachHangMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhachHangMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhachHangMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhachHangMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhachHangMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhachHangMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhuyenMaiMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/KhuyenMaiMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/LoginFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/LoginFrame$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/LoginFrame$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/LoginFrame$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/LoginFrame$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/LoginFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/MainApplicationView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/NhanVienMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/NhanVienMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/NhanVienMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/NhanVienMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/SanPhamMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/ThongKeMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/app/view/ThongKeMainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/cargo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/description.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/discount.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/dustbin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/exchange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/hand.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/icons8-calendar-20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/icons8-customer-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/icons8-plus-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/icons8-subtraction-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/logo_Shop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/logo_Shop_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/online-store.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/poster-giay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/product.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/staff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/main/conent/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/test/MauSacTest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/test/MauSacTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/test/SanPhamTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nhom2_phanMemBanGiay/test/SanPhamTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-output/emailable-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-output/emailable-report.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2eEc8Gh8Sq9zLhWJI9xTJbATRMn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Zalo Received Files/itextpdf-5.5.9.jar" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected="TestNG.ThuocTinhServiceTest">
+    <configuration name="KhachHangServiceTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="nhom2_phanMemBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.KhachHangServiceTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KhachHangServiceTest.testAddKhachHang" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="nhom2_phanMemBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.KhachHangServiceTest" />
+      <option name="METHOD_NAME" value="testAddKhachHang" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KhachHangServiceTest.testUpdateKH" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="nhom2_phanMemBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.KhachHangServiceTest" />
+      <option name="METHOD_NAME" value="testUpdateKH" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NhanVienServiceTest.testInsertNVWithNullValues" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="nhom2_phanMemBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.NhanVienServiceTest" />
+      <option name="METHOD_NAME" value="testInsertNVWithNullValues" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ThuocTinhServiceTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="nhom2_phanMemBanGiay" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ThuocTinhServiceTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="TestNG" nameIsGenerated="true">
+      <module name="nhom2_phanMemBanGiay" />
+      <useClassPathOnly />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/TheHans/src/app/config/testNG.xml" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="PARAMETERS" value="" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="PROPERTIES_FILE" value="" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="TestNG.Unnamed" />
+      <item itemvalue="TestNG.KhachHangServiceTest.testUpdateKH" />
+      <item itemvalue="TestNG.KhachHangServiceTest.testAddKhachHang" />
+      <item itemvalue="TestNG.NhanVienServiceTest.testInsertNVWithNullValues" />
+      <item itemvalue="TestNG.KhachHangServiceTest" />
+      <item itemvalue="TestNG.ThuocTinhServiceTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.ThuocTinhServiceTest" />
+        <item itemvalue="TestNG.KhachHangServiceTest" />
+        <item itemvalue="TestNG.KhachHangServiceTest.testUpdateKH" />
+        <item itemvalue="TestNG.KhachHangServiceTest.testAddKhachHang" />
+        <item itemvalue="TestNG.NhanVienServiceTest.testInsertNVWithNullValues" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab9d2ffb-50c0-4748-b654-eae2a0502fc7" name="Default Changelist" comment="" />
+      <created>1711473019103</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711473019103</updated>
+      <workItem from="1711473021423" duration="577000" />
+      <workItem from="1711689808243" duration="1439000" />
+      <workItem from="1711970719219" duration="5377000" />
+      <workItem from="1711983153973" duration="2994000" />
+      <workItem from="1712070955461" duration="7983000" />
+      <workItem from="1712238486946" duration="410000" />
+      <workItem from="1712478133205" duration="2504000" />
+      <workItem from="1712500219344" duration="1186000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
