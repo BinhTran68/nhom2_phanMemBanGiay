@@ -645,8 +645,8 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     private void nhanVienLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabel1MouseClicked
         // TODO add your handling code here:
-        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("ADMIN")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Admin mới có quyền truy cập");
+        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Quản Lý")) {
+            JOptionPane.showMessageDialog(this, "Chỉ Quản Lý mới có quyền truy cập");
             return;
         }
 
