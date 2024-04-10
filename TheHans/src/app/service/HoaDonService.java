@@ -339,6 +339,7 @@ public class HoaDonService {
     public void inHoaDonRaPDF(String maHoaDon) {
         List<HoaDonChiTietDTO> hoaDonChiTietDTOs = hoaDonChiTietService.getHoaDonChiTietDTOByMaHoaDon(maHoaDon);
         HoaDonDTO hoaDon = hoaDonRepository.findHoaDonByMaHoaDon(maHoaDon);
+        System.out.println(hoaDon.toString());
         Document document = new Document();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timestamp = dateFormat.format(new Date());

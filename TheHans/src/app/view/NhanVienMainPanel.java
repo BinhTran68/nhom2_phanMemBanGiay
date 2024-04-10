@@ -62,7 +62,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
     private void showData(int index) {
         txtmaNV.setText(tblNhanVien.getValueAt(index, 1).toString());
         txtTenNV.setText(tblNhanVien.getValueAt(index, 2).toString());
-        cboChucVu.setSelectedItem(nvs.getAll().get(index).getVaiTro());
+        cboChucVu.setSelectedItem(tblNhanVien.getValueAt(index, 3).toString());
         try {
             Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(tblNhanVien.getValueAt(index, 4).toString());
             dataNgaySinh.setDate(date1);

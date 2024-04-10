@@ -199,9 +199,9 @@ public class KhachHangService {
                         resultSet.getString(3), 
                         resultSet.getDate(4), 
                         resultSet.getInt(5) , 
+                        resultSet.getString(8), 
                         resultSet.getString(6), 
-                        resultSet.getString(7), 
-                        resultSet.getString(8));
+                        resultSet.getString(7));
                 
             }
       

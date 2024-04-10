@@ -108,9 +108,10 @@ public class HoaDonRepository {
                     + "  FROM [dbo].[HoaDon] "
                     + " left join NhanVien on HoaDon.id_NhanVien = NhanVien.id "
                     + " left join KhachHang on KhachHang.id = HoaDon.id_KhachHang "
-                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher";
+                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher where maHoaDon = ?";
 
             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, maHoaDon);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 hoaDon = new HoaDonDTO(

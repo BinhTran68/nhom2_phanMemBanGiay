@@ -82,12 +82,12 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         labelShowName.setText("Tên :" + nhanVien.getHoTen());
         labelShowOffice.setText("Chức vụ : " + nhanVien.getVaiTro());
 
-        if (nhanVien.getVaiTro().equalsIgnoreCase("nhân viên")) {
+        if (nhanVien.getVaiTro().equalsIgnoreCase("Nhân viên")) {
             panelControl.remove(nhanVienPanel);
             revalidate();
             repaint();
             showPanel(banHangMainPanel);
-        } else if (nhanVien.getVaiTro().equalsIgnoreCase("admin")) {
+        } else if (nhanVien.getVaiTro().equalsIgnoreCase("Quản Lý")) {
             showPanel(thongKeMainPanel);
         }
     }

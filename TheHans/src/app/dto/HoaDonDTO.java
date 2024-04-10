@@ -316,6 +316,11 @@ public class HoaDonDTO {
     public void setIdVoucher(Integer idVoucher) {
         this.idVoucher = idVoucher;
     }
+
+    @Override
+    public String toString() {
+        return "HoaDonDTO{" + "hoaDonId=" + hoaDonId + ", id_KhachHang=" + id_KhachHang + ", id_NhanVien=" + id_NhanVien + ", maHoaDon=" + maHoaDon + ", tenNguoiNhan=" + tenNguoiNhan + ", diaChi=" + diaChi + ", tienKhachTra=" + tienKhachTra + ", tienThuaLai=" + tienThuaLai + ", thanhTien=" + thanhTien + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + ", ghiChu=" + ghiChu + ", tenNhanVien=" + tenNhanVien + ", tenKhachHang=" + tenKhachHang + ", sdtKhachHang=" + sdtKhachHang + ", hinhThucThanhToan=" + hinhThucThanhToan + ", trangThaiThanhToan=" + trangThaiThanhToan + ", maVoucher=" + maVoucher + ", tienSauGiamGia=" + tienSauGiamGia + ", idVoucher=" + idVoucher + '}';
+    }
     
     
     
