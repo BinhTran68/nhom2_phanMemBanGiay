@@ -71,7 +71,7 @@ public class NhanVien {
 
     public NhanVien() {
     }
-
+ 
     public NhanVien(int id, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, String email, String matKhau, String vaiTro, boolean trangThaiXoa, Date ngayTao, Date ngaySuaCuoi) {
         this.id = id;
         this.hoTen = hoTen;

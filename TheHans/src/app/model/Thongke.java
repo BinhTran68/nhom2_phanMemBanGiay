@@ -88,13 +88,15 @@ public class Thongke {
     public void setMaChiTietSanPham(String maChiTietSanPham) {
         this.maChiTietSanPham = maChiTietSanPham;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Thongke{" + "thang=" + thang + ", ten=" + ten + ", soLuong=" + soLuong + ", tongTien=" + tongTien + '}';
+        return "Thongke{" + "thang=" + thang + ", ten=" + ten + ", soLuong=" + soLuong + ", tongTien=" + tongTien + ", maChiTietSanPham=" + maChiTietSanPham + ", thangString=" + thangString + '}';
     }
+    
+    
+
+
     public Object[] toDataRow() {
         return new Object[]{this.getThang(), this.getTen(), this.getSoLuong(), 
             this.getTongTien()};

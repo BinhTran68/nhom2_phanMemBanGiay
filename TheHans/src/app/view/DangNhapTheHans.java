@@ -96,11 +96,8 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jLabel2);
         jLabel2.setBounds(30, 20, 250, 60);
 
-        btnDangNhap.setBackground(new java.awt.Color(51, 102, 0));
         btnDangNhap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
-        btnDangNhap.setColor(new java.awt.Color(51, 102, 0));
         btnDangNhap.setColorOver(new java.awt.Color(0, 204, 0));
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,11 +169,8 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jPanel1);
         jPanel1.setBounds(0, 100, 310, 150);
 
-        btnThoat.setBackground(new java.awt.Color(51, 102, 0));
         btnThoat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
         btnThoat.setText("Thoát");
-        btnThoat.setColor(new java.awt.Color(51, 102, 0));
         btnThoat.setColorOver(new java.awt.Color(0, 204, 0));
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
