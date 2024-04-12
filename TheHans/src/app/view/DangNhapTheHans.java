@@ -9,10 +9,24 @@ import app.service.NhanVienService;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.mindrot.jbcrypt.BCrypt;
+import utils.Constant;
 
 /**
  *
@@ -83,6 +97,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         txtEmail = new swing.MyTextField1();
         cbShowPass = new javax.swing.JCheckBox();
         btnThoat = new swing.MyButton();
+        btnQuenMatKhau = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,11 +116,8 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jLabel2);
         jLabel2.setBounds(30, 20, 250, 60);
 
-        btnDangNhap.setBackground(new java.awt.Color(51, 102, 0));
         btnDangNhap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng Nhập");
-        btnDangNhap.setColor(new java.awt.Color(51, 102, 0));
         btnDangNhap.setColorOver(new java.awt.Color(0, 204, 0));
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,11 +189,8 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         panelBorder1.add(jPanel1);
         jPanel1.setBounds(0, 100, 310, 150);
 
-        btnThoat.setBackground(new java.awt.Color(51, 102, 0));
         btnThoat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
         btnThoat.setText("Thoát");
-        btnThoat.setColor(new java.awt.Color(51, 102, 0));
         btnThoat.setColorOver(new java.awt.Color(0, 204, 0));
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +199,16 @@ public class DangNhapTheHans extends javax.swing.JFrame {
         });
         panelBorder1.add(btnThoat);
         btnThoat.setBounds(180, 270, 110, 40);
+
+        btnQuenMatKhau.setForeground(new java.awt.Color(51, 51, 51));
+        btnQuenMatKhau.setText("Quên mật khẩu ?");
+        btnQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnQuenMatKhauMouseClicked(evt);
+            }
+        });
+        panelBorder1.add(btnQuenMatKhau);
+        btnQuenMatKhau.setBounds(180, 340, 100, 16);
 
         panelGradiente1.add(panelBorder1);
         panelBorder1.setBounds(350, 40, 310, 380);
@@ -250,6 +269,97 @@ public class DangNhapTheHans extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnThoatActionPerformed
 
+    private void btnQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuenMatKhauMouseClicked
+        String sdt = JOptionPane.showInputDialog("Nhập số điện thoại nhân viên");
+        if (sdt == null || sdt.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không được để trống");
+            return;
+
+        }
+        NhanVien nhanVien = nhanVienService.timTheoSdt(sdt);
+        if (nhanVien == null) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại nhân viên không có trong hệ thống");
+            return;
+        }
+        // set mật khẩu mới.
+        String matKhauMoi = "matKhauMoiNhanVien";
+        String matKhauHash = BCrypt.hashpw(matKhauMoi, BCrypt.gensalt(Constant.saltRoundPassword));
+        int kq = nhanVienService.doiMatKhauNhanVien(nhanVien.getMaNV(), matKhauHash);
+        if (kq > 0) {
+            try {
+                sendMailDangNhap(matKhauMoi, nhanVien.getEmail());
+            } catch (MessagingException ex) {
+                Logger.getLogger(DangNhapTheHans.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Mật khẩu đã được thay đổi. Mật khẩu mới đã được gửi về mail của bạn");
+        } else {
+            JOptionPane.showMessageDialog(this, "Thay đổi mật khẩu không thành công.");
+
+        }
+        // gửi email mật khẩu mới về 
+
+
+    }//GEN-LAST:event_btnQuenMatKhauMouseClicked
+
+    public void sendMailDangNhap(String mk, String email) throws MessagingException {
+
+        String host = "smtp.gmail.com";
+        String port = "587";
+        String username = "congldph46544@fpt.edu.vn";
+        String password = "s p a i g v r y g p z b d g q n";
+
+        // Thông tin người gửi và người nhận
+        String fromEmail = "congldph46544@fpt.edu.vn";
+        String toEmail = email;
+        System.out.println(email);
+
+        // Cấu hình properties
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", port);
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        // Xác thực tài khoản email
+        Authenticator authenticator = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        };
+
+        // Tạo session
+        Session session = Session.getInstance(properties, authenticator);
+
+        try {
+            // Tạo đối tượng MimeMessage
+            MimeMessage message = new MimeMessage(session);
+
+            // Thiết lập thông tin người gửi và người nhận
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+
+            // Thiết lập tiêu đề email
+            message.setSubject("Mật khẩu Nhân Viên mới TheHans ");
+
+            // Thiết lập nội dung email
+            String body = "Đổi mật khẩu";
+            message.setText(body);
+            String Htmlcode = "<h3>Mật Khẩu mới của bạn là : " + mk + "</h3>";
+
+
+            message.setContent(Htmlcode, "text/html;charset=UTF-8");
+            JOptionPane.showMessageDialog(this, "Đã gửi!");
+
+            // Gửi email
+            Transport.send(message);
+
+            System.out.println("Email sent successfully!");
+        } catch (MessagingException e) {
+        }
+
+        //body mail
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -290,6 +400,7 @@ public class DangNhapTheHans extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.MyButton btnDangNhap;
+    private javax.swing.JLabel btnQuenMatKhau;
     private swing.MyButton btnThoat;
     private javax.swing.JCheckBox cbShowPass;
     private javax.swing.JLabel jLabel1;

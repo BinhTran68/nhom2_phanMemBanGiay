@@ -243,7 +243,7 @@ public class NhanVienService {
     public NhanVien timTheoSdt(String sdt) {
         try {
             connection = DBConnect.getConnection();
-            sql = "select id, maNV,hoTen, vaiTro, ngaySinh, gioiTinh, SDT, email, diaChi,matKhau, trangThaiXoa from NhanVien where SDT =  ? ";
+            sql = "select id, maNV,hoTen,ngaySinh,gioiTinh,diaChi ,SDT ,email ,vaiTro,matKhau, trangThaiXoa from NhanVien where SDT =  ? ";
             preparedStatement = connection.prepareCall(sql);
             preparedStatement.setString(1, sdt);
             resultSet = preparedStatement.executeQuery();
@@ -253,12 +253,12 @@ public class NhanVienService {
                         resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
-                        resultSet.getDate(5),
-                        resultSet.getInt(6),
+                        resultSet.getDate(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getString(8),
                         resultSet.getString(9),
-                        resultSet.getString(4),
                         resultSet.getString(10),
                         resultSet.getBoolean(11)
                 );

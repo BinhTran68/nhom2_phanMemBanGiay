@@ -50,7 +50,7 @@ public class KhachHangService {
     
     public List<LichSuKH> getLichSu(){
         listLS = new ArrayList<>();
-        sql = "select kh.id, kh.hoTen, hd.maHoaDon, kh.diaChi,hd.ngayTao, hd.thanhTien, hd.trangThaiThanhToan\n" +
+        sql = "select kh.id, kh.hoTen, hd.maHoaDon, kh.diaChi,hd.ngayTao, hd.tienSauGiamGia, hd.trangThaiThanhToan\n" +
                 "from KhachHang kh join HoaDon hd\n" +
                 "on kh.id = hd.id_KhachHang ";
         try {
@@ -72,6 +72,47 @@ public class KhachHangService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+        public List<LichSuKH> getLichSuByTen(String ten){
+        listLS = new ArrayList<>();
+        sql = "select kh.id, kh.hoTen, hd.maHoaDon, kh.diaChi,hd.ngayTao, hd.tienSauGiamGia, hd.trangThaiThanhToan\n" +
+                "from KhachHang kh join HoaDon hd\n" +
+                "on kh.id = hd.id_KhachHang where kh.hoTen like ? ";
+        try {
+            connection = DBConnect.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, "%"+ten+"%");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {                
+                LichSuKH ls = new LichSuKH(
+                        resultSet.getInt(1), 
+                        resultSet.getString(2), 
+                        resultSet.getString(3), 
+                        resultSet.getString(4), 
+                        resultSet.getDate(5), 
+                        resultSet.getLong(6), 
+                        resultSet.getInt(7));
+                listLS.add(ls);
+            }
+            return listLS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
     
@@ -104,14 +145,22 @@ public class KhachHangService {
             preparedStatement.setObject(1, kh.getHoTen());
             preparedStatement.setObject(2, kh.getNgaySinh());
             preparedStatement.setObject(3, kh.getGioiTinh());
-            preparedStatement.setObject(4, kh.getEmail());
-            preparedStatement.setObject(5, kh.getSdt());
+            preparedStatement.setObject(4, kh.getSdt());
+            preparedStatement.setObject(5, kh.getEmail());
             preparedStatement.setObject(6, kh.getDiaChi());
             preparedStatement.setObject(7, kh.getMaKH());
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0; 
+        }
+        finally {
+            try {
+               connection.close();
+               preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
           
     }
@@ -140,6 +189,15 @@ public class KhachHangService {
             e.printStackTrace();
             return null;
         }
+          finally {
+            try {
+               connection.close();
+               preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+          
     }
     
     public List<LichSuKH> timTheoTenLS(String ten){
@@ -169,6 +227,15 @@ public class KhachHangService {
             e.printStackTrace();
             return null;
         }
+          finally {
+            try {
+               connection.close();
+               preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+          
     }
     public int deleteKH(String ma) {
         sql = "delete from KhachHang where maKH like ?";
@@ -180,6 +247,15 @@ public class KhachHangService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+          finally {
+            try {
+               connection.close();
+               preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+          
         return 0;
     }
     
@@ -209,6 +285,15 @@ public class KhachHangService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+          finally {
+            try {
+               connection.close();
+               preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+          
         return  khachHang;
     }
      
@@ -237,6 +322,15 @@ public class KhachHangService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+          finally {
+            try {
+               connection.close();
+               preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+          
         return  khachHang;
     }
 

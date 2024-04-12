@@ -291,5 +291,74 @@ public class HoaDonRepository {
         }
 
     }
+    
+     public List<HoaDonDTO> findHoaDonByTenKhachHang(String tenKhachHang) {
+        List<HoaDonDTO> hoaDons = null;
+        try {
+
+            connection = DBConnect.getConnection();
+             sql = "SELECT [HoaDon].id\n"
+                    + "      ,id_KhachHang\n"
+                    + "      ,id_NhanVien\n"
+                    + "      ,maHoaDon\n"
+                    + "      ,tenNguoiNhan\n"
+                    + "      ,[HoaDon].diaChi\n"
+                    + "      ,tienKhachTra\n"
+                    + "      ,tienThuaLai\n"
+                    + "      ,thanhTien\n"
+                    + "      ,[HoaDon].trangThaiXoa\n"
+                    + "      ,[HoaDon].ngayTao\n"
+                    + "      ,[HoaDon].ngaySuaCuoi\n"
+                    + "      ,ghiChu,\n"
+                    + "	  NhanVien.hoTen,\n"
+                    + "	  KhachHang.hoTen,\n"
+                    + "	  KhachHang.SDT, hinhThucThanhToan, trangThaiThanhToan,Voucher.maVoucher, tienSauGiamGia  \n"
+                    + "  FROM [dbo].[HoaDon] "
+                    + " left join NhanVien on HoaDon.id_NhanVien = NhanVien.id "
+                    + " left join KhachHang on KhachHang.id = HoaDon.id_KhachHang "
+                    + " LEFT JOIN Voucher on Voucher.id = HoaDon.maVoucher where KhachHang.hoTen like %?%";
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, tenKhachHang);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+              HoaDonDTO  hoaDon = new HoaDonDTO(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getDouble(7),
+                        resultSet.getDouble(8),
+                        resultSet.getDouble(9),
+                        resultSet.getBoolean(10),
+                        resultSet.getDate(11),
+                        resultSet.getDate(12),
+                        resultSet.getString(13),
+                        resultSet.getString(14),
+                        resultSet.getString(15),
+                        resultSet.getString(16),
+                        resultSet.getString(17),
+                        resultSet.getInt(18),
+                        resultSet.getString(19),
+                        resultSet.getDouble(20)
+                );
+              hoaDons.add(hoaDon);
+            }
+
+            return hoaDons;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return hoaDons;
+    }
 
 }
