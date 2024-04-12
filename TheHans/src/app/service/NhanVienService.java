@@ -69,14 +69,15 @@ public class NhanVienService {
                         resultSet.getDate(12),resultSet.getString(13));
                         
             }
-            if (nhanVien == null) {
-                return null;
-            }
-            if (BCrypt.checkpw(matKhau, nhanVien.getMatKhau())) {
-                return nhanVien;
-            } else {
-                return null;
-            }
+            return nhanVien;
+//            if (nhanVien == null) {
+//                return null;
+//            }
+//            if (BCrypt.checkpw(matKhau, nhanVien.getMatKhau())) {
+//                return nhanVien;
+//            } else {
+//                return null;
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
