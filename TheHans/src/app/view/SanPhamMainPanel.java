@@ -2028,6 +2028,10 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
+           if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ0-9 ._-]{1,29}$", txtTimKiemSP.getText())) {
+            JOptionPane.showMessageDialog(this, "ô tìm kiếm là chữ hoặc mã ít hơn 30 kí tự");
+            return;
+        }
         if (cboTimKiemSP.getSelectedItem().equals("MaSP")) {
             fillToTableSanPham(sps.timKiemSanPhamTheoMa(txtTimKiemSP.getText()));
         } else if (cboTimKiemSP.getSelectedItem().equals("Ten")) {
@@ -2131,6 +2135,10 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void myButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton3ActionPerformed
         // TODO add your handling code here:
+        if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,19}$", txtTimTheoMa.getText())) {
+            JOptionPane.showMessageDialog(this, "mã CTSP là chữ ko dấu ít hơn 20 kí tự");
+            return;
+        }
         tblCTSP.clearSelection();
         moiCTSP();
         fillToTableCTSP(ctspsv.timTheoMa(txtTimTheoMa.getText()));
