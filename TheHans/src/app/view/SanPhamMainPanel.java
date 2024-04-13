@@ -1062,6 +1062,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         jLabel18.setText("Trạng Thái");
 
         trangThaiSP.add(rdoDangBan);
+        rdoDangBan.setSelected(true);
         rdoDangBan.setText("Đang bán");
 
         trangThaiSP.add(rdoNgungBan);
@@ -1324,6 +1325,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         jLabel13.setText("Trạng Thái");
 
         buttonGroup1.add(rdoConBan);
+        rdoConBan.setSelected(true);
         rdoConBan.setText("Còn bán");
         rdoConBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1771,6 +1773,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         });
 
         buttonGroup2.add(rdoConHang);
+        rdoConHang.setSelected(true);
         rdoConHang.setText("Còn ");
 
         jLabel17.setText("Trạng Thái");
