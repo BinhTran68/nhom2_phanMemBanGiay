@@ -215,7 +215,15 @@ public class HoaDonRepository {
             }
         } catch (Exception e) {
             e.printStackTrace(); // In ra thông báo lỗi để xem nguyên nhân cụ thể
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        
         return list; // Trả về danh sách, có thể rỗng nếu có lỗi xảy ra
 
     }

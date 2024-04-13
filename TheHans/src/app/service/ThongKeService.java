@@ -14,8 +14,9 @@ public class ThongKeService {
     private PreparedStatement ps = null;
     private ResultSet rs = null;
     private String sql = null;
-
+    
     public List<Thongke> getAll() {
+      
         listTK = new ArrayList<>();
 
         sql = """
@@ -39,10 +40,10 @@ public class ThongKeService {
                 listTK.add(tk);
             }
             return listTK;
-
         } catch (SQLException e) {
             return null;
         }
+      
     }
 
     public List<Thongke> timTheoMa(String maCTSP) {
@@ -121,6 +122,7 @@ public class ThongKeService {
         }
         return 0;
     }
+ 
 
     public List<Thongke> KhoangDate(java.util.Date start, java.util.Date end) {
         listTK = new ArrayList<>();
@@ -154,7 +156,7 @@ public class ThongKeService {
 
     public List<String> getThang() {
         List<String> listThang = new ArrayList();
-        sql = "select distinct month(ngayTao) from HoaDon";
+        sql = "select distinct month(ngayTao) AS ngay from HoaDon order by ngay desc ";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
