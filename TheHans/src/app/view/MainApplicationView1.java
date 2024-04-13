@@ -35,7 +35,9 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 //    private BanHangMainPane banHangMainPanel;  // Hậu Lỗi 
     private BanHangMainPanelfix banHangMainPanel; // Hậu
 
-    private HoaDonMainPanel hoaDonMainPanel; // Bình
+//    private HoaDonMainPanel hoaDonMainPanel; // Bình
+    
+    private HoaDonMainPanel1 hoaDonMainPanel; // Bình
 
     private KhachHangMainPanel khachHangMainPanel; // Hà
 
@@ -61,7 +63,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         }
 
 //        banHangMainPanel = new BanHangMainPane();
-        hoaDonMainPanel = new HoaDonMainPanel();
+        hoaDonMainPanel = new HoaDonMainPanel1();
 
         khachHangMainPanel = new KhachHangMainPanel();
 
@@ -80,12 +82,12 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         labelShowName.setText("Tên :" + nhanVien.getHoTen());
         labelShowOffice.setText("Chức vụ : " + nhanVien.getVaiTro());
 
-        if (nhanVien.getVaiTro().equalsIgnoreCase("nhân viên")) {
+        if (nhanVien.getVaiTro().equalsIgnoreCase("Nhân viên")) {
             panelControl.remove(nhanVienPanel);
             revalidate();
             repaint();
             showPanel(banHangMainPanel);
-        } else if (nhanVien.getVaiTro().equalsIgnoreCase("admin")) {
+        } else if (nhanVien.getVaiTro().equalsIgnoreCase("Quản Lý")) {
             showPanel(thongKeMainPanel);
         }
     }
@@ -653,8 +655,8 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     private void nhanVienLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabel1MouseClicked
         // TODO add your handling code here:
-        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("ADMIN")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Admin mới có quyền truy cập");
+        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Quản Lý")) {
+            JOptionPane.showMessageDialog(this, "Chỉ Quản Lý mới có quyền truy cập");
             return;
         }
 

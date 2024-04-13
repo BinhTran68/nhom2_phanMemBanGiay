@@ -250,7 +250,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
 
         // Thông tin người gửi và người nhận
         String fromEmail = "congldph46544@fpt.edu.vn";
-        String toEmail = "duycongyb192@gmail.com";
+        String toEmail = "binhtd2268@gmail.com";
 
         // Cấu hình properties
         Properties properties = new Properties();
