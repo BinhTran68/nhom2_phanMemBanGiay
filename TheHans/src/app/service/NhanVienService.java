@@ -66,8 +66,8 @@ public class NhanVienService {
                         resultSet.getString(9),
                         resultSet.getBoolean(10),
                         resultSet.getDate(11),
-                        resultSet.getDate(12),resultSet.getString(13));
-                        
+                        resultSet.getDate(12), resultSet.getString(13));
+
             }
             if (nhanVien == null) {
                 return null;
@@ -155,7 +155,15 @@ public class NhanVienService {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
         return 0;
     }
 
@@ -174,15 +182,21 @@ public class NhanVienService {
             preparedStatement.setObject(7, nv.getDiaChi());
             preparedStatement.setObject(8, nv.isTrangThaiXoa());
 
-            
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-    
-     public int doiMatKhauNhanVien(String ma, String matKhauMoi) {
+
+    public int doiMatKhauNhanVien(String ma, String matKhauMoi) {
         sql = "update NhanVien set matKhau = ? where maNV = ?";
         try {
             connection = DBConnect.getConnection();
@@ -193,6 +207,13 @@ public class NhanVienService {
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -224,6 +245,13 @@ public class NhanVienService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -236,6 +264,13 @@ public class NhanVienService {
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return 0;
     }
@@ -267,6 +302,13 @@ public class NhanVienService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -297,6 +339,13 @@ public class NhanVienService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -327,6 +376,13 @@ public class NhanVienService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

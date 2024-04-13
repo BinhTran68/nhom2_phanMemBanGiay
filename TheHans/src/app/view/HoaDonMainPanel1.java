@@ -68,7 +68,7 @@ public class HoaDonMainPanel1 extends javax.swing.JPanel {
             defaultTableModelHoaDon.addRow(new Object[]{
                 hoaDon.getHoaDonId(),
                 hoaDon.getMaHoaDon(),
-                hoaDon.getId_NhanVien(),
+                hoaDon.getTenNhanVien(),
                 hoaDon.getTenKhachHang(),
                 hoaDon.getSdtKhachHang(),
                 hoaDon.getNgayTao(),

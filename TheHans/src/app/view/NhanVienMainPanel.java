@@ -28,7 +28,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
     private DefaultTableModel model = new DefaultTableModel();
     private DefaultTableModel modelNhanVien = new DefaultTableModel();
     private HoaDonService hoaDonService = new HoaDonService();
-    
+
     private int index = -1;
 
     public NhanVienMainPanel() {
@@ -38,7 +38,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
         cboChucVu.addItem("Nhân viên");
         cboTrangThai.addItem("Đang làm việc");
         cboTrangThai.addItem("Đã nghỉ việc");
-        
+
         this.fillTable(nvs.getAll());
         this.fillTableHoaDonNhanVien(hoaDonService.findAllHoaDon());
     }
@@ -65,7 +65,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             });
         }
     }
-    
+
     private void fillTableHoaDonNhanVien(List<HoaDonDTO> hoaDonDTOs) {
         for (HoaDonDTO hoaDonDTO : hoaDonDTOs) {
             modelNhanVien.addRow(new Object[]{
@@ -694,7 +694,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Số điện thoại Nhân Viên không hợp lệ");
             return null;
         }
-       
+
         if (!Constant.isValidEmail(email)) {
             JOptionPane.showMessageDialog(this, "Email Nhân Viên không hợp lệ");
             return null;
@@ -713,13 +713,13 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             return null;
         }
         boolean trangThaiBoolean = false;
-        System.out.println("\n"+trangThai);
+        System.out.println("\n" + trangThai);
         if (trangThai.equalsIgnoreCase("Đang làm việc")) {
             trangThaiBoolean = true;
         } else {
             trangThaiBoolean = false;
         }
-        System.out.println("\n"+trangThaiBoolean);
+        System.out.println("\n" + trangThaiBoolean);
         return new NhanVien(maNV, hoTen, ngaySinh, gioiTinh, diaChi, sdt, email, vaiTro, matKhau, trangThaiBoolean);
 
     }
@@ -778,13 +778,13 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
                 return;
             }
             String ma = tblNhanVien.getValueAt(index, 1).toString();
-            
+
             NhanVien nv = readForm();
-           
+
             if (nv == null) {
                 return;
             }
-            
+
             if (nv.getMatKhau() != null && !nv.getMatKhau().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Không thể cập nhật mật khẩu cho Nhân Viên ở trường mật khẩu. Vui đổi mật khẩu ở Form đổi mật khẩu");
                 return;
@@ -794,17 +794,14 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
 //                JOptionPane.showMessageDialog(this, "Mã Nhân Viên đã tồn tại");
 //                return;
 //            }
-
 //            if (nvs.timTheoSdt(nv.getSdt()) != null) {
 //                JOptionPane.showMessageDialog(this, "Số điện thoại Nhân Viên đã tồn tại");
 //                return;
 //            }
-
 //            if (nvs.timTheoEmail(nv.getEmail()) != null) {
 //                JOptionPane.showMessageDialog(this, "Email Nhân Viên đã tồn tại");
 //                return;
 //            }
-
             if (nvs.updateNhanVien(ma, nv) > 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công ");
                 this.fillTable(nvs.getAll());
@@ -844,7 +841,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng sửa");
             return;
         }
-        
+
         String ma = tblNhanVien.getValueAt(index, 1).toString();
 
         String matKhauMoi = txtMatKhauMoi.getText();
@@ -868,35 +865,41 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             return;
         }
         String matKhauHash = BCrypt.hashpw(matKhaMoiNhapLai, BCrypt.gensalt(Constant.saltRoundPassword));
-        
+
         int kq = nvs.doiMatKhauNhanVien(ma, matKhauHash);
         if (kq > 0) {
-            JOptionPane.showMessageDialog(this, "Đổi mật khẩu cho "+ma+ " thành công");
-        }else {
-             JOptionPane.showMessageDialog(this, "Đổi mật khẩu thất bại");
+            JOptionPane.showMessageDialog(this, "Đổi mật khẩu cho " + ma + " thành công");
+            txtMatKhauMoi.setText("");
+            txtMatKhauNhapLai.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Đổi mật khẩu thất bại");
         }
-        
+
 
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnTimKiemNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemNhanVienActionPerformed
-        String maNhanVien =  JOptionPane.showInputDialog("Nhập mã Nhân Viên");
+        String maNhanVien = JOptionPane.showInputDialog("Nhập mã Nhân Viên");
+        if (maNhanVien == null) {
+            return;
+        }
         if (maNhanVien.isEmpty()) {
-          return;
+            return;
         }
         List<HoaDonDTO> hoaDonDTOs = hoaDonService.findHoaDonByMaNhanVien(maNhanVien);
         System.out.println(hoaDonDTOs.size());
         if (hoaDonDTOs.size() > 0) {
-            
+
             fillTableHoaDonNhanVien(hoaDonDTOs);
-        }else {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên "+maNhanVien);
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên " + maNhanVien);
             fillTableHoaDonNhanVien(hoaDonService.findAllHoaDon());
         }
     }//GEN-LAST:event_btnTimKiemNhanVienActionPerformed
 
     private void tblHoaDonNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonNhanVienMouseClicked
-     
+
     }//GEN-LAST:event_tblHoaDonNhanVienMouseClicked
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
