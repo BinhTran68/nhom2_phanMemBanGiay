@@ -67,12 +67,28 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Tên không được để trống");
             return null;
         }
-        int gtri = Integer.parseInt(txtGtriAD.getText().trim());
+        if (txtGtriAD.getText() == null || txtGtriAD.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Gía trị không được để trống");
+            return null;
+        }
+        int gtri = 0;
+        try {
+             gtri = Integer.parseInt(txtGtriAD.getText().trim());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gía trị không hợp lệ !");
+            return null;
+        }
         if (gtri > 99) {
             JOptionPane.showMessageDialog(this,
                     "Gía trị giảm giá không thể vượt quá 99%");
             return null;
         }
+        if (gtri < 1) {
+               JOptionPane.showMessageDialog(this,
+                    "Gía trị giảm giá không thể thấp hơn 1%");
+            return null;
+        }
+       
         loai = cboLoaiGiamInsert.getSelectedItem().toString();
         Date start_Date = dataTuNgay.getDate();
         if (start_Date == null) {
@@ -407,10 +423,10 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         }
 
         if (ss.AddKM(this.readForm()) > 0) {
-            JOptionPane.showMessageDialog(this, "thêm thành công");
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
             this.fillTable(ss.getAll());
         } else {
-            JOptionPane.showMessageDialog(this, "thêm thất bại ");
+            JOptionPane.showMessageDialog(this, "Thêm thất bại ");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
