@@ -38,6 +38,12 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
     }
 
     private void fillTable(List<KhachHang> list) {
+        for (int i = list.size() - 1; i >= 0; i--) {
+        KhachHang khachHang = list.get(i);
+        if (khachHang.getId() == 1) {
+            list.remove(i);
+        }
+    }
         model = (DefaultTableModel) tblThongTin.getModel();
         model.setRowCount(0);
         System.out.println(list);
@@ -194,7 +200,8 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblThongTin = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
-        btnTimKiem = new javax.swing.JButton();
+        btnTimKiemKhachHang = new javax.swing.JButton();
+        lamMoiTableKhachhang = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -368,10 +375,17 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblThongTin);
 
-        btnTimKiem.setText("Tìm kiếm");
-        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+        btnTimKiemKhachHang.setText("Tìm kiếm");
+        btnTimKiemKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTimKiemActionPerformed(evt);
+                btnTimKiemKhachHangActionPerformed(evt);
+            }
+        });
+
+        lamMoiTableKhachhang.setText("Làm mới");
+        lamMoiTableKhachhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lamMoiTableKhachhangActionPerformed(evt);
             }
         });
 
@@ -379,25 +393,34 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(726, 726, 726)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(726, 726, 726)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnTimKiemKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lamMoiTableKhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTimKiemKhachHang)
+                    .addComponent(lamMoiTableKhachhang))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTimKiem)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -601,10 +624,21 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblLichSuMouseClicked
 
-    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+    private void btnTimKiemKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemKhachHangActionPerformed
+        String tenkhachHang = JOptionPane.showInputDialog("Nhập tên khách hàng");
+        if (tenkhachHang == null || tenkhachHang.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tên khách hàng không hợp lệ");
+            return;
+        }
+        List<KhachHang> khachHangs = khs.timTheoTen(tenkhachHang);
+        if (khachHangs == null || khachHangs.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng phù hợp");
+            fillTable(khs.getAll());
+        }else {
+            fillTable(khachHangs);
+        }
      
-    }//GEN-LAST:event_btnTimKiemActionPerformed
+    }//GEN-LAST:event_btnTimKiemKhachHangActionPerformed
 
     private void btntimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimKiemActionPerformed
         // TODO add your handling code here:
@@ -630,13 +664,17 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnRefeshActionPerformed
 
+    private void lamMoiTableKhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lamMoiTableKhachhangActionPerformed
+      fillTable(khs.getAll());
+    }//GEN-LAST:event_lamMoiTableKhachhangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnRefesh;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnTimKiem;
+    private javax.swing.JButton btnTimKiemKhachHang;
     private javax.swing.JButton btntimKiem;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dataNgaySinh;
@@ -659,6 +697,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JButton lamMoiTableKhachhang;
     private javax.swing.JRadioButton rdoNam;
     private javax.swing.JRadioButton rdoNu;
     private javax.swing.JTable tblLichSu;

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Authenticator;
@@ -52,14 +53,18 @@ public class DangNhapTheHans extends javax.swing.JFrame {
 
     private void login() {
 
-        String sdt = txtEmail.getText().trim();
+        String sdt = txtEmail.getText();
 
-        String matKhau = txtMatKhau.getText().trim();
-        if (sdt.isEmpty()) {
+        String matKhau = txtMatKhau.getText();
+        if (sdt == null || sdt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại");
             return;
         }
-        if (matKhau.isEmpty()) {
+        if (!Constant.isValidPhoneNumber(sdt)) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
+            return;
+        }
+        if (matKhau == null || matKhau.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
             return;
         }
@@ -276,13 +281,17 @@ public class DangNhapTheHans extends javax.swing.JFrame {
             return;
 
         }
+        if (!Constant.isValidPhoneNumber(sdt)) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
+            return;
+        }
         NhanVien nhanVien = nhanVienService.timTheoSdt(sdt);
         if (nhanVien == null) {
             JOptionPane.showMessageDialog(this, "Số điện thoại nhân viên không có trong hệ thống");
             return;
         }
         // set mật khẩu mới.
-        String matKhauMoi = "matKhauMoiNhanVien";
+        String matKhauMoi = "123";
         String matKhauHash = BCrypt.hashpw(matKhauMoi, BCrypt.gensalt(Constant.saltRoundPassword));
         int kq = nhanVienService.doiMatKhauNhanVien(nhanVien.getMaNV(), matKhauHash);
         if (kq > 0) {
@@ -339,22 +348,21 @@ public class DangNhapTheHans extends javax.swing.JFrame {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
 
             // Thiết lập tiêu đề email
-            message.setSubject("Mật khẩu Nhân Viên mới TheHans ");
+            message.setSubject("Mật khẩu Nhân Viên TheHans ");
 
             // Thiết lập nội dung email
             String body = "Đổi mật khẩu";
             message.setText(body);
             String Htmlcode = "<h3>Mật Khẩu mới của bạn là : " + mk + "</h3>";
+            String Htmlcode1 = "<h5>Vui lòng bảo mật mật khẩu</h5>";
 
-
-            message.setContent(Htmlcode, "text/html;charset=UTF-8");
-            JOptionPane.showMessageDialog(this, "Đã gửi!");
-
+            message.setContent(Htmlcode+Htmlcode1, "text/html;charset=UTF-8");
             // Gửi email
             Transport.send(message);
 
             System.out.println("Email sent successfully!");
         } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình gửi mail. Vui lòng thử lại !");
         }
 
         //body mail

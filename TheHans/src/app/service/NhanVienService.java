@@ -137,7 +137,7 @@ public class NhanVienService {
     }
 
     public int insertNV(NhanVien nv) {
-        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau, trangThaiXoa)values(?,?,?,?,?,?,?,?,?, ?)";
+        sql = "insert into NhanVien( maNV,hoTen,vaiTro,ngaySinh, gioiTinh,SDT, email, diaChi, matKhau, trangThaiXoa, ngayTao, ngaySuaCuoi )values(?,?,?,?,?,?,?,?,?, ?,getDate(),getDate())";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -168,7 +168,7 @@ public class NhanVienService {
     }
 
     public int updateNhanVien(String ma, NhanVien nv) {
-        sql = "update NhanVien set hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ?, trangThaiXoa = ?  where maNV like ?";
+        sql = "update NhanVien set hoTen = ?, vaiTro = ?,ngaySinh = ?, gioiTinh=?, SDT = ?,email = ?, diaChi = ?, trangThaiXoa = ?, ngaySuaCuoi = getDate()  where maNV like ?";
         try {
             connection = DBConnect.getConnection();
             preparedStatement = connection.prepareStatement(sql);

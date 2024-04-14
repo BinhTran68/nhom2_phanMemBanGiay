@@ -37,5 +37,13 @@ public class Constant {
         // Kiểm tra xem email có khớp với biểu thức chính quy không
         return matcher.matches();
     }
-
+    
+    public  static final boolean isValidPhoneNumber(String phoneNumber) {
+        // Biểu thức chính quy kiểm tra số điện thoại ở Việt Nam
+        String regex = "0\\d{9,10}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
+    }
+        
 }
