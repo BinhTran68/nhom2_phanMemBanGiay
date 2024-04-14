@@ -80,9 +80,6 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         addCboLoc(ctspsv.getTenMauSacALL(), cboMauSac1);
         addCboLoc(ctspsv.getTenSanPhamALL(), cboTenSP1);
 
-        rdoConBan.setSelected(false);
-        rdoHetHang.setSelected(false);
-
     }
 
     private void moiCTSP() {
@@ -297,7 +294,6 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private Hang readFormHang() {
         String ma = txtMaThuocTinh.getText();
         String ten = txtTenThuocTinh.getText();
-
         int trangThai;
         if (rdoConHang.isSelected()) {
             trangThai = 1;
@@ -396,6 +392,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Chất Liệu Thành Công");
                         fillToTableChatLieu(tts.getAllChatLieu());
                         addCbo(ctspsv.getTenChatLieu(), cboChatLieu);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Thêm Chất Liệu Thất bại");
                     }
@@ -427,6 +424,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Hãng Thành Công");
                         fillToTableHang(tts.getAllHang());
                         addCbo(ctspsv.getTenHang(), cboHang);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Thêm Hãng Thất bại");
                     }
@@ -458,6 +456,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Kích Cỡ Thành Công");
                         fillToTableKichCo(tts.getAllKichCo());
                         addCbo(ctspsv.getTenKichCo(), cboKichCo);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Thêm Kích cỡ Thất bại");
                     }
@@ -489,6 +488,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Thêm Màu Sắc Thành Công");
                         fillToTableMauSac(tts.getAllMauSac());
                         addCbo(ctspsv.getTenMauSac(), cboMauSac);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Thêm Màu Sắc Thất bại");
                     }
@@ -535,9 +535,13 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private void themCTSP() {
         int check1 = JOptionPane.showConfirmDialog(this, "bạn muốn thêm CTSP không");
         String maCTSP = txtMaSPCT.getText().trim();
+        String tenCTSP = txtTenSP.getText().trim();
         String donGia = txtDonGia.getText().trim();
         String soLuong = txtSoLuong.getText().trim();
         String moTa = txtMoTa.getText().trim();
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ ._-]{1,40}$", tenCTSP)) {
+            return;
+        }
         if (!kiemTraChuoi("^[a-zA-Z0-9 ]{1,19}$", maCTSP)) {
             JOptionPane.showMessageDialog(this, "mã CTSP là chữ ko dấu ít hơn 20 kí tự");
             return;
@@ -609,6 +613,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa Chất Liệu Thành Công");
                         fillToTableChatLieu(tts.getAllChatLieu());
                         addCbo(ctspsv.getTenChatLieu(), cboChatLieu);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Sửa Chất Liệu Thất bại");
                     }
@@ -623,7 +628,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "mã hãng là chữ ko dấu ít hơn 20 kí tự");
                     return;
                 }
-                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ 0-9._]{1,29$", ten2)) {
+                if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ 0-9._ ]{1,29}$", ten2)) {
                     JOptionPane.showMessageDialog(this, "tên hãng là chữ ít hơn 30 kí tự");
                     return;
                 }
@@ -645,6 +650,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa  Hãng Thành Công");
                         fillToTableHang(tts.getAllHang());
                         addCbo(ctspsv.getTenHang(), cboHang);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "sửa Hãng Thất bại");
                     }
@@ -680,6 +686,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa Kích Cỡ Thành Công");
                         fillToTableKichCo(tts.getAllKichCo());
                         addCbo(ctspsv.getTenKichCo(), cboKichCo);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Sửa Kích cỡ Thất bại");
                     }
@@ -715,6 +722,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sửa Màu Sắc Thành Công");
                         fillToTableMauSac(tts.getAllMauSac());
                         addCbo(ctspsv.getTenMauSac(), cboMauSac);
+                        moiThuocTinh();
                     } else {
                         JOptionPane.showMessageDialog(this, "Sửa Màu Sắc Thất bại");
                     }
@@ -931,8 +939,9 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         }
     }
 
-    private void locCTSP() {
-
+    private void moiThuocTinh() {
+        txtMaThuocTinh.setText("");
+        txtTenThuocTinh.setText("");
     }
 
     /**
@@ -1033,11 +1042,12 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         txtTenThuocTinh = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         cboLoaiThuocTinh = new javax.swing.JComboBox<>();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         rdoConHang = new javax.swing.JRadioButton();
         jLabel17 = new javax.swing.JLabel();
         rdoHet = new javax.swing.JRadioButton();
+        myButton1 = new swing.MyButton();
+        myButton2 = new swing.MyButton();
+        myButton5 = new swing.MyButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblThuocTinh = new javax.swing.JTable();
@@ -1758,20 +1768,6 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton11.setText("Sửa");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
-        jButton12.setText("Thêm");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
         buttonGroup2.add(rdoConHang);
         rdoConHang.setSelected(true);
         rdoConHang.setText("Còn ");
@@ -1780,6 +1776,27 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
         buttonGroup2.add(rdoHet);
         rdoHet.setText("Hết hàng");
+
+        myButton1.setText("Thêm");
+        myButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myButton1ActionPerformed(evt);
+            }
+        });
+
+        myButton2.setText("Sửa");
+        myButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myButton2ActionPerformed(evt);
+            }
+        });
+
+        myButton5.setText("Làm mới");
+        myButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -1799,16 +1816,18 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(rdoHet)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMaThuocTinh)
                             .addComponent(txtTenThuocTinh)
                             .addComponent(cboLoaiThuocTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 573, Short.MAX_VALUE)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61))))
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(myButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(myButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                .addComponent(myButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(41, 41, 41))))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1817,7 +1836,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(cboLoaiThuocTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12))
+                    .addComponent(myButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1829,9 +1848,11 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                             .addComponent(jLabel15)
                             .addComponent(txtTenThuocTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
+                        .addComponent(myButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(myButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdoConHang)
                     .addComponent(jLabel17)
@@ -1884,7 +1905,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 22, Short.MAX_VALUE)
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1940,27 +1961,6 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaThuocTinhActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        suaThuocTinh();
-        addCboLoc(ctspsv.getTenChatLieuALL(), cboChatLieu1);
-        addCboLoc(ctspsv.getTenHangALL(), cboHang1);
-        addCboLoc(ctspsv.getTenKichCoALL(), cboKichCo1);
-        addCboLoc(ctspsv.getTenMauSacALL(), cboMauSac1);
-        addCboLoc(ctspsv.getTenSanPhamALL(), cboTenSP1);
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        themThuocTinh();
-        addCboLoc(ctspsv.getTenChatLieuALL(), cboChatLieu1);
-        addCboLoc(ctspsv.getTenHangALL(), cboHang1);
-        addCboLoc(ctspsv.getTenKichCoALL(), cboKichCo1);
-        addCboLoc(ctspsv.getTenMauSacALL(), cboMauSac1);
-        addCboLoc(ctspsv.getTenSanPhamALL(), cboTenSP1);
-
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     private void txtTimTheoMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimTheoMaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimTheoMaActionPerformed
@@ -2002,6 +2002,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                     break;
             }
         }
+
     }//GEN-LAST:event_cboLoaiThuocTinhItemStateChanged
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
@@ -2031,7 +2032,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-           if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ0-9 ._-]{1,29}$", txtTimKiemSP.getText())) {
+        if (!kiemTraChuoi("^[a-zA-ZÀ-ỹ0-9 ._-]{1,29}$", txtTimKiemSP.getText())) {
             JOptionPane.showMessageDialog(this, "ô tìm kiếm là chữ hoặc mã ít hơn 30 kí tự");
             return;
         }
@@ -2151,6 +2152,31 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemSPActionPerformed
 
+    private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
+        // TODO add your handling code here:
+        themThuocTinh();
+        addCboLoc(ctspsv.getTenChatLieuALL(), cboChatLieu1);
+        addCboLoc(ctspsv.getTenHangALL(), cboHang1);
+        addCboLoc(ctspsv.getTenKichCoALL(), cboKichCo1);
+        addCboLoc(ctspsv.getTenMauSacALL(), cboMauSac1);
+        addCboLoc(ctspsv.getTenSanPhamALL(), cboTenSP1);
+    }//GEN-LAST:event_myButton1ActionPerformed
+
+    private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
+        // TODO add your handling code here:
+        suaThuocTinh();
+        addCboLoc(ctspsv.getTenChatLieuALL(), cboChatLieu1);
+        addCboLoc(ctspsv.getTenHangALL(), cboHang1);
+        addCboLoc(ctspsv.getTenKichCoALL(), cboKichCo1);
+        addCboLoc(ctspsv.getTenMauSacALL(), cboMauSac1);
+        addCboLoc(ctspsv.getTenSanPhamALL(), cboTenSP1);
+    }//GEN-LAST:event_myButton2ActionPerformed
+
+    private void myButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton5ActionPerformed
+        // TODO add your handling code here:
+        moiCTSP();
+    }//GEN-LAST:event_myButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThemSuaQr;
@@ -2169,8 +2195,6 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboTenSP1;
     private javax.swing.JComboBox<String> cboTimKiemSP;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -2223,8 +2247,11 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private swing.MyButton myButton1;
+    private swing.MyButton myButton2;
     private swing.MyButton myButton3;
     private swing.MyButton myButton4;
+    private swing.MyButton myButton5;
     private javax.swing.JLabel qr;
     private javax.swing.JRadioButton rdoConBan;
     private javax.swing.JRadioButton rdoConBan1;
