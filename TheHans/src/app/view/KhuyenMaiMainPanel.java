@@ -62,9 +62,17 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Mã không được để trống");
             return null;
         }
+        if (!Constant.checkDoDaiCuaChuoi(ma)) {
+            JOptionPane.showMessageDialog(this, "Độ dài của mã không hợp lệ. Từ 3-50 kí tự !");
+            return null;
+        }
         ten = txtTen.getText().trim();
         if (ten == null || ten.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Tên không được để trống");
+            return null;
+        }
+        if (!Constant.checkDoDaiCuaChuoi(ten)) {
+            JOptionPane.showMessageDialog(this, "Độ dài của tên không hợp lệ. Từ 3-50 kí tự !");
             return null;
         }
         if (txtGtriAD.getText() == null || txtGtriAD.getText().isEmpty()) {
@@ -73,7 +81,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         }
         int gtri = 0;
         try {
-             gtri = Integer.parseInt(txtGtriAD.getText().trim());
+            gtri = Integer.parseInt(txtGtriAD.getText().trim());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gía trị không hợp lệ !");
             return null;
@@ -84,11 +92,11 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             return null;
         }
         if (gtri < 1) {
-               JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(this,
                     "Gía trị giảm giá không thể thấp hơn 1%");
             return null;
         }
-       
+
         loai = cboLoaiGiamInsert.getSelectedItem().toString();
         Date start_Date = dataTuNgay.getDate();
         if (start_Date == null) {
@@ -160,12 +168,14 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
+        LamMoiForm = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblQLPGG = new javax.swing.JTable();
         txtTimkiem = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        lamMoiTable = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "QUẢN LÝ PHIẾU GIẢM GIÁ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -208,16 +218,24 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             }
         });
 
+        LamMoiForm.setText("Làm mới");
+        LamMoiForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LamMoiFormActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSua)
-                    .addComponent(btnThem))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LamMoiForm, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +244,9 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
                 .addComponent(btnThem)
                 .addGap(27, 27, 27)
                 .addComponent(btnSua)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(LamMoiForm)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -264,7 +284,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
                     .addComponent(dataDenNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(txtTen)
                     .addComponent(txtGtriAD))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
         );
@@ -295,9 +315,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
                                     .addComponent(cboLoaiGiamInsert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5)
                                     .addComponent(txtGtriAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(dataDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(dataDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -328,6 +346,13 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             }
         });
 
+        lamMoiTable.setText("Làm mới");
+        lamMoiTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lamMoiTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -339,6 +364,8 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
                 .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
+                .addGap(36, 36, 36)
+                .addComponent(lamMoiTable)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1061, Short.MAX_VALUE)
         );
@@ -349,7 +376,8 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(lamMoiTable))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
@@ -477,8 +505,24 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void LamMoiFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiFormActionPerformed
+        txtMa.setText("");
+        txtTen.setText("");
+        txtGtriAD.setText("");
+        dataTuNgay.setDate(null);
+        dataDenNgay.setDate(null);
+        
+
+    }//GEN-LAST:event_LamMoiFormActionPerformed
+
+    private void lamMoiTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lamMoiTableActionPerformed
+        fillTable(ss.getAll());
+        txtTimkiem.setText("");
+    }//GEN-LAST:event_lamMoiTableActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LamMoiForm;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JComboBox<String> cboLoaiGiamInsert;
@@ -497,6 +541,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lamMoiTable;
     private javax.swing.JTable tblQLPGG;
     private javax.swing.JTextField txtGtriAD;
     private javax.swing.JTextField txtMa;
