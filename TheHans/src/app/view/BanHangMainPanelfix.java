@@ -902,7 +902,14 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
         if (maVoucher == null) {
             return;
         }
-
+        String txtMaHoaDon = txt_maHD.getText();
+            
+        if (!txtMaHoaDon.isEmpty()) {
+            System.out.println(txtMaHoaDon);
+            JOptionPane.showMessageDialog(this, "Không thể thêm voucher cho hóa đơn đang chờ thanh toán ");
+            return;
+        }
+       
         if (!maVoucher.isEmpty()) {
             Voucher voucher = voucherService.findKhuyenMaiByMaKhuyenMai(maVoucher);
             tinhTienKhuyenMai(voucher);
@@ -1280,21 +1287,22 @@ public class BanHangMainPanelfix extends javax.swing.JPanel {
     private void btnTinhTienThuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhTienThuaActionPerformed
 
         try {
-            if (txt_tienKhachTra.getText().isEmpty()) {
+            if (txt_tienKhachTra == null && txt_tienKhachTra.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập tiền khách trả");
-                return;
+                  txt_tienthua.setText("");
+               return;
             }
             Double tienSauGiamGia = (Double.parseDouble(txt_tiensgg.getText().trim().toString()));
             Double tienKhachTra = Double.parseDouble(txt_tienKhachTra.getText().trim().toString());
-
+                
             if (tienKhachTra >= tienSauGiamGia) {
                 Double tienThua = tienKhachTra - tienSauGiamGia;
                 txt_tienthua.setText(tienThua.toString());
             } else {
                 JOptionPane.showMessageDialog(this, "Tiền khách trả chưa đủ còn thiếu ");
             }
-
         } catch (Exception e) {
+             txt_tienthua.setText("");
             JOptionPane.showMessageDialog(this, "Tiền khách trả chưa không hợp lệ ");
         }
     }//GEN-LAST:event_btnTinhTienThuaActionPerformed

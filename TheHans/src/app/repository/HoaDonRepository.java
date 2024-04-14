@@ -217,7 +217,7 @@ public class HoaDonRepository {
             e.printStackTrace(); // In ra thông báo lỗi để xem nguyên nhân cụ thể
         } finally {
             try {
-                connection.close();
+                 connection.close();
                 preparedStatement.close();
             } catch (Exception e) {
                 e.printStackTrace();

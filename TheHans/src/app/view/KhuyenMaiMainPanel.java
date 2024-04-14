@@ -10,23 +10,24 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utils.Constant;
 
 public class KhuyenMaiMainPanel extends javax.swing.JPanel {
-    
+
     private VoucherService ss = new VoucherService();
     private DefaultTableModel dtm = new DefaultTableModel();
     private List<Voucher> listKM = new ArrayList<>();
     private int index = -1;
-    
+
     public KhuyenMaiMainPanel() {
         initComponents();
         cboLoaiGiamInsert.removeAllItems();
         cboLoaiGiamInsert.addItem("Dành Cho Khách Hàng");
         cboLoaiGiamInsert.addItem("Dành Cho Tất Cả");
-        
+
         fillTable(ss.getAll());
     }
-    
+
     private void fillTable(List<Voucher> m) {
         dtm = (DefaultTableModel) tblQLPGG.getModel();
         dtm.setRowCount(0);
@@ -34,7 +35,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             dtm.addRow(x.toDataRow());
         }
     }
-    
+
     private void showData(int index) {
         txtMa.setText(tblQLPGG.getValueAt(index, 1).toString());
         txtTen.setText(tblQLPGG.getValueAt(index, 2).toString());
@@ -49,11 +50,11 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         cboLoaiGiamInsert.setSelectedItem(tblQLPGG.getValueAt(index, 3).toString());
-        
+
     }
-    
+
     Voucher readForm() {
         String ma, ten, loai;
         ma = txtMa.getText().trim();
@@ -90,7 +91,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
                     "Ngày kết thúc phải sau ngày bắt đầu!");
             return null;
         }
-        
+
         Date currentDate = new Date();
         try {
             if (end_Date.before(currentDate)) {
@@ -101,10 +102,10 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return new Voucher(ten, ma, loai, end_Date, end_Date, gtri);
     }
-    
+
     private boolean kiemTraChuoi(String chuoiChinhQuy, String ChuoiKiemTra) {
         if (ChuoiKiemTra.equals("")) {
             JOptionPane.showMessageDialog(this, "không được để trống ô nhập");
@@ -385,7 +386,10 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-
+        if (Constant.NHAN_VIEN.getVaiTro().equalsIgnoreCase("Nhân viên")) {
+            JOptionPane.showMessageDialog(this, "Chỉ Quản lý mới có quyền thêm voucher");
+            return;
+        }
         int check = JOptionPane.showConfirmDialog(this, "Bạn chắn chắn ?");
         if (check != JOptionPane.YES_OPTION) {
             return;
@@ -401,7 +405,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Mã voucher đã tồn tại");
             return;
         }
-        
+
         if (ss.AddKM(this.readForm()) > 0) {
             JOptionPane.showMessageDialog(this, "thêm thành công");
             this.fillTable(ss.getAll());
@@ -412,8 +416,12 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+        if (Constant.NHAN_VIEN.getVaiTro().equalsIgnoreCase("Nhân viên")) {
+            JOptionPane.showMessageDialog(this, "Chỉ Quản lý mới có quyền thêm voucher");
+            return;
+        }
         int check = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa không");
-        
+
         if (check != JOptionPane.YES_OPTION) {
             return;
         }
@@ -421,8 +429,9 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         if (index == -1) {
             JOptionPane.showMessageDialog(this, "bạn chưa chọn sửa");
         } else {
+
             String ma = tblQLPGG.getValueAt(index, 1).toString();
-            
+
             Voucher km = readForm();
             if (km == null) {
                 return;
@@ -448,7 +457,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             return;
         }
         fillTable(ss.timKiemTheoMa(txtTimkiem.getText()));
-        
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

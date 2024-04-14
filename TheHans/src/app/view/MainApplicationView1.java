@@ -84,6 +84,8 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
         if (nhanVien.getVaiTro().equalsIgnoreCase("Nhân viên")) {
             panelControl.remove(nhanVienPanel);
+            panelControl.remove(thongKePanel);
+   
             revalidate();
             repaint();
             showPanel(banHangMainPanel);

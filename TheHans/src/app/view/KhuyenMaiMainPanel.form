@@ -157,10 +157,7 @@
                                           <Component id="txtGtriAD" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="dataDenNgay" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="59" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="dataDenNgay" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
