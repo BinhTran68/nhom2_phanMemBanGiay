@@ -654,11 +654,11 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
         String maNV, hoTen, diaChi, sdt, email, vaiTro;
         int gioiTinh;
         Date ngaySinh;
-        maNV = txtmaNV.getText().trim();
-        hoTen = txtTenNV.getText().trim();
-        diaChi = txtDiaChi.getText().trim();
-        sdt = txtSĐT.getText().trim();
-        email = txtMail.getText().trim();
+        maNV = txtmaNV.getText();
+        hoTen = txtTenNV.getText();
+        diaChi = txtDiaChi.getText();
+        sdt = txtSĐT.getText();
+        email = txtMail.getText();
         ngaySinh = dataNgaySinh.getDate();
         vaiTro = cboChucVu.getSelectedItem().toString();
         String matKhau = txtMatKhau.getText();
@@ -670,7 +670,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             gioiTinh = 0;
         }
 
-        if (maNV.isEmpty()) {
+        if (maNV == null || maNV.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mã Nhân Viên không được để trống");
             return null;
         }
@@ -678,7 +678,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             JOptionPane.showConfirmDialog(this, "Độ dài ký tự không hợp lệ. Mã Nhân Viên Từ 3-50 ký tự");
             return null;
         }
-        if (hoTen.isEmpty()) {
+        if (hoTen == null || hoTen.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tên Nhân Viên không được để trống");
             return null;
         }
@@ -686,7 +686,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             JOptionPane.showConfirmDialog(this, "Độ dài ký tự không hợp lệ. Họ Tên Nhân Viên Từ 3-50 ký tự");
             return null;
         }
-        if (sdt.isEmpty()) {
+        if (sdt == null || sdt.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Số điện thoại Nhân Viên không được để trống");
             return null;
         }
@@ -704,7 +704,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Ngày sinh Nhân Viên không hợp lệ");
             return null;
         }
-        if (diaChi.isEmpty()) {
+        if (diaChi == null ||  diaChi.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Địa chỉ Nhân Viên không được để trống");
             return null;
         }
