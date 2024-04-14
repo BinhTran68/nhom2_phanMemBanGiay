@@ -203,7 +203,7 @@ public class ThuocTinhService {
             ps.setInt(3, h.getTrangThaiXoa());
             ps.setString(4, ma);
             return ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             return 0;
         }
     }
