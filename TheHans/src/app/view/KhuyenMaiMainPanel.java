@@ -101,13 +101,13 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
         Date start_Date = dataTuNgay.getDate();
         if (start_Date == null) {
             JOptionPane.showMessageDialog(this,
-                    "Ngày bắt đầu không được bỏ trống!");
+                    "Ngày bắt đầu không hợp lệ !");
             return null;
         }
         Date end_Date = dataDenNgay.getDate();
         if (end_Date == null) {
             JOptionPane.showMessageDialog(this,
-                    "Ngày kết thúc không được bỏ trống!");
+                    "Ngày bắt đầu không hợp lệ !");
             return null;
         }
         if (end_Date.getTime() < start_Date.getTime()) {
@@ -127,7 +127,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
-        return new Voucher(ten, ma, loai, end_Date, end_Date, gtri);
+        return new Voucher(ten, ma, loai, start_Date, end_Date, gtri);
     }
 
     private boolean kiemTraChuoi(String chuoiChinhQuy, String ChuoiKiemTra) {

@@ -241,6 +241,8 @@ public class HoaDonService {
                     sql += " WHERE [HoaDon].ngaySuaCuoi BETWEEN ? AND ?";
                 }
             }
+            
+            sql += " order by HoaDon.ngayTao desc";
 
             preparedStatement = connection.prepareStatement(sql);
             count = 1;
