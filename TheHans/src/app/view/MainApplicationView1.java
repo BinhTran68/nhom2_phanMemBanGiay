@@ -35,7 +35,9 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 //    private BanHangMainPane banHangMainPanel;  // Hậu Lỗi 
     private BanHangMainPanelfix banHangMainPanel; // Hậu
 
-    private HoaDonMainPanel hoaDonMainPanel; // Bình
+//    private HoaDonMainPanel hoaDonMainPanel; // Bình
+    
+    private HoaDonMainPanel1 hoaDonMainPanel; // Bình
 
     private KhachHangMainPanel khachHangMainPanel; // Hà
 
@@ -53,9 +55,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     public MainApplicationView1(NhanVien nhanVien) {
         initComponents();
-       
         nhanVienDangNhap = nhanVien;
-
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
@@ -63,7 +63,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         }
 
 //        banHangMainPanel = new BanHangMainPane();
-        hoaDonMainPanel = new HoaDonMainPanel();
+        hoaDonMainPanel = new HoaDonMainPanel1();
 
         khachHangMainPanel = new KhachHangMainPanel();
 
@@ -82,8 +82,14 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         labelShowName.setText("Tên :" + nhanVien.getHoTen());
         labelShowOffice.setText("Chức vụ : " + nhanVien.getVaiTro());
 
-        showPanel(banHangMainPanel);
-
+        if (nhanVien.getVaiTro().equalsIgnoreCase("Nhân viên")) {
+            panelControl.remove(nhanVienPanel);
+            revalidate();
+            repaint();
+            showPanel(banHangMainPanel);
+        } else if (nhanVien.getVaiTro().equalsIgnoreCase("Quản Lý")) {
+            showPanel(thongKeMainPanel);
+        }
     }
 
     private static ImageIcon loadImageIcon(String path) {
@@ -96,7 +102,6 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         }
     }
 
- 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,6 +196,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("The Hans Shop");
+        setPreferredSize(new java.awt.Dimension(1500, 790));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -203,7 +209,8 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
         panelControl.setColorPrimario(new java.awt.Color(204, 204, 0));
         panelControl.setColorSecundario(new java.awt.Color(0, 102, 0));
-        panelControl.setPreferredSize(new java.awt.Dimension(175, 790));
+        panelControl.setOpaque(true);
+        panelControl.setPreferredSize(new java.awt.Dimension(175, 800));
 
         banHangPanel.setBackground(new java.awt.Color(51, 102, 0));
         banHangPanel.setPreferredSize(new java.awt.Dimension(163, 36));
@@ -217,6 +224,9 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         banHangLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 banHangLabelMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                banHangLabelMousePressed(evt);
             }
         });
 
@@ -575,7 +585,7 @@ public class MainApplicationView1 extends javax.swing.JFrame {
                 .addComponent(exitPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -585,15 +595,17 @@ public class MainApplicationView1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -643,8 +655,8 @@ public class MainApplicationView1 extends javax.swing.JFrame {
 
     private void nhanVienLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienLabel1MouseClicked
         // TODO add your handling code here:
-        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("ADMIN")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Admin mới có quyền truy cập");
+        if (!nhanVienDangNhap.getVaiTro().equalsIgnoreCase("Quản Lý")) {
+            JOptionPane.showMessageDialog(this, "Chỉ Quản Lý mới có quyền truy cập");
             return;
         }
 
@@ -729,6 +741,10 @@ public class MainApplicationView1 extends javax.swing.JFrame {
         unClicked(banHangPanel);
         showPanel(doiMatKhauMainPanel);
     }//GEN-LAST:event_doiMatKhau1MouseClicked
+
+    private void banHangLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangLabelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_banHangLabelMousePressed
 
     private void onClicked(JPanel panelBackGroud) {
         panelBackGroud.setBackground(new Color(200, 22, 51));

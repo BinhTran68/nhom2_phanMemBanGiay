@@ -11,6 +11,7 @@ import java.util.Date;
  * @author admin
  */
 public class KhachHang {
+
     private int id;
     private String maKH;
     private String hoTen;
@@ -21,10 +22,8 @@ public class KhachHang {
     private String email;
     private String capBac;
     private boolean trangThaiXoa;
-    private Date ngayTao;   
+    private Date ngayTao;
     private Date ngaySuaCuoi;
-    
-    
 
     public KhachHang() {
     }
@@ -64,8 +63,6 @@ public class KhachHang {
         this.sdt = sdt;
         this.email = email;
     }
-    
-    
 
     public int getId() {
         return id;
@@ -162,12 +159,10 @@ public class KhachHang {
     public void setNgaySuaCuoi(Date ngaySuaCuoi) {
         this.ngaySuaCuoi = ngaySuaCuoi;
     }
-    
-    
 
-    public Object[] toDataRow(){
+    public Object[] toDataRow() {
         return new Object[]{
-            this.id, this. maKH, this.hoTen, this.ngaySinh, this.gioiTinh,  this.email, this.sdt,this.diaChi, this.capBac, this.trangThaiXoa, this.ngayTao, this.ngaySuaCuoi
+            this.id, this.maKH, this.hoTen, this.ngaySinh, this.gioiTinh, this.email, this.sdt, this.diaChi, this.capBac, this.trangThaiXoa, this.ngayTao, this.ngaySuaCuoi
         };
     }
 
@@ -175,9 +170,44 @@ public class KhachHang {
     public String toString() {
         return "KhachHang{" + "id=" + id + ", maKH=" + maKH + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", capBac=" + capBac + ", trangThaiXoa=" + trangThaiXoa + ", ngayTao=" + ngayTao + ", ngaySuaCuoi=" + ngaySuaCuoi + '}';
     }
-    
-    
-    
-    
-    
+
+    private double tongTienMua;
+    private int soLuongHDMua;
+
+    public double getTongTienMua() {
+        return tongTienMua;
+    }
+
+    public void setTongTienMua(double tongTienMua) {
+        this.tongTienMua = tongTienMua;
+    }
+
+    public int getSoLuongHDMua() {
+        return soLuongHDMua;
+    }
+
+    public void setSoLuongHDMua(int soLuongHDMua) {
+        this.soLuongHDMua = soLuongHDMua;
+    }
+
+    public KhachHang(String maKH, String hoTen, Date ngaySinh, int gioiTinh, String diaChi, String sdt, double tongTienMua, int soLuongHDMua) {
+        this.maKH = maKH;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.tongTienMua = tongTienMua;
+        this.soLuongHDMua = soLuongHDMua;
+    }
+
+    public KhachHang(String maKH, String hoTen, int gioiTinh, String sdt, double tongTienMua, int soLuongHDMua) {
+        this.maKH = maKH;
+        this.hoTen = hoTen;
+        this.gioiTinh = gioiTinh;
+        this.sdt = sdt;
+        this.tongTienMua = tongTienMua;
+        this.soLuongHDMua = soLuongHDMua;
+    }
+
 }
