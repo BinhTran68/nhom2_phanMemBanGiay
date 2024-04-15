@@ -40,7 +40,7 @@ public class ChiTietSanPhamService {
 
     public List<ChiTietSanPham> getAllCTSP() {
         listCTSP = new ArrayList<>();
-        sql = "select maCTSP,SanPham.ten as [tên sp],(select gia from LichSuGia where lichsugia.id_CTSP = ChiTietSanPham.id and lichsugia.ngayKetThuc is null) as[giaBan],soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
+        sql = "select maCTSP,SanPham.ten as [tên sp],giaban,soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
                 + "                	join SanPham on id_SanPham = SanPham.id\n"
                 + "                	join MauSac on id_MauSac = MauSac.id\n"
                 + "                	join KichCo on id_KichCo = KichCo.id\n"
@@ -63,7 +63,7 @@ public class ChiTietSanPhamService {
 
     public List<ChiTietSanPham> timTheoMa(String ma) {
         listCTSP = new ArrayList<>();
-        sql = "select maCTSP,SanPham.ten as [tên sp],(select gia from LichSuGia where lichsugia.id_CTSP = ChiTietSanPham.id and lichsugia.ngayKetThuc is null) as[giaBan],soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
+        sql = "select maCTSP,SanPham.ten as [tên sp],giaBan,soLuongCon ,MauSac.ten as [màu],KichCo.ten  as [KichCo],Hang.ten as [Hãng],ChatLieu.ten as [Chất liệu],ChiTietSanPham.ngayTao,ChiTietSanPham.ngaySuaCuoi,ChiTietSanPham.trangThaiXoa,ChiTietSanPham.mota,ChiTietSanPham.maVach  from ChiTietSanPham \n"
                 + "                	join SanPham on id_SanPham = SanPham.id\n"
                 + "                	join MauSac on id_MauSac = MauSac.id\n"
                 + "                	join KichCo on id_KichCo = KichCo.id\n"

@@ -75,7 +75,8 @@ public class DangNhapTheHans extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Bạn không có quyển đăng nhập");
                 return;
             }
-            MainApplicationView1 applicationView = new MainApplicationView1(nhanVien);
+            MainApplicationView1 applicationView = new MainApplicationView1(nhanVien); 
+            Constant.NHAN_VIEN = nhanVien;
             applicationView.setVisible(true);
             this.dispose();
         } else {

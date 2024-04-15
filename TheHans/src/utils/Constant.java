@@ -4,6 +4,7 @@
  */
 package utils;
 
+import app.model.NhanVien;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,5 +46,8 @@ public class Constant {
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
+    
+    public  static NhanVien NHAN_VIEN = null;
+    
         
 }

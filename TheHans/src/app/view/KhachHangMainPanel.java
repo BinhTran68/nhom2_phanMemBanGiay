@@ -26,7 +26,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
 
     private KhachHangService khs = new KhachHangService();
     private DefaultTableModel model = new DefaultTableModel();
-     private DefaultTableModel modelLichSu = new DefaultTableModel();
+    private DefaultTableModel modelLichSu = new DefaultTableModel();
     private HoaDonService hoaDonService = new HoaDonService();
     private int index = -1;
 
@@ -39,11 +39,11 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
 
     private void fillTable(List<KhachHang> list) {
         for (int i = list.size() - 1; i >= 0; i--) {
-        KhachHang khachHang = list.get(i);
-        if (khachHang.getId() == 1) {
-            list.remove(i);
+            KhachHang khachHang = list.get(i);
+            if (khachHang.getId() == 1) {
+                list.remove(i);
+            }
         }
-    }
         model = (DefaultTableModel) tblThongTin.getModel();
         model.setRowCount(0);
         System.out.println(list);
@@ -89,9 +89,13 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         } else {
             rdoNu.setSelected(true);
         }
-        txtMail.setText(tblThongTin.getValueAt(index, 5).toString());
-        txtSDT.setText(tblThongTin.getValueAt(index, 6).toString());
-        txtDiaChi.setText(tblThongTin.getValueAt(index, 7).toString());
+        try {
+            txtMail.setText(tblThongTin.getValueAt(index, 5).toString());
+            txtSDT.setText(tblThongTin.getValueAt(index, 6).toString());
+            txtDiaChi.setText(tblThongTin.getValueAt(index, 7).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isValidPhoneNumber(String phoneNumber) {
@@ -141,7 +145,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
                 return null;
             }
         }
-      
+
         ngaySinh = dataNgaySinh.getDate();
 
         if (rdoNam.isSelected() == true) {
@@ -593,7 +597,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         int index = tblThongTin.getSelectedRow();
         if (index == -1)
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng sửa");
-            
+
         else {
             String ma = tblThongTin.getValueAt(index, 1).toString();
             KhachHang kh = readForm();
@@ -634,24 +638,24 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
         if (khachHangs == null || khachHangs.size() == 0) {
             JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng phù hợp");
             fillTable(khs.getAll());
-        }else {
+        } else {
             fillTable(khachHangs);
         }
-     
+
     }//GEN-LAST:event_btnTimKiemKhachHangActionPerformed
 
     private void btntimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimKiemActionPerformed
         // TODO add your handling code here:
-           String ten = JOptionPane.showInputDialog("Nhập Tên: ");
-           if (ten == null || ten.isEmpty()) {
+        String ten = JOptionPane.showInputDialog("Nhập Tên: ");
+        if (ten == null || ten.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tên khách hàng k hợp lệ");
             return;
         }
-           List<LichSuKH> LichSuKHs  = khs.getLichSuByTen(ten);
+        List<LichSuKH> LichSuKHs = khs.getLichSuByTen(ten);
         if (LichSuKHs.size() > 0) {
-             fillLichSu(LichSuKHs);
-             
-        }else {
+            fillLichSu(LichSuKHs);
+
+        } else {
             JOptionPane.showMessageDialog(this, "Không tìm thấy khách hàng");
             fillLichSu(khs.getLichSu());
             return;
@@ -661,11 +665,11 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
     private void btnRefeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefeshActionPerformed
         // TODO add your handling code here:
         fillLichSu(khs.getLichSu());
-        
+
     }//GEN-LAST:event_btnRefeshActionPerformed
 
     private void lamMoiTableKhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lamMoiTableKhachhangActionPerformed
-      fillTable(khs.getAll());
+        fillTable(khs.getAll());
     }//GEN-LAST:event_lamMoiTableKhachhangActionPerformed
 
 

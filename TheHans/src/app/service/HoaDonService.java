@@ -117,8 +117,9 @@ public class HoaDonService {
     }
     
      public List<HoaDonDTO> findHoaDonByMaNhanVien(String maNhanVien) {
+         hoaDonDTOs = new ArrayList<>();  
        try {
-            hoaDonDTOs = new ArrayList<>();
+         
             connection = DBConnect.getConnection();
             sql = "SELECT [HoaDon].id\n"
                     + "      ,id_KhachHang\n"
@@ -177,7 +178,6 @@ public class HoaDonService {
             e.printStackTrace();
         } finally {
             try {
-               
                 connection.close();
                 preparedStatement.close();
             } catch (Exception e) {
@@ -241,6 +241,8 @@ public class HoaDonService {
                     sql += " WHERE [HoaDon].ngaySuaCuoi BETWEEN ? AND ?";
                 }
             }
+            
+            sql += " order by HoaDon.ngayTao desc";
 
             preparedStatement = connection.prepareStatement(sql);
             count = 1;
