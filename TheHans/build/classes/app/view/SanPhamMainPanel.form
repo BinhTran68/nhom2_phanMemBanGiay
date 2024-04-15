@@ -84,7 +84,7 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jPanel3" pref="436" max="32767" attributes="0"/>
+                      <Component id="jPanel3" pref="440" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1447,10 +1447,8 @@
                                       <EmptySpace pref="573" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="myButton5" pref="128" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="myButton1" pref="128" max="32767" attributes="0"/>
-                                              <Component id="myButton2" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="myButton1" pref="128" max="32767" attributes="0"/>
+                                          <Component id="myButton2" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                   </Group>

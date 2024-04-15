@@ -461,7 +461,7 @@ public class KhuyenMaiMainPanel extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
         if (Constant.NHAN_VIEN.getVaiTro().equalsIgnoreCase("Nhân viên")) {
-            JOptionPane.showMessageDialog(this, "Chỉ Quản lý mới có quyền thêm voucher");
+            JOptionPane.showMessageDialog(this, "Chỉ Quản lý mới có quyền sửa voucher");
             return;
         }
         int check = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa không");

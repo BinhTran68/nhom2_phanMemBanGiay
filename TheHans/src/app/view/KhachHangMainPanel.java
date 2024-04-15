@@ -610,6 +610,7 @@ public class KhachHangMainPanel extends javax.swing.JPanel {
             }
             if (khs.updateKhachHang(ma, kh) > 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công ");
+                newFrom();
                 this.fillTable(khs.getAll());
             } else {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại");

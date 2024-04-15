@@ -23,7 +23,7 @@ public class SanPhamChiTietService {
                   join ChatLieu on ChatLieu.id = ChiTietSanPham.id_ChatLieu
                   join KichCo on KichCo.id = ChiTietSanPham.id_KichCo
                   join MauSac on MauSac.id = ChiTietSanPham.id_MauSac
-                  join Hang on Hang.id = ChiTietSanPham.id_Hang
+                  join Hang on Hang.id = ChiTietSanPham.id_Hang where SanPham.trangThaiXoa = 1
                 """;
         try {
             Connection con = DBConnect.getConnection();

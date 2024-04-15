@@ -812,6 +812,7 @@ public class NhanVienMainPanel extends javax.swing.JPanel {
 //            }
             if (nvs.updateNhanVien(ma, nv) > 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công ");
+                newFrom();
                 this.fillTable(nvs.getAll());
             } else {
                 JOptionPane.showMessageDialog(this, "Cập nhật nhân viên không thành công!");

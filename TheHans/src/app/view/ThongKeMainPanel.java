@@ -126,7 +126,7 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         List<KhachHang> top5KH = new ArrayList<>();
         top5KH = ss.top5Kh();
         for (KhachHang kh : top5KH) {
-            dtmtop.addRow(new Object[]{kh.getMaKH(), kh.getHoTen(), kh.getGioiTinh(), kh.getSdt(), kh.getSoLuongHDMua(), kh.getTongTienMua()});
+            dtmtop.addRow(new Object[]{kh.getMaKH(), kh.getHoTen(), kh.getSdt(), kh.getSoLuongHDMua(), kh.getTongTienMua()});
         }
     }
 
@@ -364,20 +364,19 @@ public class ThongKeMainPanel extends javax.swing.JPanel {
         tblTop5KH.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
         tblTop5KH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "maKH", "Họ Tên", "GT", "SĐT", "SLHD", "Tổng Tiền"
+                "maKH", "Họ Tên", "SĐT", "SLHD", "Tổng Tiền"
             }
         ));
         jScrollPane2.setViewportView(tblTop5KH);
         if (tblTop5KH.getColumnModel().getColumnCount() > 0) {
             tblTop5KH.getColumnModel().getColumn(0).setMaxWidth(50);
-            tblTop5KH.getColumnModel().getColumn(2).setMaxWidth(40);
-            tblTop5KH.getColumnModel().getColumn(4).setMaxWidth(40);
+            tblTop5KH.getColumnModel().getColumn(3).setMaxWidth(40);
         }
 
         tbl_thongke.setModel(new javax.swing.table.DefaultTableModel(

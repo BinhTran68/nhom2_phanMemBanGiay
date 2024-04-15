@@ -132,7 +132,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 i++,
                 sp.getMaSP(),
                 sp.getTen(),
-                sp.getTrangThaiXoa(),
+                sp.getTrangThaiXoa() == 1 ? "Đang bán " : "Ngừng bán",
                 sp.getNgayTao(),
                 sp.getNgaySuaCuoi()
             });
@@ -172,7 +172,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 i++,
                 chatLieu.getMaChatLieu(),
                 chatLieu.getTen(),
-                chatLieu.getTrangThaiXoa(),
+                chatLieu.getTrangThaiXoa() == 1 ? "Còn hàng" : "Hết hàng",
                 chatLieu.getNgayTao(),
                 chatLieu.getNgaySuaCuoi()
             });
@@ -188,7 +188,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 i++,
                 h.getMaHang(),
                 h.getTen(),
-                h.getTrangThaiXoa(),
+                h.getTrangThaiXoa() == 1 ? "Còn hàng" : "Hết hàng",
                 h.getNgayTao(),
                 h.getNgaySuaCuoi()
             });
@@ -204,7 +204,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 i++,
                 kc.getMaKichCo(),
                 kc.getTen(),
-                kc.getTrangThaiXoa(),
+                kc.getTrangThaiXoa() == 1 ? "Còn hàng" : "Hết hàng",
                 kc.getNgayTao(),
                 kc.getNgaySuaCuoi()
             });
@@ -220,7 +220,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
                 i++,
                 ms.getMaMauSac(),
                 ms.getTen(),
-                ms.getTrangThaiXoa(),
+                ms.getTrangThaiXoa() == 1 ? "Còn hàng" : "Hết hàng",
                 ms.getNgayTao(),
                 ms.getNgaySuaCuoi()
             });
@@ -230,7 +230,7 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private void hienThuocTinhLenFrom(int index) {
         txtMaThuocTinh.setText(tblThuocTinh.getValueAt(index, 1).toString());
         txtTenThuocTinh.setText(tblThuocTinh.getValueAt(index, 2).toString());
-        if (tblThuocTinh.getValueAt(index, 3).toString().equals("1")) {
+        if (tblThuocTinh.getValueAt(index, 3).toString().equalsIgnoreCase("Còn hàng")) {
             rdoConHang.setSelected(true);
         } else {
             rdoHet.setSelected(true);
@@ -240,10 +240,12 @@ public class SanPhamMainPanel extends javax.swing.JPanel {
     private void hienSPLenFrom(int index) {
         txtMaSanPham.setText(tblSanPham.getValueAt(index, 1).toString());
         txtTenSanPham.setText(tblSanPham.getValueAt(index, 2).toString());
-        if (tblSanPham.getValueAt(index, 3).toString().equals("1")) {
-            rdoDangBan.setSelected(true);
-        } else {
+        System.out.println(tblSanPham.getValueAt(index, 3).toString());
+        if (tblSanPham.getValueAt(index, 3).toString().equalsIgnoreCase("Ngừng bán")) {
+           
             rdoNgungBan.setSelected(true);
+        } else {
+            rdoDangBan.setSelected(true);
         }
     }
 
